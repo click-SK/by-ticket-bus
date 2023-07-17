@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  max-width: 1440px;
+  width: 100%;
+
 }
 
 .App-logo {
@@ -111,6 +114,8 @@ input, textarea {
   }
 
   body {
+    margin-left: auto;
+    margin-right: auto;
     background: var(--color-bg-prime);
     font-family: Kanit;
     font-style: normal;

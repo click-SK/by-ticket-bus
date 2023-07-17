@@ -13,18 +13,18 @@ const Header = () => {
     return (
         <div className='header_wrapper'>
             <div className='logo_wrap'>
-                <p>BUS LOGO</p>
-            </div>
-            <div className='routs_var'>
-                <div className='routs_item_header local_routs'>
-                    <MdDirectionsBus
-                    className='icon'/>
-                    <p>local</p>
-                </div>
-                <div className='routs_item_header place_routs'>
-                    <BiSolidBusiness
-                    className='icon'/>
-                    <p>place</p>
+                <p style={{fontSize: '48px'}}>BUS LOGO</p>
+                <div className='routs_var'>
+                    <div className='routs_item_header local_routs'>
+                        <MdDirectionsBus
+                        className='icon'/>
+                        <p>local</p>
+                    </div>
+                    <div className='routs_item_header place_routs'>
+                        <BiSolidBusiness
+                        className='icon'/>
+                        <p>place</p>
+                    </div>
                 </div>
             </div>
             <div className='custom_profile'>
