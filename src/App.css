@@ -110,3 +110,38 @@ input, textarea {
   border: solid 1px #f2f2f2;
   }
 
+  body {
+    background: var(--color-bg-prime);
+    font-family: Kanit;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,span, button, a {
+    font-family: Kanit;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+
+  button{
+
+  }
+
+  .btn_prime{
+    background-color: var(--color-prime);
+    color: var(--color-btn);
+    padding: 10px 44px;
+    box-shadow: 0px 0px 20px 2px var(--color-prime);
+  }
+  .btn_second{
+    background-color: var(--color-prime);
+    color: var(--color-text-title);
+  }

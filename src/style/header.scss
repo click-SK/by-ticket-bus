@@ -1,3 +1,105 @@
+@import '../index.css';
+
+.header_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    p, .icon{
+        color: var(--color-text-title);
+    }
+}
+
+.btn_sing-in{
+    border-radius: 25px; 
+}
+
+.routs_var{
+    display: flex;
+    gap: 40px;
+
+}
+
+.routs_item_header{
+    display: flex;
+}
+
+.custom_profile{
+    display: flex;
+    gap: 30px;
+}
+
+.change_lang{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.exchange_rate_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang_img_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    img{
+        border-radius: 50%;
+    }
+}
+
 .change_color_wrapper{
-    
+    position: relative;
+}
+
+.change_color_wrapper_main-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.change_color_wrapper_item{
+    position: absolute;
+    display: flex;
+    padding: 3px 0;
+    gap: 3px;
+    flex-direction: column;
+    justify-content: end;
+    font-size: 40px;
+    width: 100%;
+    top: 40px;
+    left: 1px;
+}
+
+.color{
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--color-text-title);
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+.color-1{
+    background: #E5C51C;
+}
+.color-2{
+    background: #EDA616;
+}
+.color-3{
+    background: #EF395A;
+}
+.color-4{
+    background: #2A2A2A;
 }

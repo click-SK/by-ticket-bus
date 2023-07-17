@@ -1,16 +1,22 @@
+@import url(https://fonts.googleapis.com/css?family=Kanit:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
 body {
+  max-width: 1440px;
+  padding: 0 50px;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 
 /* color theme */
 
@@ -20,15 +26,19 @@ code {
     --color-bg-prime: #F6F7F1;
     --color-bg-second: #DDD;
     --color-text-title: #393939;
+    --color-text: #393939;
+    --color-btn: #fff;
     --color-prime: #E5C51C;
     --color-second: #1C54E5;
   }
-  html[data-theme='yelow-white-2']{
-    --color-bg-prime: #F6F6F6;
+  html[data-theme='violet-white']{
+    --color-bg-prime: #F7F8FC;
     --color-bg-second: #DDD;
-    --color-text-title: #3A3A3A;
-    --color-prime: #EDA616;
-    --color-second: rgba(52, 22, 237, 0.65);
+    --color-text-title: #393939;
+    --color-text: #393939;
+    --color-btn: #fff;
+    --color-prime: #6D47D7;
+    --color-second: #DDDDDD;
   }
 
 
@@ -40,6 +50,7 @@ code {
     --color-bg-second: #E1E1E1;
     --color-text-title: #FFFFFF;
     --color-text: #4C4C4C;
+    --color-btn: #fff;
     --color-prime: #EF395A;
     --color-second: #2B2B2B;
   }
@@ -49,6 +60,7 @@ code {
     --color-bg-second: #FFFFFF;
     --color-text-title: #FFFFFF;
     --color-text: #210D73;
+    --color-btn: #fff;
     --color-prime: #2A2A2A;
     --color-second: rgba(42, 42, 42, 0.10);
   }
