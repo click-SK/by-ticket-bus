@@ -120,7 +120,7 @@ input, textarea {
     margin-left: auto;
     margin-right: auto;
     background: var(--color-bg-prime);
-    transition: all 0.2s ease-in-out;
+    transition: all 2s ease-in-out;
     font-family: Kanit;
     font-style: normal;
     font-weight: 400;
