@@ -1,0 +1,26 @@
+.section_main_search{
+    height: 100vh;
+}
+.adversting{
+    display: flex;
+    width: 100%;
+    
+}
+
+h1{
+    flex: 0 1 50%;
+    margin-top: 90px;
+    font-size: 70px;
+    text-align: left;
+    
+}
+
+.img_main_wraper{
+    position: relative;
+    img{
+        position: absolute;
+        right: -105rem;
+        top: 0;
+        z-index: -99;
+    }
+}

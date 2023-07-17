@@ -80,7 +80,7 @@ const ChangeColor = () => {
                 </div>
                 <AiOutlineDown
                 style={{rotate: `${isOpen ? '180deg' : '0deg'}`}}
-                className='icon'/>
+                className='icon arrow-down'/>
             </div>
             {isOpen && 
                 <div className='change_color_wrapper_item'>

@@ -7,7 +7,10 @@ import { useTheme } from './hooks/use-thems';
 function App() {
   const {them, setTheme} = useTheme()
   return (
-    <div className="App">
+    <div 
+    style={{padding:'0 50px'}}
+    className="App">
+      {/* <img className='img_baner_absolute' src="./image/bus-main.svg" alt="" /> */}
       <Header/>
       <HomePage/>
     </div>

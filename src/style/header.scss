@@ -6,9 +6,16 @@
     align-items: center;
     height: 100px;
     width: 100%;
-    p, .icon{
-        color: var(--color-text-title);
-    }
+}
+.p-header, .icon{
+    color: var(--color-text-title);
+    transition: all 0.2s ease-in-out;
+
+}
+
+.icon{
+    width: 24px;
+    height: 24px;
 }
 
 .logo_wrap{
@@ -30,6 +37,17 @@
 
 .routs_item_header{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    &:hover{
+        
+        p, .icon{
+            color: var(--color-prime);
+        
+        }
+    }
 }
 
 .custom_profile{
@@ -62,13 +80,22 @@
 
 .change_color_wrapper{
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
+
+// .arrow-down{
+//     width: 20px;
+//     height: 20px;
+// }
 
 .change_color_wrapper_main-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .change_color_wrapper_item{
@@ -89,8 +116,8 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     border: 1px solid var(--color-text-title);
     img{
