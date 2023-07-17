@@ -13,18 +13,23 @@ const ChangeColor = () => {
     useEffect (() => {
         try{
             if (window?.localStorage.getItem('app-them') === 'violet-dark_gray'){
-                console.log(window?.localStorage.getItem('app-them'));
+
+                setImgColor("./color/violet-dark.webp")
             } else if (window?.localStorage.getItem('app-them') === 'yelow-white'){ 
                 setImgColor("./color/yelow.webp")   
+
             } else if (window?.localStorage.getItem('app-them') === 'violet-white') {
                 setImgColor("./color/violet-white.webp")   
+
             } else if (window?.localStorage.getItem('app-them') === 'dark_grey_pink'){
                 setImgColor("./color/ping.webp")  
+
             }
         } catch (error) {
             console.log(error)
         }
     }, [imgColorMain])
+
 
 
     const hendlerChangeColorVioletDark = ( ) =>{
