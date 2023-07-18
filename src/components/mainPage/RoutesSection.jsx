@@ -4,7 +4,7 @@ import { FaLocationDot } from 'react-icons/fa6';
 
 const RoutesSection = () => {
     const [curentRate, setCurentRate] = useState(localStorage.getItem('curentRate'))
-    const [ratePrice, setRatePrice] = useState('')
+    const [ratePrice, setRatePrice] = useState(localStorage.getItem('curentRate') || 'EUR')
    
     useEffect (() => {
         setRatePrice(curentRate) 
