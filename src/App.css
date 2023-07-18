@@ -113,7 +113,7 @@ a {
 input, textarea {
   outline: none;
   border: none;
-  border: solid 1px #f2f2f2;
+  /* border: solid 1px #f2f2f2; */
   }
 
   body {
@@ -141,8 +141,11 @@ input, textarea {
   }
 
 
+  button:hover{
+    background-color: var(--color-btn-hover);
+  }
   button{
-
+    color: var(--color-btn);
   }
 
   .btn_prime{
@@ -151,6 +154,11 @@ input, textarea {
     padding: 10px 44px;
     box-shadow: 0px 0px 20px 2px var(--color-prime);
     transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+  }
+
+  .btn_prime:hover{
+    box-shadow: 0px 0px 20px 2px var(--color-btn-hover);
   }
   .btn_second{
     background-color: var(--color-prime);

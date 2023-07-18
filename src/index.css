@@ -41,6 +41,7 @@ body::-webkit-scrollbar-track {
     --color-text-title: #393939;
     --color-text: #393939;
     --color-btn: #fff;
+    --color-btn-hover: #ff9d2d;
     --color-prime: #E5C51C;
     --color-second: #1C54E5;
   }
@@ -50,6 +51,7 @@ body::-webkit-scrollbar-track {
     --color-text-title: #393939;
     --color-text: #393939;
     --color-btn: #fff;
+    --color-btn-hover: #4e1bd9;
     --color-prime: #6D47D7;
     --color-second: #DDDDDD;
   }
@@ -64,6 +66,7 @@ body::-webkit-scrollbar-track {
     --color-text-title: #FFFFFF;
     --color-text: #4C4C4C;
     --color-btn: #fff;
+    --color-btn-hover: #f4657f;
     --color-prime: #EF395A;
     --color-second: #2B2B2B;
   }
@@ -74,6 +77,7 @@ body::-webkit-scrollbar-track {
     --color-text-title: #FFFFFF;
     --color-text: #210D73;
     --color-btn: #fff;
+    --color-btn-hover: #3d384f;
     --color-prime: #2A2A2A;
     --color-second: rgba(42, 42, 42, 0.10);
   }

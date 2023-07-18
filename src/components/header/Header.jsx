@@ -1,11 +1,13 @@
 import React from 'react';
-import '../style/header.scss'
+import '../../style/header.scss'
 import { MdDirectionsBus } from 'react-icons/md';
 import { BiSolidBusiness } from 'react-icons/bi'
 import { AiOutlineDown } from 'react-icons/ai'
 import { BsCurrencyDollar } from 'react-icons/bs'
-import { useTheme } from '../hooks/use-thems';
+import { useTheme } from '../../hooks/use-thems';
 import ChangeColor from './ChangeColor';
+import CurencyRate from './CurencyRate';
+import CurentLang from './CurentLang';
 
 
 const Header = () => {
@@ -28,23 +30,8 @@ const Header = () => {
                 </div>
             </div>
             <div className='custom_profile'>
-                <div className='change_lang'> 
-                    <p className='p-header'>Language</p>
-                    <div className='lang_img_wrap'>
-                        <img 
-                        className='color'
-                        src="./lang/eng.svg" alt="eng" />
-                        <AiOutlineDown
-                        className='icon'/>
-                    </div>
-                </div>
-                <div className='exchange_rate_wrap'>
-                    {/* <p>Dolar</p> */}
-                        <BsCurrencyDollar
-                        className='icon color'/>
-                        <AiOutlineDown
-                        className='icon'/>
-                </div>
+                <CurentLang/>
+                <CurencyRate/>
                 <ChangeColor/>
                 <button className='btn_prime btn_sing-in'>Sing In</button>
             </div>

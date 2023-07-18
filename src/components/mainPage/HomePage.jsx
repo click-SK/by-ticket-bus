@@ -1,5 +1,7 @@
 import React from 'react';
 import SearchRouts from './SearchRouts';
+import RoutesSection from './RoutesSection';
+
 import '../../style/homePage.scss'
 
 const HomePage = () => {
@@ -13,6 +15,9 @@ const HomePage = () => {
                     </div>
                 </div>
                 <SearchRouts/>
+            </section>
+            <section className='section_routes'>
+                <RoutesSection/>
             </section>
         </div>
     );

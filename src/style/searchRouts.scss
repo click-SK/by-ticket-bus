@@ -6,18 +6,196 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 300px;
-    background: var(--color-btn);
+    // background: var(--color-btn);
     border-radius: 15px;
     box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
+    // overflow: hidden;
     // padding: 19px 30px;
-    p{
+    p, span, .icon-search{
         color: var(--color-text);
     }
 }
 
+.icon-search{
+    width: 28px;
+    height: 28px;
+}
+
+.serch_routs_items{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: space-between;
+    // align-items: center;
+    border-radius: 15px 0 0 15px;
+    padding: 5px 30px;
+    background: var(--color-btn);
+}
+
+.serch_routs-item{
+    padding: 15px 0px;
+
+}
+
+.date_start{
+    position: relative;
+    height: 100%;
+    display: flex;
+    max-width: 200px;
+    width: 100%;
+    // align-items: center;
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: var(--color-text);;
+    }
+}
+
+.item-date{
+    display: flex;
+    flex-direction: column;
+    padding: 15px 25px;
+}
+
+.date_end{
+    position: relative;
+    height: 100%;
+    max-width: 200px;
+    width: 100%;
+    // align-items: center;
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: var(--color-text);;
+    }
+    
+}
+.date_seats{
+    position: relative;
+    height: 100%;
+    display: flex;
+    max-width: 180px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0px 15px 25px;
+    // align-items: center;
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        background: var(--color-text);;
+    }
+    
+}
+
+.curent_pasanger{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    // font-size: 20px;
+}
+
+.seat_counter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // gap: 5px;
+    height: 100%;
+    width: 100%;
+    font-size: 20px;
+}
+
+.serch_routs-item_title{
+    text-align: left;
+}
+
+.serch_routs-item-input{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    // margin-top: 10px;
+    max-width: 280px;
+    width: 100%;
+    input{
+        width: 100%;
+        height: 45px;
+        font-size: 30px;
+    }
+}
+
+.date_change{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    gap: 10px;
+    
+    p{
+        font-size: 16px;
+    }
+}
+
+.icon-swap{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.couner_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    width: 20px;
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        width: 20px;
+        cursor: pointer;
+        color: var(--color-btn);
+        background: var(--color-prime);
+    }
+}
+
+
 .search-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:  0 15px 15px 0;
     height: 100%;
     width: 200px;
+    gap: 5px;
     background: var(--color-prime);
+    font-size: 20px;
+}
+
+.search-btn-icon{
+    width: 39px;
+    height: auto;
+}
+
+.data-piker-wrap{
+    font-size: 16px;
+    width:100%;
+    text-align: center;
+    height: 100%;
+    input{
+        background: transparent;
+    }
 }

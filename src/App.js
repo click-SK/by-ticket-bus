@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import HomePage from './components/mainPage/HomePage';
 import { useTheme } from './hooks/use-thems';
 

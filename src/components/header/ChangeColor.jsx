@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../style/header.scss'
-import { useTheme } from '../hooks/use-thems';
+import '../../style/header.scss'
+import { useTheme } from '../../hooks/use-thems';
 import { AiOutlineDown } from 'react-icons/ai'
 
 const ChangeColor = () => {
@@ -75,7 +75,7 @@ const ChangeColor = () => {
         <div className='change_color_wrapper'>
             <div className='change_color_wrapper_main-item '
             onClick={() => setIsOpen(!isOpen)}>
-                <div className='color'>
+                <div className='color border-1px'>
                 <img src={imgColor} alt="" />
                 </div>
                 <AiOutlineDown
@@ -84,16 +84,16 @@ const ChangeColor = () => {
             </div>
             {isOpen && 
                 <div className='change_color_wrapper_item'>
-                    <div onClick={hendlerChangeColorYelow} className='color '>
+                    <div onClick={hendlerChangeColorYelow} className='color border-1px '>
                         <img src="./color/yelow.webp" alt="" />
                     </div>
-                    <div onClick={hendlerChangeColorvioletWhite} className='color'>
+                    <div onClick={hendlerChangeColorvioletWhite} className='color border-1px'>
                     <img src="./color/violet-white.webp" alt="" />
                     </div>
-                    <div onClick={hendlerChangeColorPinkDark} className='color'>
+                    <div onClick={hendlerChangeColorPinkDark} className='color border-1px'>
                     <img src="./color/ping.webp" alt="" />
                     </div>
-                    <div onClick={hendlerChangeColorVioletDark} className='color'>
+                    <div onClick={hendlerChangeColorVioletDark} className='color border-1px'>
                     <img src="./color/violet-dark.webp" alt="" />
                     </div>
                 </div>

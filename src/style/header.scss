@@ -16,6 +16,9 @@
 .icon{
     width: 24px;
     height: 24px;
+    &:hover{
+            color: var(--color-prime);
+    }
 }
 
 .logo_wrap{
@@ -62,10 +65,50 @@
     gap: 10px;
 }
 .exchange_rate_wrap{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+
+}
+
+.icon_curency_header{
+    display: flex;
+    gap: 5px;
+    &:hover{
+        .icon{
+            color: var(--color-prime);
+        }
+    }
+}
+
+.change_coin_wrap{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 2;
+    top: 45px;
+
+}
+
+.change_lang{
+    position: relative;
+    &:hover{
+        p, .icon{
+            color: var(--color-prime);
+        }
+    }
+}
+
+.lang_var_wrap{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    right: 28px;
+    top: 48px;
 }
 
 .lang_img_wrap{
@@ -119,11 +162,15 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    border: 1px solid var(--color-text-title);
+    
     img{
         width: 100%;
         height: auto;
     }
+}
+
+.border-1px{
+    border: 1px solid var(--color-text-title);
 }
 
 .color-1{
