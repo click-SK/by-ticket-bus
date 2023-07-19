@@ -1,12 +1,23 @@
 @import '../index.css';
 
 .header_wrapper{
+    position: fixed;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 100px;
     width: 100%;
+    // max-width: 1440px;
+    transition: all 2s ease-in-out;
+    background: var(--color-bg-prime);
+    z-index: 999;
+    box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.15);
 }
+
+.content_wrap{
+    max-width: 1440px;
+}
+
 .p-header, .icon{
     color: var(--color-text-title);
     transition: all 0.2s ease-in-out;
@@ -26,6 +37,9 @@
     display: flex;
     align-items: center;
     gap: 100px;
+    p{
+        color: var(--color-text-title);
+    }
 }
 
 .btn_sing-in{

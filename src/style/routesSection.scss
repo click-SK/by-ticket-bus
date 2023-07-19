@@ -5,7 +5,7 @@
     position: relative;
     flex-direction: column;
     flex: 0 1 33%;
-    max-width: 420px;
+    max-width: 450px;
     height: 233px;
     background: var(--color-btn);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -41,6 +41,7 @@
 
 .direct_name_end{
     font-size: 35px;
+    text-align: center;
 }
 
 .burron_booking{

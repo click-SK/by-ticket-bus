@@ -1,5 +1,14 @@
+
+.home_page_wraper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
 .section_main_search{
     height: 100vh;
+    max-width: 1440px;
 }
 .adversting{
     display: flex;
@@ -32,4 +41,34 @@ h1{
     flex-wrap: wrap;
     width: 100%;
     gap: 40px;
+    max-width: 1440px;
 }
+
+.section_how-it-work{
+    position: relative;
+    // max-width: 1440px;
+    width: 100%;
+    margin-top: 100px;
+    // background: var(--color-bg-second);
+}
+
+.section_news{
+    position: relative;
+    width: 100%;
+    margin-top: 100px;
+    max-width: 1440px;
+}
+.section_info{
+    position: relative;
+    width: 100%;
+    margin-top: 100px;
+    // max-width: 1440px;
+}
+
+.section_faq{
+    position: relative;
+    width: 100%;
+    margin-top: 100px;
+    max-width: 1440px;
+}
+

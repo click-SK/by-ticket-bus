@@ -8,8 +8,10 @@ const RoutesSection = () => {
    
     useEffect (() => {
         setRatePrice(curentRate) 
-        console.log(curentRate, ratePrice );
     },[curentRate])
+    
+    console.log(curentRate, ratePrice );
+
 
     
     const directionArr = [

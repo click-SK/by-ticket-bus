@@ -14,6 +14,7 @@ const Header = () => {
 
     return (
         <div className='header_wrapper'>
+            <div className='content_wrap'>
             <div className='logo_wrap'>
                 <p style={{fontSize: '48px'}}>BUS LOGO</p>
                 <div className='routs_var'>
@@ -34,6 +35,7 @@ const Header = () => {
                 <CurencyRate/>
                 <ChangeColor/>
                 <button className='btn_prime btn_sing-in'>Sing In</button>
+            </div>
             </div>
         </div>
     );

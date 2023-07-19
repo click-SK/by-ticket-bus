@@ -1,9 +1,12 @@
 .App {
-  text-align: center;
-  max-width: 1440px;
-  width: 100%;
-  height: 100%;
-  /* overflow-x: hidden; */
+    /* text-align: center; */
+    /* max-width: 1440px; */
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* overflow-x: hidden; */
+    flex-direction: column;
+    align-items: center;
 
 }
 
@@ -60,7 +63,7 @@
 }
 a:focus,
 a:active {
-  outline: non;
+  outline: none;
 }
 nav,
 footer,
@@ -70,11 +73,12 @@ aside {
 }
 html,
 body {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
   height: 100%;
   width: 100%;
-  font-size: 100%;
   line-height: 1;
-  font-size: 14px;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -140,6 +144,13 @@ input, textarea {
     color: var(--color-text-title);
   }
 
+
+  h2{
+    font-size: 40px;
+  }
+  h3{
+    font-size: 30px;
+  }
 
   button:hover{
     background-color: var(--color-btn-hover);

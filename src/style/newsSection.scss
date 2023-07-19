@@ -1,0 +1,118 @@
+
+.news_section_wrap{
+    display: flex;
+    flex-direction: column;
+    // flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 70px;
+}
+
+.news_title{
+    color: var(--color-text-title);
+}
+
+.content_wraper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.item_wrap{
+    flex: 0 1 33%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    position: relative;
+    max-width: 450px;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    &:hover{
+        .text_wrap-blog{
+            height: 120px;
+        }
+    }
+    
+}
+
+.text_wrap-blog{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    height: 50px;
+    gap: 15px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(2.5px);
+    z-index: 100;
+    margin-bottom: 20px;
+    transition: all 0.8s ease-in-out;
+}
+
+.blog_item_img{
+    position: absolute;
+    height: 100%;
+    width: 102%;
+    object-fit: cover;
+    z-index: 1;
+
+}
+
+.blog_item_title{
+    position: relative;
+    z-index:100;
+    color: #fff;
+
+}
+
+.blog_item_text{
+    position: relative;
+    z-index:100;
+    color: #fff;
+    padding: 5px;
+}
+
+.blog_item_text--more{
+    position: absolute;
+    color: #fff;
+    right: 10px;
+    bottom: -2;
+    font-size: 20px;
+    cursor: pointer;
+    &:hover{
+        color: var(--color-prime); 
+    }
+}
+
+.more_btn{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0 20px;
+    p{
+        color: var(--color-text-title);
+        font-size: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        &:hover{
+                color: var(--color-second);
+            .svg_more-btn{
+                color: var(--color-second);
+            }
+        }
+    }
+    .svg_more-btn{
+        color: var(--color-text-title);
+    }
+}
