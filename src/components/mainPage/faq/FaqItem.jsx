@@ -7,7 +7,7 @@ const FaqItem = ({idx, itemTitle, itemText}) => {
             <div key={idx}
                 onClick={() => setIsOpen(!isOpen)}
                 className={`item_faq ${idx === 0 || idx % 2 === 0 ? 'faq-prime' : 'faq-second'} ${isOpen ? 'open' : ''}`}>
-                <div className='item_title'>
+                <div className={`item_title ${isOpen ? 'item_title-prime' : ''}`}>
                     <p>{idx + 1}.   {itemTitle}</p>
                     <BiRightArrow className='svg-faq'/>
                 </div>

@@ -40,14 +40,14 @@
         color: var(--color-btn);
     }
     &:hover{
-        background: var(--color-second);  
+        filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.32)); 
     }
 }
 .faq-second{
     background: var(--color-btn);
     transition: all 0.2s ease-in-out;
     &:hover{
-        background: var(--color-bg-second);  
+        filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.32));   
     }
 }
 
@@ -79,7 +79,7 @@
 }
 
 .faq-prime{
-    .item_title{
+    .item_title-prime{
         border-bottom: 1px solid (var(--color-btn));
     }
 }
