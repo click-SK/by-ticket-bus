@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../style/header.scss'
 import { MdDirectionsBus } from 'react-icons/md';
 import { BiSolidBusiness } from 'react-icons/bi'
@@ -34,7 +35,8 @@ const Header = () => {
                 <CurentLang/>
                 <CurencyRate/>
                 <ChangeColor/>
-                <button className='btn_prime btn_sing-in'>Sing In</button>
+                <Link to='/login'><button className='btn_prime btn_sing-in'>Sing In</button></Link> 
+                
             </div>
             </div>
         </div>
