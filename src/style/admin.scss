@@ -1,0 +1,264 @@
+:root {
+   --color-admin-bg : #fff; 
+   --color-admin-title : #2B3674; 
+   --color-admin-prime : #6118ff; 
+   --color-admin-prime--hover : #7434ff; 
+   --color-admin-second : #4318FF; 
+   --color-admin-text-prime : #2B3674; 
+   --color-admin-text-second : #A3AED0; 
+
+}
+
+
+.login_wrap-admin{
+    position: absolute;
+    display: flex;
+    z-index: 1000;
+    height: 100vh;
+    width: 100%;
+    background: var(--color-admin-bg);
+}
+
+.left_block-admin{
+    flex: 0 1 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 10%;
+    p{
+        color: var(--color-admin-text-second);
+    }
+    
+}
+
+.back_home_login-admin{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    // text-align: left;
+    width: 100%;
+    max-width: 400px;
+    gap: 10px;
+    color: var(--color-admin-text-title);
+    cursor: pointer;
+    &:hover{
+        color: var(--color-prime);
+    }
+
+}
+
+.svg-login-admin{
+    rotate: 180deg;
+}
+
+.title_singin-admin{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    h2{
+        color: var(--color-admin-title);
+    }
+    p{
+        color: --color-admin-text-second;
+    }
+}
+
+.singin_wrap-admin{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.switch_var-singin-admin{
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    height: 50px;
+    // border-radius: 15px;
+
+}
+
+.switch_item-admin{
+    flex: 0 1 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+}
+
+.switch_item-left-admin{
+    border-radius: 15px 0 0 15px;
+}
+.switch_item-right-admin{
+    border-radius:  0 15px 15px 0 ;
+}
+
+.switch-active-admin{
+    background: var(--color-prime);
+    p{
+        color: var(--color-btn);
+    }
+    &:hover{
+        background: var(--color-btn-hover);
+    }
+}
+
+.switch-non-active-admin{
+    background: transparent;
+    border: 1px solid var(--color-bg-second);
+    p{
+        color: var(--color-text-title);
+    }
+}
+
+.input_wraper-admin{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.button_singin-admin{
+    width: 100%;
+}
+
+.input_wraper-item-admin{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    color: var(--color-admin-title);
+    span{
+        color: var(--color-admin-second);
+    }
+    input{
+        height: 50px;
+        border-radius: 15px;
+        background: transparent;
+        padding: 10px;
+        border: 1px solid var(--color-bg-second);
+        color: var(--color-admin-text-prime);
+    }
+    
+}
+
+.input-checkbox-admin{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    p{
+        color: var(--color-admin-title);
+        text-align: end;
+        width: 50%;
+    }
+    .forgot_pasword-link-admin{
+            color: var(--color-admin-second);
+        }
+}
+
+.item-checkbox-admin{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+    input{
+        display: none;
+    }
+    label{
+        min-width: 24px;
+        height: 24px;
+        border: 1px solid var(--color-bg-second);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    p{
+        width: 100%;
+    }
+}
+
+
+.checked-admin{
+        background: var(--color-admin-prime);
+        border: 1px solid var(--color-admin-text-prime);
+    }
+    
+.forgot_pasword-link-admin{
+    cursor: pointer;
+    &:hover{
+        color: var(--color-admin-text-prime);
+    }
+}
+
+.button_singin-admin{
+    height: 50px;
+    background: var(--color-admin-prime);
+    border-radius: 15px;
+    &:hover{
+        background: var(--color-admin-prime--hover);
+    }
+}
+
+.not_regist-admin{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    p{
+        color: var(--color-admin-text-second);
+        
+        span{
+            color: var(--color-prime);
+            margin-left: 10px;
+            &:hover{
+                color: var(--color-btn-hover);
+            }
+        }
+    }
+}
+
+.right_block-admin{
+    flex: 0 1 50%;
+    img{
+        border-radius: 0 0 0 200px;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+// admin panel
+
+.admin_panel_wraper{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 99999;
+    background: var(--color-admin-bg);
+}
+
+.admin_panel{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.logo_admin{
+    font-size: 30px;
+    font-weight: 700;
+    span{
+        color: black;
+    }
+}
+
+.nav_list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}

@@ -7,6 +7,8 @@ import HomePage from './components/mainPage/HomePage';
 import Footer from './components/footer/Footer';
 import LogInComp from './components/authorization/LogInComp';
 import Profile from './components/profile/Profile';
+import AdminPanel from './components/admin/AdminPanel';
+import AdminLogin from './components/admin/AdminLogin';
 import { useTheme } from './hooks/use-thems';
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         <Route path='/' element={<HomePage/>}/>
         <Route path='/login' element={<LogInComp/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/admin' element={<AdminPanel/>}/>
+        <Route path='/edit' element={<AdminLogin/>}/>
       </Routes>
       <Footer/>
     </div>

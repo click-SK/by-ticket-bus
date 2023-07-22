@@ -10,19 +10,20 @@ const ClientSetting = () => {
             <div className='seting_item_wrap'>
                 <h4>Billing information</h4>
                 <p>Save your address for a faster checkout.</p>
-                <button className='btn-prime'>Add address</button>
+                <button className='btn_prime button_add_payment'>Add address</button>
             </div>
             <div className='seting_item_wrap'>
                 <h4>Email address</h4>
                 <p>This is where your confirmation email, tickets, and notifications will be sent.</p>
-                <input type="email" placeholder='email curent' />
+                <input className='input_setting' type="email" placeholder='email curent' />
             </div>
             <div className='seting_item_wrap'>
                 <h4>Update password</h4>
                 <p>Enter both fields to update your password</p>
-                <input type="password" placeholder='Current password' />
-                <input type="password" placeholder='New password' />
+                <input className='input_setting' type="password" placeholder='Current password' />
+                <input className='input_setting' type="password" placeholder='New password' />
             </div>
+            <button className='btn_prime button_add_payment'>Save</button>
             
         </div>
     );

@@ -23,12 +23,12 @@ const LogInComp = () => {
         setPassword(e)
     }
     
-    console.log(isChecked);
+
 
     return (
         <div className='login_wrap'>
             <div className='left_block'>
-                <p className='back_home_login'><BiRightArrow className='svg-login'/>Back to home</p>
+                <Link style={{textAlign:'left', width: '100%' }} to='/'><p className='back_home_login'><BiRightArrow className='svg-login'/>Back to home</p> </Link>
                 <div className='singin_wrap'>
                     <div className='title_singin'>
                         <h2>Sign In</h2>
