@@ -13,8 +13,22 @@ import { useTheme } from './hooks/use-thems';
 
 function App() {
   const {them, setTheme} = useTheme()
+  const style =
+  [
+          {
+              name: 'purpule',
+              colorBgPrime: '#F6F7F1',
+              colorBgSecond:' #DDD',
+              colorTextTitle: '#393939',
+              colorText: '#393939',
+              colorBtn:' #fff',
+              colorBtnHover:' #ff9d2d',
+              colorPrime: '#E5C51C',
+              colorSecond: '#1C54E5',
+          }
+  ] 
   return (
-    <div 
+    <div
     className="App">
       {/* <img className='img_baner_absolute' src="./image/bus-main.svg" alt="" /> */}
       <Header/>

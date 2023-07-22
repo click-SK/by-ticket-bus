@@ -245,20 +245,203 @@
 .admin_panel{
     display: flex;
     flex-direction: row;
+    height: 100%;
+}
+
+.admin_panel_aside-menu{
+    max-width: 300px ;
+    flex: 0 1 30%;
 }
 
 
 .logo_admin{
     font-size: 30px;
     font-weight: 700;
+    padding: 50px;
+    color: var(--color-admin-title);
     span{
-        color: black;
+        color: var(--color-admin-title);
     }
+}
+
+.admin_panel_nav-bar{
+    margin-top: 30px;
 }
 
 .nav_list{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding-left: 30px;
 
+}
+
+.nav_list-item{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    gap: 10px;
+    color: var(--color-admin-text-second);
+    svg{
+        // color: var(--color-admin-text-second);
+        fill: var(--color-admin-text-second);
+    }
+
+}
+
+
+.nav_list-item-active{
+    position: relative;
+    color: var(--color-admin-title);
+    svg{
+        fill: var(--color-admin-prime);
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 5px;
+        height: 100%;
+        background: var(--color-admin-prime);
+        border-radius: 10px;
+    }
+}
+
+.admin_panel_content-wraper{
+    flex: 0 1 100%;
+    background: #f4f7fe;
+    width: 100%;
+    height: 100%;
+    padding: 50px 30px ; 
+}
+
+.admin_content_wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    h2{
+        margin-bottom: 10px;
+    }
+}
+
+.erning_sales_info_wrap{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.ernings_wraper{
+    display: flex;
+    flex: 0 1 25%;
+    width: 100%;
+}
+
+.admin_panel_items{
+    display: flex;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 30px;
+}
+
+.ernings_wraper-item{
+    display: flex;
+    // justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    padding: 29px 17px;
+    gap: 17px;
+    height: 100px;
+    background: #fff;
+    border-radius: 20px;
+}
+
+.ernings_wraper-content{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.content_title{
+    color: var(--color-admin-text-second);
+    font-size: 14px;
+}
+
+.curent_sum{
+    font-size: 24px;
+}
+
+.curent_percent_profit{
+    color: #05CD99;
+}
+.curent_percent_loss{
+    color: #cd0505;
+}
+
+.derection_wraper{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.admin_panel_items-title{
+    margin-bottom: 20px;
+}
+
+.derection_table_wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.table_header{
+    display: flex;
+    width: 100%;
+    
+}
+
+
+
+.table_body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+.table_info_item{
+    display: flex;
+    width: 100%;
+
+}
+
+.colum{
+    flex: 0 1 25%;
+    // width: 25%;
+    color: var(--color-admin-text-second);
+}
+
+.row{
+    color: var(--color-admin-text-prime);
+}
+
+.partner_info_wrap{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.partner_wrap_content{
+    flex: 0 1 50%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.table_partner-item{
+    flex: 0 1 50%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
