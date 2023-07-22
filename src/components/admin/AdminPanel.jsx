@@ -19,11 +19,11 @@ import { Link } from 'react-router-dom';
 
 const AdminPanel = () => {
 
-    const [isDashboadr, setIsDashboadr] = useState(false)
+    const [isDashboadr, setIsDashboadr] = useState(true)
     const [isDirection, setIsDirection] = useState(false)
     const [isBlog, setIsBlog] = useState(false)
     const [isFaq, setIsFaq] = useState(false)
-    const [isAddUser, setIsAddUser] = useState(true)
+    const [isAddUser, setIsAddUser] = useState(false)
 
     const hendlerOpenDashboadr = () => {
         setIsDashboadr(true)
