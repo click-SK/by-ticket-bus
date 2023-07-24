@@ -114,21 +114,7 @@ const AddUser = () => {
                         </div>
 
                     ))
-
                     }
-                        {/* <div className='table_info_item'> 
-                            <p className='colum row colum_name table_partner-item'>TicketWay</p>
-                            <p className='colum row colum_progres table_partner-item'>Partner</p>
-                        
-                        </div>
-                        <div className='table_info_item'> 
-                            <p className='colum row colum_name table_partner-item'>Mike B.</p>
-                            <p className='colum row colum_progres table_partner-item'>Manager</p>
-                        </div>
-                        <div className='table_info_item'> 
-                            <p className='colum row colum_name table_partner-item'>M. Wix</p>
-                            <p className='colum row colum_progres table_partner-item'> Driver</p>
-                        </div> */}
                     </div>
                 </div>
             </div>

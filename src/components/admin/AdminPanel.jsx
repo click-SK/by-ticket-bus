@@ -19,9 +19,9 @@ import { Link } from 'react-router-dom';
 
 const AdminPanel = () => {
 
-    const [isDashboadr, setIsDashboadr] = useState(true)
+    const [isDashboadr, setIsDashboadr] = useState(false)
     const [isDirection, setIsDirection] = useState(false)
-    const [isBlog, setIsBlog] = useState(false)
+    const [isBlog, setIsBlog] = useState(true)
     const [isFaq, setIsFaq] = useState(false)
     const [isAddUser, setIsAddUser] = useState(false)
 
@@ -104,6 +104,9 @@ const AdminPanel = () => {
                         }
                         {isBlog &&
                             <AddBlog/>
+                        }
+                        {isFaq && 
+                            <FaqAdmin/>
                         }
                     </div>
                 </div>
