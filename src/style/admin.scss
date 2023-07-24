@@ -2,6 +2,7 @@
    --color-admin-bg : #fff; 
    --color-admin-title : #2B3674; 
    --color-admin-prime : #6118ff; 
+   --color-admin-error : #fe1c1c; 
    --color-admin-prime--hover : #7434ff; 
    --color-admin-second : #4318FF; 
    --color-admin-text-prime : #2B3674; 
@@ -378,7 +379,7 @@
     color: #05CD99;
 }
 .curent_percent_loss{
-    color: #cd0505;
+    color: var(--color-admin-error);
 }
 
 .derection_wraper{
@@ -577,4 +578,42 @@
         border: 1px solid #ccc;
         padding: 10px;
     }
+}
+
+.img_post_item_wrap{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.post_item_wrap{
+    position: absolute;
+    background: #f4f7fe;
+    height: 100vh;
+    width: 100%;
+    top: 60px;
+    z-index: 1000;
+}
+
+.btn_faq_item_wrap{
+    display: flex;
+    gap: 20px;
+    margin-top: 150px;
+
+}
+
+.btn_cancel{
+    background: var(--color-admin-error);
+
+}
+
+.item_text{
+    position: relative;
+}
+
+.text_area{
+    position: absolute;
+    background: #f4f7fe;
+    top: 1px;
+    width: 100%;
 }
