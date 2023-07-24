@@ -3,11 +3,13 @@ import { IoMdAddCircle } from 'react-icons/io';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import FaqAddPost from './FaqAddPost';
+import FaqListItem from './FaqListItem';
 
 const FaqAdmin = () => {
     const [content, setContent] = useState('');
     const [ isAddNews, setIsAddNews] = useState(false);
-    const [ isOpenPostItem, setIsOpenItem] = useState(false)
+    const [ isOpenPostItem, setIsOpenPostItem] = useState(false)
+
 
     const handleChange = (value) => {
       setContent(value);
@@ -85,20 +87,10 @@ const FaqAdmin = () => {
                     }
                     <div className='table_body'>
                     {postList.map((item, idx) => (
-                        <div 
-                        onClick={() => setIsOpenItem(!isOpenPostItem)}
-                        key={idx} className='table_info_item'> 
-                            <p className='colum row colum_name table_partner-item'>{item.titleEng}</p>
-                            <p className='colum row colum_progres table_partner-item'> {item.date}</p>
-                            {isOpenPostItem && 
-                                <div className='post_item_wrap'>
-                                    <h4>{item.titleEng}</h4>
-                                    <div>{item.date}</div>
-                                    <div>{item.textEng}</div>
-                                </div>
-                            }
-                        </div>
-
+                        <FaqListItem
+                            key={idx}
+                            item = {item}
+                        />
                     ))
                     }
                     </div>

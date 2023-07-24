@@ -3,6 +3,7 @@ import { IoMdAddCircle } from 'react-icons/io';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import AddPostItem from './AddPostItem';
+import PostListItem from './PostListItem';
 
 const AddBlog = () => {
 
@@ -20,7 +21,7 @@ const AddBlog = () => {
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: 'url'
+            img: './image/blog/1.png'
         },
         { 
             date : '24/07/23',
@@ -28,7 +29,7 @@ const AddBlog = () => {
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: 'url'
+            img: './image/blog/1.png'
         },
         { 
             date : '23/07/23',
@@ -36,7 +37,7 @@ const AddBlog = () => {
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: 'url'
+            img: './image/blog/1.png'
         },
         { 
             date : '22/07/23',
@@ -44,7 +45,7 @@ const AddBlog = () => {
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: 'url'
+            img: './image/blog/1.png'
         },
         { 
             date : '21/07/23',
@@ -52,7 +53,7 @@ const AddBlog = () => {
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: 'url'
+            img: './image/blog/1.png'
         },
         { 
             date : '20/07/23',
@@ -60,7 +61,7 @@ const AddBlog = () => {
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: 'url'
+            img: './image/blog/1.png'
         },
 
     ]
@@ -85,11 +86,13 @@ const AddBlog = () => {
                     }
                     <div className='table_body'>
                     {postList.map((item, idx) => (
-                        <div key={idx} className='table_info_item'> 
-                            <p className='colum row colum_name table_partner-item'>{item.titleEng}</p>
-                            <p className='colum row colum_progres table_partner-item'> {item.date}</p>
-                        </div>
-
+                        // <div key={idx} className='table_info_item'> 
+                        //     <p className='colum row colum_name table_partner-item'>{item.titleEng}</p>
+                        //     <p className='colum row colum_progres table_partner-item'> {item.date}</p>
+                        // </div>
+                        <PostListItem
+                            item = {item}
+                        />
                     ))
                     }
                     </div>
