@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
+import ManagerForm from './ManagerForm';
 
 const AddUser = () => {
 
@@ -10,7 +11,7 @@ const AddUser = () => {
     // input manager 
 
     const [managerFirstName, setManagerFirstName] = useState('')
-    const [managerLustName, setManagerLastName] = useState('')
+    const [managerLastName, setManagerLastName] = useState('')
     const [managerPassword, setManagerPassword] = useState('')
     const [managerLogin, setManagerLogin] = useState('')
     
@@ -73,25 +74,7 @@ const AddUser = () => {
                 </div>
             </div>
             {isManager && 
-                <div className='add_user-content'>
-                    <div className='add_user-input'>
-                        <label htmlFor="first_name">First Name</label>
-                        <input id='first_name' type="text" />
-                    </div>
-                    <div className='add_user-input'>
-                        <label htmlFor="lust_name">Lust Name</label>
-                        <input id='lust_name' type="text" />
-                    </div>
-                    <div className='add_user-input'>
-                        <label htmlFor="login">Login</label>
-                        <input id='login' type="email" />
-                    </div>
-                    <div className='add_user-input'>
-                        <label htmlFor="password">Pasword</label>
-                        <input id='password' type="password" />
-                    </div>
-                    <button className='btn-save add_user_button'>Save</button>
-                </div>
+                <ManagerForm/>
             }
             <div className='admin_panel_items partner_wrap_content'>
                 <h3 className='admin_panel_items-title'>User List</h3>

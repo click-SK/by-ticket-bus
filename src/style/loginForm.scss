@@ -205,3 +205,40 @@
         object-fit: cover;
     }
 }
+
+.registration_wraper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    height: 100%;
+    min-height: 800px;
+    padding: 50px 10%;
+    width: 100%;
+    gap: 50px;
+    // max-width: 600px;
+    h2{
+        color: var(--color-text-title);
+    }
+}
+
+.wrap_content_regist{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.right_regist_block{
+    flex: 0 1 50%;
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
+}
+.left_regist_block{
+    flex: 0 1 50%;
+}
+
+.input_wraper-item-photo{
+    input {
+        border: 0;
+    }
+}

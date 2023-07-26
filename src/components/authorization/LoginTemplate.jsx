@@ -56,7 +56,7 @@ const LoginTemplate = ({setIsChecked, isChecked, handleLogin, handleRegistration
       </div>
       <div className="not_regist">
         <p onClick={() => handleRegistration(email, password)}>
-          Not registered yet? <Link to={registrationPath}>Create an Account</Link>{" "}
+          Not registered yet? <Link to={registrationPath}> <span>Create an Account </span> </Link>{" "}
         </p>
       </div>
     </div>
