@@ -5,6 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 const AddPostItem = () => {
     const [contentSpain, setContentSpain] = useState('');
     const [contentEng, setContentEng] = useState('');
+    const [isEngVar, setIsEngVar] = useState(true)
 
 
     const handleChangeEng = (value) => {
@@ -19,91 +20,106 @@ const AddPostItem = () => {
                             <h3>Add news</h3>
                         </div>
 
-                        <div style={{marginBottom:'50px'}}>
+                        <div>
                             <h4 style={{marginBottom:'10px'}}>Add image</h4>
                             <input type="file" />
                         </div>
+                        <div className='blog_tabs_btn'>
+                            <button
+                            onClick={() => setIsEngVar(true)}
+                            className={`admin_panel_items add_user_button btn_tabs ${isEngVar ? 'btn_tabs-active': ''}`}>ENG</button>
+                            <button 
+                            onClick={() => setIsEngVar(false)}
+                            className={`admin_panel_items add_user_button btn_tabs ${isEngVar ? '': 'btn_tabs-active'}`}>ESP</button>
+                        </div>
+                        {isEngVar ?
+                            <>
+                                <div className='add_title_item'>
+                                    <label htmlFor="title_eng_input">Title eng</label>
+                                    <input id='title_eng_input' type="text" />
+                                </div>
+                                <div className='add_text_item'>
+                                    <h4>Eng text</h4>
+                                    <ReactQuill
+                                    value={contentEng}
+                                    onChange={handleChangeEng}
+                                    placeholder="Write your blog article here..."
+                                    modules={{
+                                        toolbar: [
+                                        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                                        ['bold', 'italic', 'underline', 'strike'],
+                                        [{ list: 'ordered' }, { list: 'bullet' }],
+                                        ['blockquote', 'code-block'],
+                                        [{ color: [] }, { background: [] }],
+                                        [{ align: [] }],
+                                        ['link'],
+                                        ['clean'],
+                                        ],
+                                    }}
+                                    formats={[
+                                        'header',
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'strike',
+                                        'list',
+                                        'bullet',
+                                        'blockquote',
+                                        'code-block',
+                                        'color',
+                                        'background',
+                                        'align',
+                                        'link',
+                                        
+                                    ]}
+                                    />
+                                </div>
+                            </> 
+                            :
+                            <>
+                                <div className='add_title_item'>
+                                    <label htmlFor="title_spain_input">Title spain</label>
+                                    <input id='title_spain_input' type="text" />
+                                </div>
+                                <div className='add_text_item'>
+                                    <h4>Spain text</h4>
+                                    <ReactQuill
+                                    value={contentSpain}
+                                    onChange={handleChangeSpain}
+                                    placeholder="Write your blog article here..."
+                                    modules={{
+                                        toolbar: [
+                                        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                                        ['bold', 'italic', 'underline', 'strike'],
+                                        [{ list: 'ordered' }, { list: 'bullet' }],
+                                        ['blockquote', 'code-block'],
+                                        [{ color: [] }, { background: [] }],
+                                        [{ align: [] }],
+                                        ['link'],
+                                        ['clean'],
+                                        ],
+                                    }}
+                                    formats={[
+                                        'header',
+                                        'bold',
+                                        'italic',
+                                        'underline',
+                                        'strike',
+                                        'list',
+                                        'bullet',
+                                        'blockquote',
+                                        'code-block',
+                                        'color',
+                                        'background',
+                                        'align',
+                                        'link',
+                                        
+                                    ]}
+                                    />
+                                </div>
+                            </>
 
-                        <div className='add_title_item'>
-                            <label htmlFor="title_eng_input">Title eng</label>
-                            <input id='title_eng_input' type="text" />
-                        </div>
-                        <div className='add_title_item'>
-                            <label htmlFor="title_spain_input">Title spain</label>
-                            <input id='title_spain_input' type="text" />
-                        </div>
-                        <div className='add_text_item'>
-                            <h4>Eng text</h4>
-                            <ReactQuill
-                            value={contentEng}
-                            onChange={handleChangeEng}
-                            placeholder="Write your blog article here..."
-                            modules={{
-                                toolbar: [
-                                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                                ['bold', 'italic', 'underline', 'strike'],
-                                [{ list: 'ordered' }, { list: 'bullet' }],
-                                ['blockquote', 'code-block'],
-                                [{ color: [] }, { background: [] }],
-                                [{ align: [] }],
-                                ['link'],
-                                ['clean'],
-                                ],
-                            }}
-                            formats={[
-                                'header',
-                                'bold',
-                                'italic',
-                                'underline',
-                                'strike',
-                                'list',
-                                'bullet',
-                                'blockquote',
-                                'code-block',
-                                'color',
-                                'background',
-                                'align',
-                                'link',
-                                
-                            ]}
-                            />
-                        </div>
-                        <div className='add_text_item'>
-                            <h4>Spain text</h4>
-                            <ReactQuill
-                            value={contentSpain}
-                            onChange={handleChangeSpain}
-                            placeholder="Write your blog article here..."
-                            modules={{
-                                toolbar: [
-                                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                                ['bold', 'italic', 'underline', 'strike'],
-                                [{ list: 'ordered' }, { list: 'bullet' }],
-                                ['blockquote', 'code-block'],
-                                [{ color: [] }, { background: [] }],
-                                [{ align: [] }],
-                                ['link'],
-                                ['clean'],
-                                ],
-                            }}
-                            formats={[
-                                'header',
-                                'bold',
-                                'italic',
-                                'underline',
-                                'strike',
-                                'list',
-                                'bullet',
-                                'blockquote',
-                                'code-block',
-                                'color',
-                                'background',
-                                'align',
-                                'link',
-                                
-                            ]}
-                            />
-                        </div>
+                        }
                       <button className='admin_panel_items add_user_button active_btn_user'> Publish </button>  
             </div>
     );
