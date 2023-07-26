@@ -16,6 +16,7 @@ import { AiFillSetting } from 'react-icons/ai';
 import { BiLogOut } from 'react-icons/bi';
 import '../../style/admin.scss'
 import { Link } from 'react-router-dom';
+import SettingSite from './setting/SettingSite';
 
 const AdminPanel = () => {
 
@@ -24,6 +25,7 @@ const AdminPanel = () => {
     const [isBlog, setIsBlog] = useState(false)
     const [isFaq, setIsFaq] = useState(false)
     const [isAddUser, setIsAddUser] = useState(false)
+    const [isSetting, setIsSetting] = useState(false)
 
     const hendlerOpenDashboadr = () => {
         setIsDashboadr(true)
@@ -31,6 +33,7 @@ const AdminPanel = () => {
         setIsBlog(false)
         setIsFaq(false)
         setIsAddUser(false)
+        setIsSetting(false)
     }
     const hendlerOpenDirection = () => {
         setIsDashboadr(false)
@@ -38,6 +41,7 @@ const AdminPanel = () => {
         setIsBlog(false)
         setIsFaq(false)
         setIsAddUser(false)
+        setIsSetting(false)
     }
     const hendlerOpenBlog = () => {
         setIsDashboadr(false)
@@ -45,6 +49,7 @@ const AdminPanel = () => {
         setIsBlog(true)
         setIsFaq(false)
         setIsAddUser(false)
+        setIsSetting(false)
     }
     const hendlerOpenFaq = () => {
         setIsDashboadr(false)
@@ -52,6 +57,7 @@ const AdminPanel = () => {
         setIsBlog(false)
         setIsFaq(true)
         setIsAddUser(false)
+        setIsSetting(false)
     }
     const hendlerOpenAddUser = () => {
         setIsDashboadr(false)
@@ -59,6 +65,15 @@ const AdminPanel = () => {
         setIsBlog(false)
         setIsFaq(false)
         setIsAddUser(true)
+        setIsSetting(false)
+    }
+    const hendlerOpenSetting = () => {
+        setIsDashboadr(false)
+        setIsDirection(false)
+        setIsBlog(false)
+        setIsFaq(false)
+        setIsAddUser(false)
+        setIsSetting(true)
     }
 
     return (
@@ -76,7 +91,9 @@ const AdminPanel = () => {
                             className={`nav_list-item ${isDirection ? 'nav_list-item-active' : ''} `}><RiDirectionFill />Creating directions</li>
                             <li className='nav_list-item'><FaBus/>Add bus</li>
                             <li className='nav_list-item'><TbEaseInOutControlPoints/>Add stops and routs</li>
-                            <li className='nav_list-item'><AiFillSetting/>Setting</li>
+                            <li 
+                            onClick={hendlerOpenSetting}
+                            className={`nav_list-item ${isSetting ? 'nav_list-item-active' : ''} `}><AiFillSetting/>Setting</li>
                             <li 
                             onClick={hendlerOpenAddUser}
                             className={`nav_list-item ${isAddUser ? 'nav_list-item-active' : ''} `}><FaUserCheck/>Add user and driver</li>
@@ -98,6 +115,9 @@ const AdminPanel = () => {
                         }
                         {isDirection && 
                             <Direction/>
+                        }
+                        {isSetting && 
+                            <SettingSite/>
                         }
                         {isAddUser&&
                             <AddUser/>

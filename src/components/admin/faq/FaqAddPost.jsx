@@ -6,6 +6,8 @@ const FaqAddPost = () => {
     const [contentSpain, setContentSpain] = useState('');
     const [contentEng, setContentEng] = useState('');
     const [isEngVar, setIsEngVar] = useState(true)
+    const [titleEng, setTitleEng] = useState('')
+    const [titleSpain, setTitleSpain] = useState('')
 
 
     const handleChangeEng = (value) => {
@@ -31,7 +33,7 @@ const FaqAddPost = () => {
                             <>
                                 <div className='add_title_item'>
                                     <label htmlFor="title_eng_input">Question eng</label>
-                                    <input id='title_eng_input' type="text" />
+                                    <input id='title_eng_input' value={titleEng} type="text" onChange={(e) => setTitleEng(e.target.value) } />
                                 </div>
                                 <div className='add_text_item'>
                                     <h4>Eng text</h4>
@@ -74,7 +76,7 @@ const FaqAddPost = () => {
                             <>
                                 <div className='add_title_item'>
                                     <label htmlFor="title_spain_input">Question spain</label>
-                                    <input id='title_spain_input' type="text" />
+                                    <input id='title_spain_input' value={titleSpain} type="text" onChange={(e) => setTitleSpain(e.target.value) } />
                                 </div>
                                 <div className='add_text_item'>
                                     <h4>Spain text</h4>
