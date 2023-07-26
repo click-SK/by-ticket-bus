@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
 import ManagerForm from './ManagerForm';
+import DriverForm from './DriverForm';
 
 const AddUser = () => {
 
@@ -19,6 +20,16 @@ const AddUser = () => {
         setIsManager(!isManager)
         setIsDriver(false)
         setIsPartner(false)
+    }
+    const hendlerOpenAddDriver = () =>{
+        setIsManager(false)
+        setIsDriver(!isDriver)
+        setIsPartner(false)
+    }
+    const hendlerOpenAddPartner = () =>{
+        setIsManager(false)
+        setIsDriver(false)
+        setIsPartner(!isPartner)
     }
 
     const userList = [
@@ -65,16 +76,26 @@ const AddUser = () => {
                     className={`ernings_wraper-item admin_panel_items add_user_button ${isManager ? 'active_btn_user' : ''}`}>
                         <p className='curent_sum add_user-item'>Add Manager <IoMdAddCircle/></p>
                     </div>
-                    <div className='ernings_wraper-item admin_panel_items add_user_button'>
+                    <div 
+                    onClick={hendlerOpenAddDriver} 
+                    className={`ernings_wraper-item admin_panel_items add_user_button ${isDriver ? 'active_btn_user' : ''}`}>
                         <p className='curent_sum add_user-item'>Add Driver <IoMdAddCircle/></p>
                     </div>
-                    <div className='ernings_wraper-item admin_panel_items add_user_button'>
+                    <div
+                    onClick={hendlerOpenAddPartner} 
+                    className={`ernings_wraper-item admin_panel_items add_user_button ${isPartner ? 'active_btn_user' : ''}`}>
                         <p className='curent_sum add_user-item'>Partner <IoMdAddCircle/></p>
                     </div>
                 </div>
             </div>
             {isManager && 
                 <ManagerForm/>
+            }
+            {isDriver && 
+                <DriverForm/>
+            }
+            {isPartner && 
+                <DriverForm/>
             }
             <div className='admin_panel_items partner_wrap_content'>
                 <h3 className='admin_panel_items-title'>User List</h3>
