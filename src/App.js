@@ -12,22 +12,33 @@ import AdminPanel from "./components/admin/AdminPanel";
 import AdminLogin from "./components/admin/AdminLogin";
 import ErrorComponent from "./components/Error/ErrorComponent";
 import { useTheme } from "./hooks/use-thems";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth } from "./store/authUser";
+import { useEffect } from "react";
 
 function App() {
-  const { them, setTheme } = useTheme();
-  const style = [
-    {
-      name: "purpule",
-      colorBgPrime: "#F6F7F1",
-      colorBgSecond: " #DDD",
-      colorTextTitle: "#393939",
-      colorText: "#393939",
-      colorBtn: " #fff",
-      colorBtnHover: " #ff9d2d",
-      colorPrime: "#E5C51C",
-      colorSecond: "#1C54E5",
-    },
-  ];
+  const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
+  const dispatch = useDispatch();
+  console.log('isAuthUser',isAuthUser);
+  useEffect(() => {
+    if(localStorage.getItem('token')) {
+      dispatch(checkAuth());
+    }
+  },[])
+  // const style = [
+  //   {
+  //     name: "purpule",
+  //     colorBgPrime: "#F6F7F1",
+  //     colorBgSecond: " #DDD",
+  //     colorTextTitle: "#393939",
+  //     colorText: "#393939",
+  //     colorBtn: " #fff",
+  //     colorBtnHover: " #ff9d2d",
+  //     colorPrime: "#E5C51C",
+  //     colorSecond: "#1C54E5",
+  //   },
+  // ];
+
   return (
     <div className="App">
       {/* <img className='img_baner_absolute' src="./image/bus-main.svg" alt="" /> */}
