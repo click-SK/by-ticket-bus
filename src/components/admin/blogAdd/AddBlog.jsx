@@ -86,11 +86,13 @@ const AddBlog = () => {
                     }
                     <div className='table_body'>
                     {postList.map((item, idx) => (
+                       
                         // <div key={idx} className='table_info_item'> 
                         //     <p className='colum row colum_name table_partner-item'>{item.titleEng}</p>
                         //     <p className='colum row colum_progres table_partner-item'> {item.date}</p>
                         // </div>
                         <PostListItem
+                            key = {idx}
                             item = {item}
                         />
                     ))

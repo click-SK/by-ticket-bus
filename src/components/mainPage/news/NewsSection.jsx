@@ -48,7 +48,7 @@ const NewsSection = () => {
                             <img className='blog_item_img' src={item.imgSrc} alt="blogimg" />
                             <div className='text_wrap-blog'>
                             <h2 className='blog_item_title'>{item.title}</h2>
-                            <p className='blog_item_text'>{item.text} <p className='blog_item_text--more'>More...</p></p>
+                            <p className='blog_item_text'>{item.text} <span className='blog_item_text--more'>More...</span></p>
                             
                             </div>
                         </div>

@@ -39,6 +39,7 @@ const Faq = () => {
             <div className='content_wrap-faq' >
                 {arrFaq.map((item,idx) => (
                     <FaqItem
+                    key={idx}
                     idx = {idx}
                     itemTitle = {item.title} 
                     itemText = {item.text} 

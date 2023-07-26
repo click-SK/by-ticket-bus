@@ -17,7 +17,7 @@ const Header = () => {
         <div className='header_wrapper'>
             <div className='content_wrap'>
             <div className='logo_wrap'>
-                <p style={{fontSize: '48px'}}>BUS LOGO</p>
+                <Link to={'/'} ><p style={{fontSize: '48px'}}>BUS LOGO</p> </Link>
                 <div className='routs_var'>
                     <div className='routs_item_header local_routs'>
                         <MdDirectionsBus
