@@ -11,6 +11,7 @@ import Profile from "./components/profile/Profile";
 import AdminPanel from "./components/admin/AdminPanel";
 import AdminLogin from "./components/admin/AdminLogin";
 import ErrorComponent from "./components/Error/ErrorComponent";
+import BussСheme from "./components/booking/bus/BussСheme";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -70,6 +71,7 @@ function App() {
         <Route path="/user-profile" element={<Profile />} />}
         {(isAdmin || isOperator) && 
         <Route path="/admin-panel" element={<AdminPanel />} />}
+        <Route path="/bus" element={<BussСheme/>} />
       </Routes>
       <Footer />
     </div>
