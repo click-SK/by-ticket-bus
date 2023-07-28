@@ -9,12 +9,18 @@ import { BiTrip } from 'react-icons/bi';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { CiSettings } from 'react-icons/ci';
 import { CiLogout } from 'react-icons/ci';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../../store/authUser';
+import { useNavigate } from 'react-router-dom';
 
 const ClientProfile = () => {
     const [isTrips, setIsTrips] = useState(true)
     const [isPassengers, setIsPassengers] = useState(false)
     const [isSettings, setIsSettings] = useState(false)
     const [isLogout, setIsLogout] = useState(false)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {user} = useSelector((state) => state.authUser.user);
 
     const openTrips = () => {
         setIsTrips(true)
@@ -35,6 +41,11 @@ const ClientProfile = () => {
         setIsLogout(false)
     }
 
+    const handelLogoutUser = () => {
+        dispatch(logout({accessToken: user.accessToken}));
+        navigate('/');
+    }
+
     return (
         <div className='profile_client_wrap'>
             <aside className='aside_menu'>
@@ -50,7 +61,8 @@ const ClientProfile = () => {
                         onClick={openSettings}
                         className={`list_item ${isSettings ? 'list_item-active' : ''}`}><CiSettings/>Settings</li>
                         <li 
-                        className={`list_item`}><CiLogout/>Log out</li>
+                        className={`list_item`}
+                        onClick={handelLogoutUser}><CiLogout/>Log out</li>
                     </ul>
                 </nav>
             </aside>
@@ -59,10 +71,10 @@ const ClientProfile = () => {
                     <ClientTrips/>
                 }
                 {isPassengers && 
-                    <ClientPassanger/>
+                    <ClientPassanger user={user}/>
                 }
                 {isSettings && 
-                    <ClientSetting/>
+                    <ClientSetting user={user}/>
                 }
             </div>
 

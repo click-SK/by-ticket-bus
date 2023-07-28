@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { registration } from '../../../store/authAdministration';
 const ManagerForm = () => {
     const [managerFirstName, setManagerFirstName] = useState('')
     const [managerLastName, setManagerLastName] = useState('')
     const [managerPassword, setManagerPassword] = useState('')
     const [managerLogin, setManagerLogin] = useState('')
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleRegistrationManager = async () => {
+        const data = await dispatch(registration({login: managerLogin, password: managerPassword, firstName: managerFirstName, lastName: managerLastName}));
+        if('user' in data.payload) {
+          alert('A new manager has been added')
+          setManagerFirstName('');
+          setManagerLastName('');
+          setManagerPassword('');
+          setManagerLogin('');
+        }
+    }
     return (
         <>
             <div className='add_user-content'>
@@ -24,7 +40,7 @@ const ManagerForm = () => {
                         <label htmlFor="password">Pasword</label>
                         <input id='password' type="password" value={managerPassword} onChange={(e) => setManagerPassword(e.target.value)} />
                     </div>
-                    <button className='btn-save add_user_button'>Save</button>
+                    <button className='btn-save add_user_button' onClick={handleRegistrationManager}>Save</button>
                 </div>
         </>
     );

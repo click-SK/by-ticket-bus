@@ -2,24 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { BiRightArrow } from 'react-icons/bi';
 import '../../style/admin.scss'
 import { Link } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../store/authAdministration';
+import { useNavigate } from 'react-router-dom';
 const AdminLogin = () => {
-    // const [isClient, setIsClient] = useState(true)
     const [isChecked, setIsChecked] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
-    // localStorage.setItem('isClient',isClient)
-    // useEffect (() => {
-    //     localStorage.setItem('isClient',isClient)
-    // }, [isClient] )
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    const isAdmin = useSelector((state) => state.authAdmin.isAdmin);
+    const isOperator = useSelector((state) => state.authAdmin.isOperator);
 
-    const hendlerChangeInputEmail = (e) =>{
-        setEmail(e)
-    }
-    const hendlerChangeInputPass = (e) =>{
-        setPassword(e)
+    useEffect(() => {
+        if(isAdmin || isOperator) {
+          navigate('/admin-panel')
+        }
+      },[isAdmin, isOperator])
+
+    const handleLoginAdministration = () => {
+        dispatch(login({login: email, password}))
     }
     return (
         <div className='login_wrap-admin'>
@@ -32,11 +35,11 @@ const AdminLogin = () => {
                     <div className='input_wraper-admin'>
                         <div className='input_wraper-item-admin'>
                             <label htmlFor="mail">Email <span>*</span></label>
-                            <input id='mail' type="text" placeholder='mail@simmmple.com' value={email} onChange={(e) => hendlerChangeInputEmail(e.target.value)}/>
+                            <input id='mail' type="text" placeholder='mail@simmmple.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                         <div className='input_wraper-item-admin'>
                             <label htmlFor="password">Password<span>*</span></label>
-                            <input id='password' type="password" placeholder='Min. 8 characters' value={password} onChange={(e) => hendlerChangeInputPass(e.target.value)}/>
+                            <input id='password' type="password" placeholder='Min. 8 characters' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </div>
                     </div>
                     <div className='input_wraper input-checkbox-admin'>
@@ -50,7 +53,9 @@ const AdminLogin = () => {
                         <p className='forgot_pasword-link-admin' >Forget password?</p>
                     </div>
                     <div className='input_wraper-admin'>
-                       <Link to='/admin'> <button className='button_singin-admin'>Sign In</button> </Link> 
+                       <button 
+                       onClick={handleLoginAdministration}
+                       className='button_singin-admin'>Sign In</button>
                     </div>
                 </div>
                 <p>© 2023 Horizon UI. All Rights Reserved. Made with love by Simmmple!</p>

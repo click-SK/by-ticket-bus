@@ -12,8 +12,11 @@ const LoginForm = () => {
   const [isPartner, setIsPartner] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
+  const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
+
+  console.log('isAuthUser',isAuthUser);
 
   const handleShowUserLogin = () => {
     setIsUser(true);
@@ -24,9 +27,17 @@ const LoginForm = () => {
     setIsUser(false);
   }
 
-  const handleLoginUser = (email, password) => {
+  const handleLoginUser = async (email, password) => {
     try {
-      dispatch(login({email, password}))
+      const data = await dispatch(login({email, password}))
+      if(data.payload.message == 'Login error') {
+        return alert('Login error')
+      }
+      if('user' in data.payload) {
+        window.localStorage.setItem('bus-u-t', data.payload.accessToken);
+        navigate('/user-profile');
+        window.location.reload();
+      }
     } catch(e) {
       console.log(e);
       return navigate('/404');

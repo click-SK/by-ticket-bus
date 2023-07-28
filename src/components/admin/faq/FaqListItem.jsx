@@ -29,7 +29,7 @@ const FaqListItem = ({item}) => {
                                 <FcEditImage
                                 onClick={() => setIsEditTextEng(!isEditTextEng)}/>
                                 <h4>{item.titleEng}</h4>
-                                <div>{item.date}</div>
+                                {/* <div>{item.date}</div> */}
                                 <div className='item_text'>{item.textEng}
                                     {isEditTextEng && 
                                             <ReactQuill

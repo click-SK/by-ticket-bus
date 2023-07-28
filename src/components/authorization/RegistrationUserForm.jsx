@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { registration } from "../../store/authUser";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const RegistrationUserForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -10,10 +12,24 @@ const RegistrationUserForm = () => {
     const [birthday, setBirthday] = useState("");
 
     const dispatch = useDispatch();
+    const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
+    const navigate = useNavigate();
 
-    const handleRegistrationUser = () => {
-        dispatch(registration({email, password, firstName, lastName,}))
+    // useEffect(() => {
+    //   if(isAuthUser) {
+    //     navigate('/user-profile')
+    //   }
+    // },[isAuthUser])
+
+    const handleRegistrationUser = async () => {
+        const data = await dispatch(registration({email, password, firstName, lastName, phone, birthday}));
+        if('user' in data.payload) {
+          window.localStorage.setItem('bus-u-t', data.payload.accessToken);
+          navigate('/user-profile');
+          window.location.reload();
+        }
     }
+
   return (
     <div className="registration_wraper">
       <h2>Registration user</h2>
@@ -78,14 +94,14 @@ const RegistrationUserForm = () => {
               <button className="button_singin" onClick={handleRegistrationUser}>Registration</button>{" "}
           </div>
       </div>
-      <div className="left_regist_block"> 
+      {/* <div className="left_regist_block"> 
       <div className=" input_wraper-item input_wraper-item-photo">
             <label htmlFor="photo">
               Add photo<span>*</span>
             </label>
             <input id="photo" type="file" />
           </div>
-      </div>
+      </div> */}
       </div>
       
       

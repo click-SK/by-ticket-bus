@@ -82,7 +82,7 @@ const AddBlog = () => {
 
                     </div>
                     {isAddNews && 
-                        <AddPostItem/>
+                        <AddPostItem setIsAddNews={setIsAddNews}/>
                     }
                     <div className='table_body'>
                     {postList.map((item, idx) => (
