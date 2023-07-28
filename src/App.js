@@ -16,6 +16,7 @@ import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
 import { checkAuthAdministration } from "./store/authAdministration";
+import { getCurrencies } from "./store/currentCurrencies";
 import { useEffect } from "react";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   const dispatch = useDispatch();
   
   useEffect(() => {
+    dispatch(getCurrencies());
     if(localStorage.getItem('bus-u-t')) {
       setTimeout(() => {
         dispatch(checkAuthUser());
