@@ -11,6 +11,7 @@ import Profile from "./components/profile/Profile";
 import AdminPanel from "./components/admin/AdminPanel";
 import AdminLogin from "./components/admin/AdminLogin";
 import ErrorComponent from "./components/Error/ErrorComponent";
+import BussСheme from "./components/booking/bus/BussСheme";
 import { useTheme } from "./hooks/use-thems";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/edit" element={<AdminLogin />} />
         <Route path="/404" element={<ErrorComponent />} />
+        <Route path="/bus" element={<BussСheme/>} />
       </Routes>
       <Footer />
     </div>
