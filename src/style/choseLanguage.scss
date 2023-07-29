@@ -1,0 +1,43 @@
+.change_lang{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.change_lang{
+    position: relative;
+    &:hover{
+
+        p, .icon{
+            color: var(--color-prime);
+        }
+    }
+}
+
+.lang_img_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    img{
+        border-radius: 50%;
+    }
+}
+
+.lang_var_wrap{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    right: 28px;
+    top: 48px;
+}
+
+.chose_lang_item {
+    padding: 10px 0px;
+    &:hover {
+        background-color: red;
+        cursor: pointer;
+    }
+}

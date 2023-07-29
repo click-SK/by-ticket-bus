@@ -3,9 +3,11 @@ import AvailableSvg from './AvailableSvg';
 import PaymentSvg from './PaymentSvg';
 import RoadMapSvg from './RoadMapSvg';
 import BusTiketsSvg from './BusTiketsSvg';
+import { useTranslation } from "react-i18next";
 import '../../../style/infoSection.scss'
 const InfoSection = () => {
-
+    const { t } = useTranslation();
+    
     const arrIcon = [
         {
             icon: <AvailableSvg/>,
@@ -30,14 +32,12 @@ const InfoSection = () => {
     ]
     return (
         <div className='info_section_wrap'>
-            {/* <h2>How it work</h2> */}
             <div className='content_wrap' >
-
                 {arrIcon.map((item,idx) => (
                     <div key={idx} className='info_item'>
-                        <h3 className='info_item-title'>{item.title}</h3>
+                        <h3 className='info_item-title'>{t(item.title)}</h3>
                             {item.icon}
-                        <p className='info_item-text'>{item.text}</p>
+                        <p className='info_item-text'>{t(item.text)}</p>
                     </div>
                 ))}
             </div>

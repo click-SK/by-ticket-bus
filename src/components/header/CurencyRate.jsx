@@ -16,6 +16,7 @@ const CurencyRate = () => {
         const curentContent = e?.currencieName;
         setCurentRate(curentContent)
         localStorage.setItem('curentRate', curentContent)
+        window.location.reload();
     }
 
     return (

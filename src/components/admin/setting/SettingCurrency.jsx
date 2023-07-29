@@ -6,7 +6,7 @@ const SettingCurrency = () => {
     const [reloadState, setReloadState] = useState(false);
     const [allcurrencies, setAllCurrencies] = useState([]);
     const [isAddCoin, setIsAddCoin] = useState(false)
-    const [curencyCurrencies, setCurrentCurrencies] = useState([])
+    const [curentCurrencies, setCurrentCurrencies] = useState([])
     const [isOpenSelect, setIsOpenSelect] = useState('')
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const SettingCurrency = () => {
 
     const handleAddCurrencie = (e) => {
         const {currencieName, currencieValue} = e;
-        const arrayCurrenciesNames = curencyCurrencies.map(item => item.currencieName);
+        const arrayCurrenciesNames = curentCurrencies.map(item => item.currencieName);
         const boolean = arrayCurrenciesNames.includes(currencieName);
         if(!boolean) {
             axios.post(`${API_URL}/create-current-currencies`, {currencieName, currencieValue})
@@ -67,7 +67,7 @@ const SettingCurrency = () => {
             </div>
             <div className='coin_list'>
                 <h5 className='content_title'>Curency</h5>
-                {curencyCurrencies.length != 0 && curencyCurrencies.map((el, idx) => (
+                {curentCurrencies.length != 0 && curentCurrencies.map((el, idx) => (
                     <div
                     key={idx}
                     className='coin_list-item-current'>

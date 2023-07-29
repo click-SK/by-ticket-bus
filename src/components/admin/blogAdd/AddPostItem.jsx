@@ -3,8 +3,7 @@ import axios from 'axios';
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { API_URL } from '../../../http/baseUrl';
-
-const AddPostItem = ({ setIsAddNews }) => {
+const AddPostItem = ({ setIsAddNews, setReloadState }) => {
   const [image, setImage] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
   const [contentSpain, setContentSpain] = useState("");
@@ -70,6 +69,10 @@ const AddPostItem = ({ setIsAddNews }) => {
         setContentEng('');
         setTitleEng('');
         setTitleSpain('');
+        setImageSrc(null);
+        setIsAddNews(false);
+        setReloadState((satate) => !satate)
+
     })
 }
 console.log('image',image);

@@ -4,67 +4,21 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import AddPostItem from './AddPostItem';
 import PostListItem from './PostListItem';
-
+import axios from 'axios';
+import { API_URL } from '../../../http/baseUrl';
 const AddBlog = () => {
-
+    const [reloadState, setReloadState] = useState(false);
     const [content, setContent] = useState('');
     const [ isAddNews, setIsAddNews] = useState(false);
+    const [allPosts, setAllPosts] = useState([]);
+  
+    useEffect(() => {
+      axios.get(`${API_URL}/get-all-blog-posts`)
+      .then((res) => {
+        setAllPosts(res.data);
+      })
+  },[reloadState])
 
-    const handleChange = (value) => {
-      setContent(value);
-    };
-
-    const postList = [
-        { 
-            date : '24/07/23',
-            titleEng : 'travel easy',
-            titleSpian : 'travel easy',
-            textEng: 'en Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: './image/blog/1.png'
-        },
-        { 
-            date : '24/07/23',
-            titleEng : 'travel easy',
-            titleSpian : 'travel easy',
-            textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: './image/blog/1.png'
-        },
-        { 
-            date : '23/07/23',
-            titleEng : 'travel easy',
-            titleSpian : 'travel easy',
-            textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: './image/blog/1.png'
-        },
-        { 
-            date : '22/07/23',
-            titleEng : 'travel easy',
-            titleSpian : 'travel easy',
-            textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: './image/blog/1.png'
-        },
-        { 
-            date : '21/07/23',
-            titleEng : 'travel easy',
-            titleSpian : 'travel easy',
-            textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: './image/blog/1.png'
-        },
-        { 
-            date : '20/07/23',
-            titleEng : 'travel easy',
-            titleSpian : 'travel easy',
-            textEng: 'eng Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            img: './image/blog/1.png'
-        },
-
-    ]
     return (
     <div className='admin_content_wrap blog_wrap'>
             <h2>Blog</h2>
@@ -82,18 +36,16 @@ const AddBlog = () => {
 
                     </div>
                     {isAddNews && 
-                        <AddPostItem setIsAddNews={setIsAddNews}/>
+                        <AddPostItem 
+                        setIsAddNews={setIsAddNews}
+                        setReloadState={setReloadState}/>
                     }
                     <div className='table_body'>
-                    {postList.map((item, idx) => (
-                       
-                        // <div key={idx} className='table_info_item'> 
-                        //     <p className='colum row colum_name table_partner-item'>{item.titleEng}</p>
-                        //     <p className='colum row colum_progres table_partner-item'> {item.date}</p>
-                        // </div>
+                    {allPosts.length != 0 && allPosts.map((item, idx) => (
                         <PostListItem
                             key = {idx}
                             item = {item}
+                            setReloadState={setReloadState}
                         />
                     ))
                     }

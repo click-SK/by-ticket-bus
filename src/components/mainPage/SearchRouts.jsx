@@ -8,7 +8,8 @@ import { BsSearch } from 'react-icons/bs';
 import { Icon } from '@iconify/react';
 import location28Regular from '@iconify/icons-fluent/location-28-regular';
 import DatePicker from "react-datepicker";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setBookingData } from '../../store/bookingData';
 
 const SearchRouts = () => {
     const [isFromTo, setIsFromTo] = useState(true)
@@ -17,6 +18,16 @@ const SearchRouts = () => {
     const [curentPasanger, setCurentPasanger] = useState(1)
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+
+    const dispatch = useDispatch();
+
+    const {RDX_cityFrom, RDX_cityTo, RDX_curentPasanger, RDX_startDate, RDX_endDate} = useSelector((state) => state.booking);
+
+    console.log('RDX_cityFrom',RDX_cityFrom);
+    console.log('RDX_cityTo',RDX_cityTo);
+    console.log('RDX_startDate',RDX_startDate);
+    console.log('RDX_endDate',RDX_endDate);
+    console.log('RDX_curentPasanger',RDX_curentPasanger);
 
 
     const hendlerChangeInputFrom = (e) => {
@@ -44,6 +55,12 @@ const SearchRouts = () => {
             console.log(err);
         }
     }
+
+    const handleSendBookingData = () => {
+        const serializedStartDate = startDate.toString();
+        const serializedEndDate = endDate.toString();
+        dispatch(setBookingData({cityFrom, cityTo, curentPasanger, startDate: serializedStartDate, endDate: serializedEndDate}));
+    } 
 
 
     return (
@@ -116,8 +133,8 @@ const SearchRouts = () => {
                     </div>
                 </div>
             </div>
-            <button className='search-btn'> 
-            <BsSearch className='search-btn-icon' />
+            <button className='search-btn' onClick={handleSendBookingData}> 
+            <BsSearch className='search-btn-icon'/>
             Search
             </button>
         </div>

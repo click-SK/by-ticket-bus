@@ -8,7 +8,7 @@ import { BsCurrencyDollar } from 'react-icons/bs'
 import { useTheme } from '../../hooks/use-thems';
 import ChangeColor from './ChangeColor';
 import CurencyRate from './CurencyRate';
-import CurentLang from './CurentLang';
+import ChooseLanguage from './ChooseLanguage';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
@@ -32,7 +32,7 @@ const Header = () => {
                 </div>
             </div>
             <div className='custom_profile'>
-                <CurentLang/>
+                <ChooseLanguage/>
                 <CurencyRate/>
                 <ChangeColor/>
                 {isAuthUser 

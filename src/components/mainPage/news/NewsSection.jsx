@@ -1,10 +1,10 @@
 import React from 'react';
 import { BiRightArrow } from 'react-icons/bi';
+import { useTranslation } from "react-i18next";
 import '../../../style/newsSection.scss'
 
-
-
 const NewsSection = () => {
+    const { t } = useTranslation();
 
     const blogItemArr = [
         {
@@ -41,7 +41,7 @@ const NewsSection = () => {
 
     return (
         <div className='news_section_wrap'>
-            <h2 className='news_title'>News</h2>
+            <h2 className='news_title'>{t('News')}</h2>
             <div className='content_wraper'>
                     { blogItemArr.map((item, idx) => (
                         <div key={idx} className='item_wrap'>

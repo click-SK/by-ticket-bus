@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/authAdministration';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 const AdminLogin = () => {
     const [isChecked, setIsChecked] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const { t } = useTranslation();
 
     const isAdmin = useSelector((state) => state.authAdmin.isAdmin);
     const isOperator = useSelector((state) => state.authAdmin.isOperator);
@@ -29,8 +32,8 @@ const AdminLogin = () => {
             <div className='left_block-admin'>
                 <div className='singin_wrap-admin'>
                     <div className='title_singin-admin'>
-                        <h2>Sign In</h2>
-                        <p>Enter your email and password to sign in!</p>
+                        <h2>{t('Sign in')}</h2>
+                        <p>{t('Enter your email and password to sign in')}!</p>
                     </div>
                     <div className='input_wraper-admin'>
                         <div className='input_wraper-item-admin'>
@@ -55,7 +58,7 @@ const AdminLogin = () => {
                     <div className='input_wraper-admin'>
                        <button 
                        onClick={handleLoginAdministration}
-                       className='button_singin-admin'>Sign In</button>
+                       className='button_singin-admin'>{t('Sign in')}</button>
                     </div>
                 </div>
                 <p>© 2023 Horizon UI. All Rights Reserved. Made with love by Simmmple!</p>
