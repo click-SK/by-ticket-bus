@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
 import { checkAuthAdministration } from "./store/authAdministration";
 import { getCurrencies } from "./store/currentCurrencies";
+import { currentLang } from "./store/language";
 import { useEffect } from "react";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
   
   useEffect(() => {
     dispatch(getCurrencies());
+    dispatch(currentLang());
     if(localStorage.getItem('bus-u-t')) {
       setTimeout(() => {
         dispatch(checkAuthUser());
