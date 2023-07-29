@@ -12,6 +12,8 @@ import AdminPanel from "./components/admin/AdminPanel";
 import AdminLogin from "./components/admin/AdminLogin";
 import ErrorComponent from "./components/Error/ErrorComponent";
 import BussСheme from "./components/booking/bus/BussСheme";
+import BookingDerect from "./components/booking/BookingDerect";
+import DirectCurent from "./components/booking/DirectCurent";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -40,21 +42,6 @@ function App() {
     }
   },[])
 
-  console.log('isAdmin',isAdmin);
-  console.log('isOperator',isOperator);
-  // const style = [
-  //   {
-  //     name: "purpule",
-  //     colorBgPrime: "#F6F7F1",
-  //     colorBgSecond: " #DDD",
-  //     colorTextTitle: "#393939",
-  //     colorText: "#393939",
-  //     colorBtn: " #fff",
-  //     colorBtnHover: " #ff9d2d",
-  //     colorPrime: "#E5C51C",
-  //     colorSecond: "#1C54E5",
-  //   },
-  // ];
 
   return (
     <div className="App">
@@ -73,7 +60,8 @@ function App() {
         <Route path="/user-profile" element={<Profile />} />}
         {(isAdmin || isOperator) && 
         <Route path="/admin-panel" element={<AdminPanel />} />}
-        <Route path="/bus" element={<BussСheme/>} />
+        <Route path="/bus" element={<BookingDerect/>} />
+        <Route path="/booking-direct№" element={<DirectCurent/>} />
       </Routes>
       <Footer />
     </div>

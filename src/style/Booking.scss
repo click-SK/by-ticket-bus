@@ -1,62 +1,165 @@
-.bus_cheme{
+.booking_wrap{
     display: flex;
     position: relative;
+    flex-direction: column;
     max-width: 1440px;
     width: 100%;
     justify-content: left;
     padding: 20px 0;
+    // margin-top: 100px;
+}
+
+.serch_routs_wraper{
     margin-top: 100px;
 }
 
-.bus_booking_seats-wrap{
-    // position: absolute;
+.list_item_wrap{
     display: flex;
-    // width: 100%;
-    justify-content: left;
-    // max-width: 1440px;
-    height: 100%;
-}
-
-.bus_body-wrap{
-    // flex: 0 1 50%;
-    position: relative;
-    display: flex;
-    justify-content: left;
+    flex-direction: row;
+    cursor: pointer;
+    padding: 30px;
+    gap: 40px;
     width: 100%;
-}
-
-.bus_body{
-    // position: absolute;
-    display: flex;
-    left: 0;
-    // height: 100%;
-    min-height: 1000px;
-}
-
-.bus_driver{
-    width: 100%;
-    // position: absolute;
-    z-index: 1000;
-    left: 55px;
-    top: 35px;
-}
-
-.seats_driver-wrap{
-    z-index: 1000;
-    height: 173px;
-}
-
-.seats_item{
-    display: flex;
-    &:first-child{
-        margin-right: 20px;
+    height: 180px;
+    border-radius: 20px;
+    // background: var(--color_bg);
+    background: var(--color-btn);
+    box-shadow: 0px 6px 17px -2px rgba(0, 0, 0, 0.20);
+    &:hover{
+        box-shadow: 0px 6px 27px -2px rgba(0, 0, 0, 0.20);
     }
 }
 
-.client_seats{
-    position: relative;
+.direction_wrap{
     display: flex;
-    z-index: 1001;
+    flex-direction: column;
+    margin-top: 40px;
+    gap: 40px;
+}
+
+.title_list_direct{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    p{
+        font-size: 30px;
+        width: 50%;
+        max-width: 350px;
+        display: flex;
+        justify-content: center;
+
+    }
+}
+
+.active_tab_direct{
+    color: var(--color-prime);
+    border-bottom: 1px solid var(--color-prime);
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.non-active_tab_direct{
+    color: var(--color-text-title);
+    cursor: pointer;
+}
+
+.item_info_time{
+    flex: 0 1 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.direct_wrap{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    p{
+        color: #32FF10;
+        font-size: 48px;
+    }
+    span{
+        color: #EF395A;
+        font-size: 48px;
+    }
+}
+
+.info_direct_time{
+    display: flex;
+}
+
+.info_direct_time-item{
+    display: flex;
+    svg{
+        fill: #848484;
+        width: 27px;
+    }
+    p{
+        color: #848484;
+        font-size: 14px;
+    }
+}
+
+.item_info_direct{
+    flex: 0 1 40%;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    // align-items: center;
+    svg{
+        width: 40px;
+        height: 40px;
+        fill: var(--color-text);
+    }
+}
+
+.city_wrap{
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    color: var(--color-text-title);
+        p{
+            color: var(--color-text);
+        }
+
+}
+
+.direct_price{
+    flex: 0 1 30%;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.icon_wrap_direct{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    svg{
+        width: 27px;
+        height: 27px;
+        fill: #848484;
+    }
+}
+
+.price_direct{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    button{
+        max-width: 150px;
+        height: 41px;
+        width: 100%;
+    }
+}
+
+.list_wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
 .active{
