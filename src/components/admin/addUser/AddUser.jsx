@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../../http/baseUrl';
 import { IoMdAddCircle } from 'react-icons/io';
 import ManagerForm from './ManagerForm';
 import DriverForm from './DriverForm';
@@ -8,13 +10,40 @@ const AddUser = () => {
     const [isManager, setIsManager ] = useState(false)
     const [isDriver, setIsDriver ] = useState(false)
     const [isPartner, setIsPartner ] = useState(false)
+    const [managerList, setManagerList] = useState([]);
+    const [driverList, setDriverList] = useState([]);
+    const [allRoleList, setAllRoleList] = useState([]);
 
-    // input manager 
+    useEffect(() => {
+        axios.get(`${API_URL}/get-all-managers`)
+        .then((res) => {
+            const curArray = res.data;
+            const withoutFirst = curArray.slice(1);
+            console.log('withoutFirst',withoutFirst);
+            setManagerList(withoutFirst)
+        })
+    },[])
+    useEffect(() => {
+        axios.get(`${API_URL}/get-all-drivers`)
+        .then((res) => {
+            setDriverList(res.data);
+        })
+    },[])
 
-    const [managerFirstName, setManagerFirstName] = useState('')
-    const [managerLastName, setManagerLastName] = useState('')
-    const [managerPassword, setManagerPassword] = useState('')
-    const [managerLogin, setManagerLogin] = useState('')
+    console.log('driverList',driverList);
+    console.log('managerList',managerList);
+
+    useEffect(() => {
+        if(driverList.length != 0 && managerList.length != 0) {
+            console.log('new Array');
+            setAllRoleList([
+                ...managerList,
+                ...driverList
+            ])
+        }
+    },[managerList,driverList])
+
+    console.log('allRoleList',allRoleList);
     
     const hendlerOpenAddManager = () =>{
         setIsManager(!isManager)
@@ -111,9 +140,9 @@ const AddUser = () => {
 
                     </div>
                     <div className='table_body'>
-                    {userList.map((item, idx) => (
+                    {allRoleList.length != 0 && allRoleList.map((item, idx) => (
                         <div key={idx} className='table_info_item'> 
-                            <p className='colum row colum_name table_partner-item'>{item.firstName} {item.lustName}</p>
+                            <p className='colum row colum_name table_partner-item'>{(item.fullName) || (item.firstName + ' ' + item.lastName)}</p>
                             <p className='colum row colum_progres table_partner-item'> {item.role}</p>
                         </div>
 

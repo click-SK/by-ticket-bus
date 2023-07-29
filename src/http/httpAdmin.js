@@ -11,7 +11,7 @@ const $api = axios.create({
 
 // Додаємо інтерсептор для додавання токену авторизації до заголовків запитів
 $api.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('bus-u-t')}`;
+  config.headers.Authorization = `Bearer ${localStorage.getItem('bus-a-t')}`;
   return config;
 });
 
@@ -21,8 +21,8 @@ $api.interceptors.response.use((config) => {
   const originalRequest = error.config;
   if(error.response.status == 403 && error.config && !error.config._isRetry) {
     originalRequest._isRetry = true;
-    const response = await axios.get(`${API_URL}/refresh-user`,{withCredentials: true})
-    localStorage.setItem('bus-u-t',response.data.accessToken)
+    const response = await axios.get(`${API_URL}/refresh-admin`,{withCredentials: true})
+    localStorage.setItem('bus-a-t',response.data.accessToken)
     return $api.request(originalRequest);
   }
 })

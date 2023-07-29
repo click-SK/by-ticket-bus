@@ -9,10 +9,10 @@ import { useTheme } from '../../hooks/use-thems';
 import ChangeColor from './ChangeColor';
 import CurencyRate from './CurencyRate';
 import CurentLang from './CurentLang';
-
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-
+    const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
     return (
         <div className='header_wrapper'>
             <div className='content_wrap'>
@@ -35,7 +35,12 @@ const Header = () => {
                 <CurentLang/>
                 <CurencyRate/>
                 <ChangeColor/>
-                <Link to='/login'><button className='btn_prime btn_sing-in'>Sing In</button></Link> 
+                {isAuthUser 
+                ?
+                <Link to='/user-profile'><button className='btn_prime btn_sing-in'>My profile</button></Link>
+                :
+                <Link to='/login'><button className='btn_prime btn_sing-in'>Sing In</button></Link>
+                }
                 
             </div>
             </div>

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { API_URL } from '../../../http/baseUrl';
+import axios from 'axios';
 
 const DriverForm = () => {
     const [driverName, setDriverName] = useState('')
@@ -9,6 +11,29 @@ const DriverForm = () => {
     const [driverLicense, setDriverLicense] = useState('')
     const [driverPhone, setDriverPhone] = useState('')
     const [driverAddress, setDriverAddress] = useState('')
+
+    const handleRegisterDriver = async () => {
+        const {data} = await axios.post(`${API_URL}/register-driver`,{
+            fullName: driverName,
+            login: driverLogin,
+            email: driverEmail,
+            phone: driverPhone,
+            password: driverPassword,
+            license: driverLicense,
+            address: driverAddress,
+        })
+
+        if('fullName' in data) {
+            alert('A new driver has been added')
+            setDriverName('');
+            setDriverEmail('');
+            setDriverPassword('');
+            setDriverLogin('');
+            setDriverLicense('');
+            setDriverPhone('');
+            setDriverAddress('');
+          }
+    }
 
     return (
 <>
@@ -41,7 +66,7 @@ const DriverForm = () => {
                         <label htmlFor="address">Registration address</label>
                         <input id='address' type="text" value={driverAddress} onChange={(e) => setDriverAddress(e.target.value)} />
                     </div>
-                    <button className='btn-save add_user_button'>Save</button>
+                    <button className='btn-save add_user_button' onClick={handleRegisterDriver}>Save</button>
                 </div>
         </>
     );

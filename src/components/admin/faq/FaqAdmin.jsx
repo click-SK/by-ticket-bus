@@ -71,7 +71,7 @@ const FaqAdmin = () => {
             <h2>FAQ</h2>
             <div>
                 <div
-                    onClick={() => setIsAddNews(!isAddNews)} 
+                    onClick={() => setIsAddNews(true)} 
                     className={`ernings_wraper-item admin_panel_items add_user_button ${true ? 'active_btn_user' : ''}`}>
                     <p className='curent_sum add_user-item'>Add faq <IoMdAddCircle/></p>
                 </div>
@@ -83,7 +83,7 @@ const FaqAdmin = () => {
 
                     </div>
                     {isAddNews && 
-                        <FaqAddPost/>
+                        <FaqAddPost setIsAddNews={setIsAddNews}/>
                     }
                     <div className='table_body'>
                     {postList.map((item, idx) => (
