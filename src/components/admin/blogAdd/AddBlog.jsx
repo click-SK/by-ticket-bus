@@ -19,8 +19,8 @@ const AddBlog = () => {
             date : '24/07/23',
             titleEng : 'travel easy',
             titleSpian : 'travel easy',
-            textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
+            textEng: 'en Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
+            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             img: './image/blog/1.png'
         },
         { 
@@ -28,7 +28,7 @@ const AddBlog = () => {
             titleEng : 'travel easy',
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
+            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             img: './image/blog/1.png'
         },
         { 
@@ -36,7 +36,7 @@ const AddBlog = () => {
             titleEng : 'travel easy',
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
+            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             img: './image/blog/1.png'
         },
         { 
@@ -44,7 +44,7 @@ const AddBlog = () => {
             titleEng : 'travel easy',
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
+            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             img: './image/blog/1.png'
         },
         { 
@@ -52,15 +52,15 @@ const AddBlog = () => {
             titleEng : 'travel easy',
             titleSpian : 'travel easy',
             textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
+            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             img: './image/blog/1.png'
         },
         { 
             date : '20/07/23',
             titleEng : 'travel easy',
             titleSpian : 'travel easy',
-            textEng: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
-            textSpain: 'Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
+            textEng: 'eng Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
+            textSpain: 'ESP Travel easily with us - just buy a ticket and visit anywhere in Europe without additional effort',
             img: './image/blog/1.png'
         },
 

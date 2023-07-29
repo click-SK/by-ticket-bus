@@ -611,6 +611,18 @@
     position: relative;
 }
 
+.item_content_blog{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+.item_content_blog-title{
+    margin-bottom: 0;
+}
+
 .text_area{
     position: absolute;
     background: #f4f7fe;
