@@ -2,10 +2,11 @@ import React from 'react';
 import { AiFillInstagram } from 'react-icons/ai';
 import {FaFacebookSquare } from 'react-icons/fa';
 import {FaTwitterSquare } from 'react-icons/fa';
-
+import { useTranslation } from "react-i18next";
 import '../../style/footer.scss'
 
 const Footer = () => {
+    const { t } = useTranslation();
     return (
         <div className='footer_wrapper'>
             <div className='content_footer-wrap'>
@@ -15,35 +16,35 @@ const Footer = () => {
                     <p className='social_item social_item-svg'><FaFacebookSquare/> Facebook </p>
                     <p className='social_item social_item-svg'><FaTwitterSquare/> Twitter </p>
                     <div className='policy'>
-                        <p>© 2023 Busbud Inc., All rights reserved</p>
-                        <p className='policy_link'> - Terms of use</p>
-                        <p className='policy_link'> - Privacy</p>
-                        <p className='policy_link'> - Refund policy</p>
+                        <p>© 2023 {t('Busbud Inc., All rights reserved')}</p>
+                        <p className='policy_link'> - {t('Terms of use')}</p>
+                        <p className='policy_link'> - {t('Privacy')}</p>
+                        <p className='policy_link'> - {t('Refund policy')}</p>
                     </div>
                 </div>
                 <div className='wrap_item wrap_item-company'>
-                    <h4>COMPANY</h4>
+                    <h4>{t('COMPANY')}</h4>
                     <ul>
-                        <li>About</li>
-                        <li>Careers</li>
-                        <li>Press</li>
-                        <li>Blog</li>
-                        <li>Partner</li>
+                        <li>{t('About')}</li>
+                        <li>{t('Careers')}</li>
+                        <li>{t('Press')}</li>
+                        <li>{t('Blog')}</li>
+                        <li>{t('Partner')}</li>
                     </ul>
                 </div>
                 <div className='wrap_item wrap_item-coverage'>
-                    <h4>GLOBAL COVERAGE</h4>
+                    <h4>{t('GLOBAL COVERAGE')}</h4>
                     <ul>
-                        <li>All station</li>
-                        <li>All cities</li>
-                        <li>All countries</li>
+                        <li>{t('All station')}</li>
+                        <li>{t('All cities')}</li>
+                        <li>{t('All countries')}</li>
                     </ul>
                 </div>
                 <div className='wrap_item wrap_item-help-app'>
                     <div className='item-text'> 
-                        <h4>SUPPORT</h4>
+                        <h4>{t('SUPPORT')}</h4>
                         <ul>
-                            <li>Help</li>
+                            <li>{t('Help')}</li>
                         </ul>
                     </div>
                     <div className='item-app-link'>

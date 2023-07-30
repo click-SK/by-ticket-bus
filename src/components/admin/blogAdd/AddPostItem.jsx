@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { API_URL } from '../../../http/baseUrl';
+import { useTranslation } from "react-i18next";
 const AddPostItem = ({ setIsAddNews, setReloadState }) => {
   const [image, setImage] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
@@ -13,14 +14,18 @@ const AddPostItem = ({ setIsAddNews, setReloadState }) => {
   const [titleEng, setTitleEng] = useState("");
   const [titleSpain, setTitleSpain] = useState("");
   const [inputKey, setInputKey] = useState(0); // Додано стан для key атрибуту
-
+  const { t } = useTranslation();
   useEffect(() => {
-    if (image) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageSrc(reader.result);
-      };
-      reader.readAsDataURL(image);
+    try {
+      if (image) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setImageSrc(reader.result);
+        };
+        reader.readAsDataURL(image);
+      }
+    } catch (e) {
+      console.log(e);
     }
   }, [image]);
 
@@ -55,31 +60,35 @@ const AddPostItem = ({ setIsAddNews, setReloadState }) => {
   };
 
   const handleAddNewPost = () => {
-    const formData = new FormData();
-    formData.append("blogImage", image);
-    formData.append("titleSp", titleSpain);
-    formData.append("titleEn", titleEng);
-    formData.append("descriptionSp", contentSpain);
-    formData.append("descriptionEn", contentEng);
-
-    axios.post(`${API_URL}/create-blog-post`, formData)
-    .then(() => {
-        alert('A new blog post has been added');
-        setContentSpain('');
-        setContentEng('');
-        setTitleEng('');
-        setTitleSpain('');
-        setImageSrc(null);
-        setIsAddNews(false);
-        setReloadState((satate) => !satate)
-
-    })
+    try {
+      const formData = new FormData();
+      formData.append("blogImage", image);
+      formData.append("titleSp", titleSpain);
+      formData.append("titleEn", titleEng);
+      formData.append("descriptionSp", contentSpain);
+      formData.append("descriptionEn", contentEng);
+  
+      axios.post(`${API_URL}/create-blog-post`, formData)
+      .then(() => {
+          alert('A new blog post has been added');
+          setContentSpain('');
+          setContentEng('');
+          setTitleEng('');
+          setTitleSpain('');
+          setImageSrc(null);
+          setIsAddNews(false);
+          setReloadState((satate) => !satate)
+  
+      })
+    } catch(e) {
+      console.log(e);
+    }
 }
 console.log('image',image);
   return (
     <div className="add_post_wrap">
       <div style={{ marginBottom: "50px" }}>
-        <h3>Add news</h3>
+        <h3>{t('Add news')}</h3>
       </div>
       {imageSrc && 
       (
@@ -102,14 +111,14 @@ console.log('image',image);
             className="admin_panel_items add_user_button active_btn_user"
             onClick={() => inputFileRef.current.click()}
           >
-            Add image
+            {t('Add image')}
           </button>
         )}
         {imageSrc && (
           <button
             className="admin_panel_items add_user_button active_btn_user btn_cancel"
             onClick={removeImage}>
-            Remove image
+            {t('Remove image')}
           </button>
         )}
       </div>
@@ -134,7 +143,7 @@ console.log('image',image);
       {isEngVar && (
         <>
           <div className="add_title_item">
-            <label htmlFor="title_eng_input">Title eng</label>
+            <label htmlFor="title_eng_input">{t('Title eng')}</label>
             <input
               id="title_eng_input"
               value={titleEng}
@@ -143,7 +152,7 @@ console.log('image',image);
             />
           </div>
           <div className="add_text_item">
-            <h4>Eng text</h4>
+            <h4>{t('Eng text')}</h4>
             <ReactQuill
               value={contentEng}
               onChange={handleChangeEng}
@@ -182,7 +191,7 @@ console.log('image',image);
       {isSpVar && (
         <>
           <div className="add_title_item">
-            <label htmlFor="title_spain_input">Title spain</label>
+            <label htmlFor="title_spain_input">{t('Title spain')}</label>
             <input
               id="title_spain_input"
               value={titleSpain}
@@ -191,7 +200,7 @@ console.log('image',image);
             />
           </div>
           <div className="add_text_item">
-            <h4>Spain text</h4>
+            <h4>{t('Spain text')}</h4>
             <ReactQuill
               value={contentSpain}
               onChange={handleChangeSpain}
@@ -232,13 +241,13 @@ console.log('image',image);
           className="admin_panel_items add_user_button active_btn_user"
           onClick={handleAddNewPost}
         >
-          Publish
+          {t('Publish')}
         </button>
         <button
           onClick={() => setIsAddNews(false)}
           className="admin_panel_items add_user_button active_btn_user btn_cancel"
         >
-          Cancel
+          {t('Cancel')}
         </button>
       </div>
     </div>

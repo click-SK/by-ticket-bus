@@ -1,9 +1,10 @@
 import React from 'react';
-
+import { useTranslation } from "react-i18next";
 const TiketsMini = () => {
+    const { t } = useTranslation();
     return (
 <div className='admin_panel_items partner_wrap_content'>
-            <h3 className='admin_panel_items-title'>Tickets</h3>
+            <h3 className='admin_panel_items-title'>{t('Tickets')}</h3>
             <div className='derection_table_wrap'>
                 {/* <div className='table_header  '>
                     <p className='colum colum_name table_partner-item'>Name</p>

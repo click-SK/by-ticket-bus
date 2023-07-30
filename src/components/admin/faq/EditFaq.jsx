@@ -5,6 +5,7 @@ import FaqAddPost from './FaqAddPost';
 import { FcEditImage } from 'react-icons/fc';
 import axios from 'axios';
 import { API_URL } from '../../../http/baseUrl';
+import { useTranslation } from "react-i18next";
 const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
     const [isEditTextEng, setIsEditTextEng] = useState(false);
     const [contentSpain, setContentSpain] = useState("");
@@ -13,6 +14,7 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
     const [isSpVar, setIsSpVar] = useState(false);
     const [titleEng, setTitleEng] = useState("");
     const [titleSpain, setTitleSpain] = useState("");
+    const { t } = useTranslation();
 
     useEffect(() => {
       setTitleEng(item.titleEn);
@@ -39,17 +41,21 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
     };
 
     const handleUpdatePost = () => {
-      axios.patch(`${API_URL}/update-faq-post`, {
-        titleSp: titleSpain,
-        titleEn: titleEng,
-        descriptionSp: contentSpain,
-        descriptionEn: contentEng,
-        id: item._id
-      }).then(() => {
-        alert('Post updated');
-        setIsOpenPostItem(!isOpenPostItem);
-        setReloadState((state) => !state);
-      })
+      try {
+        axios.patch(`${API_URL}/update-faq-post`, {
+          titleSp: titleSpain,
+          titleEn: titleEng,
+          descriptionSp: contentSpain,
+          descriptionEn: contentEng,
+          id: item._id
+        }).then(() => {
+          alert('Post updated');
+          setIsOpenPostItem(!isOpenPostItem);
+          setReloadState((state) => !state);
+        })
+      } catch(e) {
+        console.log(e);
+      }
     }
     return (
         <div className="post_item_wrap">
@@ -57,13 +63,13 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
 
             {!isEditTextEng ? 
                           <div className="item_content_blog">
-                          <p>Eng post </p> 
+                          <p>{t('Eng post')} </p> 
                         <div>{item.createdAt}</div>
                         <h4 className="item_content_blog-title">{item.titleEn}</h4>
                         <div className="item_text">
                           {item.descriptionEn}          
                         </div>
-                        <p style={{marginTop: 20}}>ESP post </p> 
+                        <p style={{marginTop: 20}}>{t('ESP post')} </p> 
                         <h4>{item.titleSp}</h4>
                         <div className="item_text">
                           {item.descriptionSp}          
@@ -93,7 +99,7 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
                 {isEngVar && (
                   <>
                     <div className="add_title_item">
-                      <label htmlFor="title_eng_input">Title eng</label>
+                      <label htmlFor="title_eng_input">{t('Title eng')}</label>
                       <input
                         id="title_eng_input"
                         value={titleEng}
@@ -102,7 +108,7 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
                       />
                     </div>
                     <div className="add_text_item">
-                      <h4>Eng text</h4>
+                      <h4>{t('Eng text')}</h4>
                       <ReactQuill
                         value={contentEng}
                         onChange={handleChangeEng}
@@ -141,7 +147,7 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
                 {isSpVar && (
                   <>
                     <div className="add_title_item">
-                      <label htmlFor="title_spain_input">Title spain</label>
+                      <label htmlFor="title_spain_input">{t('Title spain')}</label>
                       <input
                         id="title_spain_input"
                         value={titleSpain}
@@ -150,7 +156,7 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
                       />
                     </div>
                     <div className="add_text_item">
-                      <h4>Spain text</h4>
+                      <h4>{t('Spain text')}</h4>
                       <ReactQuill
                         value={contentSpain}
                         onChange={handleChangeSpain}
@@ -192,13 +198,13 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
           <div className="btn_faq_item_wrap">
             <button className="admin_panel_items add_user_button active_btn_user"
             onClick={handleUpdatePost}>
-              Publish
+              {t('Publish')}
             </button>
             <button
               onClick={() => setIsOpenPostItem(!isOpenPostItem)}
               className="admin_panel_items add_user_button active_btn_user btn_cancel"
             >
-              Cancel
+              {t('Cancel')}
             </button>
           </div>
         </div>

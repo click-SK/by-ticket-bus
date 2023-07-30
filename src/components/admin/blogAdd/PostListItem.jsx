@@ -8,7 +8,8 @@ const PostListItem = ({ item, setReloadState }) => {
   const [isOpenPostItem, setIsOpenPostItem] = useState(false);
 
   const handleRemovePost = () => {
-    axios
+    try {
+      axios
       .delete(`${API_URL}/remove-blog-post`, {
         data: {
           id: item._id,
@@ -20,6 +21,9 @@ const PostListItem = ({ item, setReloadState }) => {
           setReloadState((state) => !state);
         }, 500);
       });
+    } catch(e) {
+      console.log(e);
+    }
   };
 
   return (

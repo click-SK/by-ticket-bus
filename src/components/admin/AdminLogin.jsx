@@ -19,8 +19,12 @@ const AdminLogin = () => {
     const isOperator = useSelector((state) => state.authAdmin.isOperator);
 
     useEffect(() => {
-        if(isAdmin || isOperator) {
-          navigate('/admin-panel')
+        try {
+            if(isAdmin || isOperator) {
+                navigate('/admin-panel')
+              }
+        } catch(e) {
+            console.log(e);
         }
       },[isAdmin, isOperator])
 
@@ -37,11 +41,11 @@ const AdminLogin = () => {
                     </div>
                     <div className='input_wraper-admin'>
                         <div className='input_wraper-item-admin'>
-                            <label htmlFor="mail">Email <span>*</span></label>
+                            <label htmlFor="mail">{t('Email')}<span>*</span></label>
                             <input id='mail' type="text" placeholder='mail@simmmple.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
                         </div>
                         <div className='input_wraper-item-admin'>
-                            <label htmlFor="password">Password<span>*</span></label>
+                            <label htmlFor="password">{t('Password')}<span>*</span></label>
                             <input id='password' type="password" placeholder='Min. 8 characters' value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </div>
                     </div>
@@ -51,9 +55,9 @@ const AdminLogin = () => {
                             <label 
                             onClick={() => setIsChecked(!isChecked)} 
                             className={`${isChecked ? 'checked-admin' : 'unchecked-admin'}`} id='forgot-pass-lable' htmlFor="forgot-pass"></label>
-                            <p>Keep me logged in<span>*</span></p>
+                            <p>{t('Keep me logged in')}<span>*</span></p>
                         </div>
-                        <p className='forgot_pasword-link-admin' >Forget password?</p>
+                        <p className='forgot_pasword-link-admin' >{t('Forgot password')}?</p>
                     </div>
                     <div className='input_wraper-admin'>
                        <button 
@@ -61,7 +65,7 @@ const AdminLogin = () => {
                        className='button_singin-admin'>{t('Sign in')}</button>
                     </div>
                 </div>
-                <p>© 2023 Horizon UI. All Rights Reserved. Made with love by Simmmple!</p>
+                <p>© 2023 {t('Horizon UI. All Rights Reserved. Made with love by Simple')}!</p>
             </div>
             <div className='right_block-admin'>
                 <img src="./image/login-admin.svg" alt="" />

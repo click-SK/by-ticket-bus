@@ -3,6 +3,7 @@ import { FcEditImage } from "react-icons/fc";
 import ReactQuill from "react-quill";
 import axios from "axios";
 import { API_URL } from "../../../http/baseUrl";
+import { useTranslation } from "react-i18next";
 const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => {
   const [isEditTextEng, setIsEditTextEng] = useState(false);
   const [contentSpain, setContentSpain] = useState("");
@@ -14,6 +15,7 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
   const [image, setImage] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
   const [inputKey, setInputKey] = useState(0); // Додано стан для key атрибуту
+  const { t } = useTranslation();
 
   useEffect(() => {
     setTitleEng(item.titleEn);
@@ -23,12 +25,16 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
   }, []);
 
   useEffect(() => {
-    if (image) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageSrc(reader.result);
-      };
-      reader.readAsDataURL(image);
+    try {
+      if (image) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setImageSrc(reader.result);
+        };
+        reader.readAsDataURL(image);
+      }
+    } catch(e) {
+      console.log(e);
     }
   }, [image]);
 
@@ -63,18 +69,22 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
   };
 
   const handleUpdatePost = () => {
-    const formData = new FormData();
-    formData.append("blogImage", image);
-    formData.append("titleSp", titleSpain);
-    formData.append("titleEn", titleEng);
-    formData.append("descriptionSp", contentSpain);
-    formData.append("descriptionEn", contentEng);
-    formData.append("id", item._id);
-    axios.patch(`${API_URL}/update-blog-post`, formData).then(() => {
-      alert("Post updated");
-      setIsOpenPostItem(!isOpenPostItem);
-      setReloadState((state) => !state);
-    });
+    try {
+      const formData = new FormData();
+      formData.append("blogImage", image);
+      formData.append("titleSp", titleSpain);
+      formData.append("titleEn", titleEng);
+      formData.append("descriptionSp", contentSpain);
+      formData.append("descriptionEn", contentEng);
+      formData.append("id", item._id);
+      axios.patch(`${API_URL}/update-blog-post`, formData).then(() => {
+        alert("Post updated");
+        setIsOpenPostItem(!isOpenPostItem);
+        setReloadState((state) => !state);
+      });
+    } catch(e) {
+      console.log(e);
+    }
   };
     return (
         <div>
@@ -92,11 +102,11 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
 
           {!isEditTextEng ? (
             <div className="item_content_blog">
-              <p>Eng post </p>
+              <p>{t('Eng post')} </p>
               <div>{item.date}</div>
               <h4 className="item_content_blog-title">{item.titleEn}</h4>
               <div className="item_text">{item.descriptionEn}</div>
-              <p style={{ marginTop: 20 }}>ESP post </p>
+              <p style={{ marginTop: 20 }}>{t('ESP post')} </p>
               <h4>{item.titleSp}</h4>
               <div className="item_text">{item.descriptionSp}</div>
             </div>
@@ -114,7 +124,7 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
                   className="admin_panel_items add_user_button active_btn_user"
                   onClick={() => inputFileRef.current.click()}
                 >
-                  Add image
+                  {t('Add image')}
                 </button>
               )}
               {imageSrc && (
@@ -122,7 +132,7 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
                   className="admin_panel_items add_user_button active_btn_user btn_cancel"
                   onClick={removeImage}
                 >
-                  Remove image
+                  {t('Remove image')}
                 </button>
               )}
               <div className="blog_tabs_btn">
@@ -146,7 +156,7 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
               {isEngVar && (
                 <>
                   <div className="add_title_item">
-                    <label htmlFor="title_eng_input">Title eng</label>
+                    <label htmlFor="title_eng_input">{t('Title eng')}</label>
                     <input
                       id="title_eng_input"
                       value={titleEng}
@@ -155,7 +165,7 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
                     />
                   </div>
                   <div className="add_text_item">
-                    <h4>Eng text</h4>
+                    <h4>{t('Eng text')}</h4>
                     <ReactQuill
                       value={contentEng}
                       onChange={handleChangeEng}
@@ -194,7 +204,7 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
               {isSpVar && (
                 <>
                   <div className="add_title_item">
-                    <label htmlFor="title_spain_input">Title spain</label>
+                    <label htmlFor="title_spain_input">{t('Title spain')}</label>
                     <input
                       id="title_spain_input"
                       value={titleSpain}
@@ -203,7 +213,7 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
                     />
                   </div>
                   <div className="add_text_item">
-                    <h4>Spain text</h4>
+                    <h4>{t('Spain text')}</h4>
                     <ReactQuill
                       value={contentSpain}
                       onChange={handleChangeSpain}
@@ -247,13 +257,13 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
               className="admin_panel_items add_user_button active_btn_user"
               onClick={handleUpdatePost}
             >
-              Publish
+              {t('Publish')}
             </button>
             <button
               onClick={() => setIsOpenPostItem(!isOpenPostItem)}
               className="admin_panel_items add_user_button active_btn_user btn_cancel"
             >
-              Cancel
+              {t('Cancel')}
             </button>
           </div>
         </div>

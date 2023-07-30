@@ -1,15 +1,16 @@
 import React from 'react';
-
+import { useTranslation } from "react-i18next";
 const Derection = () => {
+    const { t } = useTranslation();
     return (
         <div className='admin_panel_items derection_wraper' >
-            <h3 className='admin_panel_items-title'>Direction</h3>
+            <h3 className='admin_panel_items-title'>{t('Direction')}</h3>
             <div className='derection_table_wrap'>
                 <div className='table_header'>
-                    <p className='colum colum_name'>Name</p>
-                    <p className='colum '>Progres</p>
-                    <p className='colum '>Quantity</p>
-                    <p className='colum '>Data</p>
+                    <p className='colum colum_name'>{t('Name')}</p>
+                    <p className='colum '>{t('Progres')}</p>
+                    <p className='colum '>{t('Quantity')}</p>
+                    <p className='colum '>{t('Data')}</p>
                 </div>
                 <div className='table_body'>
                     <div className='table_info_item'> 

@@ -7,15 +7,19 @@ const FaqListItem = ({item, setReloadState}) => {
     const [isOpenPostItem, setIsOpenPostItem] = useState(false);
 
     const handleRemovePost = async () => {
-      axios.delete(`${API_URL}/remove-faq-post`, {
-        data: {
-          id: item._id
-        },
-      }).then(() => {
-        setTimeout(() => {
-            setReloadState((state) => !state);
-        },500)
-      })
+      try {
+        axios.delete(`${API_URL}/remove-faq-post`, {
+          data: {
+            id: item._id
+          },
+        }).then(() => {
+          setTimeout(() => {
+              setReloadState((state) => !state);
+          },500)
+        })
+      } catch(e) {
+        console.log(e);
+      }
     }
     return (
       <div className="table_info_item">

@@ -1,13 +1,14 @@
 import React from 'react';
-
+import { useTranslation } from "react-i18next";
 const PartnerMini = () => {
+    const { t } = useTranslation();
     return (
         <div className='admin_panel_items partner_wrap_content'>
-            <h3 className='admin_panel_items-title'>Partner</h3>
+            <h3 className='admin_panel_items-title'>{t('Partner')}</h3>
             <div className='derection_table_wrap'>
                 <div className='table_header  '>
-                    <p className='colum colum_name table_partner-item'>Name</p>
-                    <p className='colum table_partner-item'>Status</p>
+                    <p className='colum colum_name table_partner-item'>{t('Name')}</p>
+                    <p className='colum table_partner-item'>{t('Status')}</p>
 
                 </div>
                 <div className='table_body'>

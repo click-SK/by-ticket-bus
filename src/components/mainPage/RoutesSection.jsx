@@ -2,19 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import '../../style/routesSection.scss'
 import { FaLocationDot } from 'react-icons/fa6';
-
+import { useTranslation } from "react-i18next";
 const RoutesSection = () => {
     const [curentRate, setCurentRate] = useState(localStorage.getItem('curentRate'));
     const [ratePrice, setRatePrice] = useState(localStorage.getItem('curentRate') || 'EUR');
+    const { t } = useTranslation();
 
     const {currencieValue} = useSelector((state) => state.currencies);
     useEffect (() => {
         setRatePrice(curentRate) 
     },[curentRate])
-    
-    console.log('currencieValue', currencieValue );
-
-
     
     const directionArr = [
         {
@@ -61,7 +58,7 @@ const RoutesSection = () => {
                     <img className='routes_img' src="./image/routes.svg" alt="routes" />
                     <div className='direct_name_end'>{item.locEnd}</div>
                     <div className='burron_booking'>
-                    <button className='btn_prime'>Booking</button>
+                    <button className='btn_prime'>{t('Booking')}</button>
                     </div>
                 </div>
             ))}

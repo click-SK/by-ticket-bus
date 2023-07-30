@@ -6,17 +6,21 @@ import AddPostItem from './AddPostItem';
 import PostListItem from './PostListItem';
 import axios from 'axios';
 import { API_URL } from '../../../http/baseUrl';
+import { useTranslation } from "react-i18next";
 const AddBlog = () => {
     const [reloadState, setReloadState] = useState(false);
-    const [content, setContent] = useState('');
     const [ isAddNews, setIsAddNews] = useState(false);
     const [allPosts, setAllPosts] = useState([]);
-  
+    const { t } = useTranslation();
     useEffect(() => {
-      axios.get(`${API_URL}/get-all-blog-posts`)
-      .then((res) => {
-        setAllPosts(res.data);
-      })
+        try {
+            axios.get(`${API_URL}/get-all-blog-posts`)
+            .then((res) => {
+              setAllPosts(res.data);
+            })
+        } catch(e) {
+            console.log(e);
+        }
   },[reloadState])
 
     return (
@@ -26,13 +30,13 @@ const AddBlog = () => {
                     <div
                         onClick={() => setIsAddNews(!isAddNews)} 
                         className={`ernings_wraper-item admin_panel_items add_user_button ${true ? 'active_btn_user' : ''}`}>
-                        <p className='curent_sum add_user-item'>Add News <IoMdAddCircle/></p>
+                        <p className='curent_sum add_user-item'>{t('Add News')} <IoMdAddCircle/></p>
                     </div>
             </div>
             <div className='derection_table_wrap'>
                     <div className='table_header  '>
-                        <p className='colum colum_name table_partner-item'>Title</p>
-                        <p className='colum table_partner-item'>Date</p>
+                        <p className='colum colum_name table_partner-item'>{t('Title')}</p>
+                        <p className='colum table_partner-item'>{t('Date')}</p>
 
                     </div>
                     {isAddNews && 

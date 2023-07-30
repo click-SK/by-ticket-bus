@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { API_URL } from '../../../http/baseUrl';
-
+import { useTranslation } from "react-i18next";
 const FaqAddPost = ({setIsAddNews}) => {
     const [contentSpain, setContentSpain] = useState('');
     const [contentEng, setContentEng] = useState('');
@@ -11,6 +11,7 @@ const FaqAddPost = ({setIsAddNews}) => {
     const [isSpVar, setIsSpVar] = useState(false);
     const [titleEng, setTitleEng] = useState('');
     const [titleSpain, setTitleSpain] = useState('');
+    const { t } = useTranslation();
 
     const handleShowSp = () => {
         setIsEngVar(false);
@@ -31,19 +32,23 @@ const FaqAddPost = ({setIsAddNews}) => {
     };
 
     const handleAddNewFaq = () => {
+      try {
         axios.post(`${API_URL}/create-faq-post`, {
-            titleSp: titleSpain,
-            titleEn: titleEng,
-            descriptionSp: contentSpain,
-            descriptionEn: contentEng
-        })
-        .then(() => {
-            alert('A new FAQ post has been added');
-            setContentSpain('');
-            setContentEng('');
-            setTitleEng('');
-            setTitleSpain('');
-        })
+          titleSp: titleSpain,
+          titleEn: titleEng,
+          descriptionSp: contentSpain,
+          descriptionEn: contentEng
+      })
+      .then(() => {
+          alert('A new FAQ post has been added');
+          setContentSpain('');
+          setContentEng('');
+          setTitleEng('');
+          setTitleSpain('');
+      })
+      } catch(e) {
+        console.log(e);
+      }
     }
     return (
       <div className="add_post_wrap">
@@ -71,7 +76,7 @@ const FaqAddPost = ({setIsAddNews}) => {
         {isEngVar && (
           <>
             <div className="add_title_item">
-              <label htmlFor="title_eng_input">Question eng</label>
+              <label htmlFor="title_eng_input">{t('Question eng')}</label>
               <input
                 id="title_eng_input"
                 value={titleEng}
@@ -80,7 +85,7 @@ const FaqAddPost = ({setIsAddNews}) => {
               />
             </div>
             <div className="add_text_item">
-              <h4>Eng text</h4>
+              <h4>{t('Eng text')}</h4>
               <ReactQuill
                 value={contentEng}
                 onChange={handleChangeEng}
@@ -120,7 +125,7 @@ const FaqAddPost = ({setIsAddNews}) => {
         {isSpVar && (
           <>
             <div className="add_title_item">
-              <label htmlFor="title_spain_input">Question spain</label>
+              <label htmlFor="title_spain_input">{t('Question spain')}</label>
               <input
                 id="title_spain_input"
                 value={titleSpain}
@@ -129,7 +134,7 @@ const FaqAddPost = ({setIsAddNews}) => {
               />
             </div>
             <div className="add_text_item">
-              <h4>Spain text</h4>
+              <h4>{t('Spain text')}</h4>
               <ReactQuill
                 value={contentSpain}
                 onChange={handleChangeSpain}
@@ -172,14 +177,14 @@ const FaqAddPost = ({setIsAddNews}) => {
             onClick={handleAddNewFaq}
           >
             {" "}
-            Publish{" "}
+            {t('Publish')}{" "}
           </button>
           <button
             className="admin_panel_items add_user_button active_btn_user btn_cancel"
             onClick={() => setIsAddNews(false)}
           >
             {" "}
-            Close{" "}
+            {t('Close')}{" "}
           </button>
         </div>
       </div>

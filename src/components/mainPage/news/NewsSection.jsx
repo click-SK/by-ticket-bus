@@ -48,14 +48,14 @@ const NewsSection = () => {
                             <img className='blog_item_img' src={item.imgSrc} alt="blogimg" />
                             <div className='text_wrap-blog'>
                             <h2 className='blog_item_title'>{item.title}</h2>
-                            <p className='blog_item_text'>{item.text} <span className='blog_item_text--more'>More...</span></p>
+                            <p className='blog_item_text'>{item.text} <span className='blog_item_text--more'>{t('More')}...</span></p>
                             
                             </div>
                         </div>
                     ))}
             </div>
             <div className='more_btn'>
-                <p>More <BiRightArrow
+                <p>{t('More')} <BiRightArrow
                 className='svg_more-btn'
                 /></p>
                 

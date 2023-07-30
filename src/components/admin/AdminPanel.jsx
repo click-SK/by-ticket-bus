@@ -20,6 +20,7 @@ import SettingSite from './setting/SettingSite';
 import { useDispatch, useSelector } from 'react-redux';
 import {logout} from '../../store/authAdministration.js'; 
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 const AdminPanel = () => {
 
@@ -31,6 +32,7 @@ const AdminPanel = () => {
     const [isSetting, setIsSetting] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const user = useSelector((state) => state.authAdmin.user);
     const isAdmin = useSelector((state) => state.authAdmin.isAdmin);
@@ -99,28 +101,28 @@ const AdminPanel = () => {
                         <ul className='nav_list'>
                             <li 
                             onClick={hendlerOpenDashboadr}
-                            className={`nav_list-item ${isDashboadr ? 'nav_list-item-active' : ''} `}><AiFillHome/>Dashboard</li>
+                            className={`nav_list-item ${isDashboadr ? 'nav_list-item-active' : ''} `}><AiFillHome/>{t('Dashboard')}</li>
                             <li 
                             onClick={hendlerOpenDirection}
-                            className={`nav_list-item ${isDirection ? 'nav_list-item-active' : ''} `}><RiDirectionFill />Creating directions</li>
-                            <li className='nav_list-item'><FaBus/>Add bus</li>
-                            <li className='nav_list-item'><TbEaseInOutControlPoints/>Add stops and routs</li>
+                            className={`nav_list-item ${isDirection ? 'nav_list-item-active' : ''} `}><RiDirectionFill />{t('Creating directions')}</li>
+                            <li className='nav_list-item'><FaBus/>{t('Add bus')}</li>
+                            <li className='nav_list-item'><TbEaseInOutControlPoints/>{t('Add stops and routes')}</li>
                             {!isOperator &&
                             <li 
                             onClick={hendlerOpenSetting}
-                            className={`nav_list-item ${isSetting ? 'nav_list-item-active' : ''} `}><AiFillSetting/>Setting</li>}
+                            className={`nav_list-item ${isSetting ? 'nav_list-item-active' : ''} `}><AiFillSetting/>{t('Setting')}</li>}
                             {!isOperator &&
                             <li 
                             onClick={hendlerOpenAddUser}
-                            className={`nav_list-item ${isAddUser ? 'nav_list-item-active' : ''} `}><FaUserCheck/>Add user and driver</li>}
+                            className={`nav_list-item ${isAddUser ? 'nav_list-item-active' : ''} `}><FaUserCheck/>{t('Add user and driver')}</li>}
                             <li 
                             onClick={hendlerOpenBlog}
-                            className={`nav_list-item ${isBlog ? 'nav_list-item-active' : ''} `}><PiNewspaperClippingFill/>Blog</li>
+                            className={`nav_list-item ${isBlog ? 'nav_list-item-active' : ''} `}><PiNewspaperClippingFill/>{t('Blog')}</li>
                             <li 
                             onClick={hendlerOpenFaq}
                             className={`nav_list-item ${isFaq ? 'nav_list-item-active' : ''} `}><FaQuestionCircle/>Faq</li>
-                            <li className='nav_list-item'><AiFillSetting/>Profile</li>
-                            <li className='nav_list-item' onClick={logoutAdministration}><BiLogOut/>Log Out</li>
+                            <li className='nav_list-item'><AiFillSetting/>{t('Profile')}</li>
+                            <li className='nav_list-item' onClick={logoutAdministration}><BiLogOut/>{t('Log Out')}</li>
                         </ul>
                     </nav>
                 </aside>

@@ -6,20 +6,22 @@ import FaqAddPost from './FaqAddPost';
 import FaqListItem from './FaqListItem';
 import axios from 'axios';
 import { API_URL } from '../../../http/baseUrl';
-
+import { useTranslation } from "react-i18next";
 const FaqAdmin = () => {
     const [reloadState, setReloadState] = useState(false);
-    const [content, setContent] = useState('');
     const [ isAddNews, setIsAddNews] = useState(false);
-    const [ isOpenPostItem, setIsOpenPostItem] = useState(false);
     const [allFaqPosts, setAllFaqPosts] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
-        console.log('efect');
-        axios.get(`${API_URL}/get-all-faq-posts`)
-        .then((res) => {
-            setAllFaqPosts(res.data);
-        })
+        try {
+            axios.get(`${API_URL}/get-all-faq-posts`)
+            .then((res) => {
+                setAllFaqPosts(res.data);
+            })
+        } catch(e) {
+            console.log(e);
+        }
     },[reloadState])
 
     return (
@@ -34,8 +36,8 @@ const FaqAdmin = () => {
             </div>
             <div className='derection_table_wrap'>
                     <div className='table_header  '>
-                        <p className='colum colum_name table_partner-item'>Title</p>
-                        <p className='colum table_partner-item'>Date</p>
+                        <p className='colum colum_name table_partner-item'>{t('Title')}</p>
+                        <p className='colum table_partner-item'>{t('Date')}</p>
 
                     </div>
                     {isAddNews && 
