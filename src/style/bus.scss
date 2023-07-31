@@ -1,0 +1,41 @@
+.bus_svg_wrap{
+    margin: 150px 0;
+}
+
+.active{
+    fill: var(--color-second);
+    stroke: var(--color-text-title);
+}
+.test{
+    fill: rgb(0, 255, 0);
+    color: rgb(0, 255, 0);
+}
+
+.non-active{
+    fill: var(--color-prime);
+    color: var(--color-text-title);
+    stroke: var(--color-text-title);
+}
+.non-active-numb{
+    fill: var(--color-text-title);
+}
+
+.whell{
+    fill: var(--color-text-title);
+}
+
+.bg-bus{
+    fill: var(--color-bg-prime);
+    
+}
+
+.stroke-bus{
+    stroke: var(--color-text-title);
+}
+
+.non-active-numb{
+    fill: var(--color-text-title);
+}
+.active-numb{
+    fill: var(--color-btn);
+}

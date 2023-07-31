@@ -14,6 +14,8 @@ import ErrorComponent from "./components/Error/ErrorComponent";
 import BussСheme from "./components/booking/bus/BussСheme";
 import BookingDerect from "./components/booking/BookingDerect";
 import DirectCurent from "./components/booking/DirectCurent";
+import BookingInfoClient from "./components/booking/BookingInfoClient";
+import BusSeats35 from "./components/booking/bus/BusSeats35";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -60,8 +62,10 @@ function App() {
         <Route path="/user-profile" element={<Profile />} />}
         {(isAdmin || isOperator) && 
         <Route path="/admin-panel" element={<AdminPanel />} />}
-        <Route path="/bus" element={<BookingDerect/>} />
+        <Route path="/trip-list" element={<BookingDerect/>} />
         <Route path="/booking-direct№" element={<DirectCurent/>} />
+        <Route path="/booking-info-pas" element={<BookingInfoClient/>} />
+        <Route path="/bus-seats" element={<BusSeats35/>} />
       </Routes>
       <Footer />
     </div>

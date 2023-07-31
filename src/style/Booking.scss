@@ -162,18 +162,288 @@
     gap: 30px;
 }
 
-.active{
-    fill: rgb(208, 255, 0);
-}
-.test{
-    fill: rgb(0, 255, 0);
-    color: rgb(0, 255, 0);
+.direct_curent_wrap{
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1440px;
+    border-radius: 20px;
+    padding: 50px;
+    border: 1px solid var(--color-text-title);
 }
 
-.non-active{
-    fill: var(--color-prime);
+.direct_wrap_item{
+    flex: 0 1 50%;
+    padding: 10px;
+    h3{
+        border-bottom: 1px solid var(--color-text-title);
+        width: 100%;
+        padding: 15px; 
+        color: var(--color-text-title);  
+    }
+
+}
+
+.direct_wrap_left_item{
+    border-right: 1px solid var(--color-text-title);
+}
+
+.direct_way{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.direct_stop{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 80%;
+}
+
+.time_stop{
+    width: 75px;
+    font-size: 18px;
+    color: var(--color-text-title);
+    
+}
+
+.direct_way{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    padding: 0 30px;
+    color: var(--color-text-title);
+    
+}
+
+.city_stop{
+    font-size: 18px;
     color: var(--color-text-title);
 }
-.non-active-numb{
-    fill: var(--color-text-title);
+
+.amenities{
+    width: 100%;
+    padding: 30px 0;
+    h4{
+        font-size: 24px;
+        color: var(--color-text-title);
+    }
 }
+
+.amen_wrap{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.amen_item{
+    background-color: var(--color-bg-second);
+    border-radius: 20px;
+    font-size: 18px;
+    padding: 5px 40px;
+    
+}
+
+.info_trip_diteils{
+
+    h4{
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 5px;
+        color: var(--color-text-title);
+    }
+    p{
+        font-size: 18px;
+        color: var(--color-text-title);
+        line-height: 20px;
+    }
+}
+
+.price_trip_wrap{
+    margin: 50px 0;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+    
+}
+
+.price_wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+    p{
+        color: var(--color-text-title);
+    }
+}
+
+.price_trip{
+    font-size: 20px;
+}
+
+.info_booking{
+    font-size: 8px;
+}
+
+.info_client_wrap{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1440px;
+    gap: 40px;
+    margin-top: 150px;
+}
+
+.wrap_info_item{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    min-height: 200px;
+    background: #fff;
+    box-shadow: 0px 6px 17px -2px rgba(0, 0, 0, 0.77);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.title_wrap_item{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+
+.title_numb{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background: var(--color-prime);
+    color: #fff;
+
+}
+
+.input_wraper-book{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+}
+
+.input_item{
+    flex:  0 1 50%;
+    position: relative;
+    height: 70px;
+    input{
+        background-color: transparent;
+        border-radius: 14px;
+        border: 1px solid #A0A0A0;
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+        font: 18px;
+    }
+    label{
+        font-size: 18px;
+        background-color: #fff;
+        position: absolute;
+        top: -7px;
+        left: 34px;
+        padding: 0 10px;
+    }
+}
+
+.title_text{
+    font-size: 18px;
+    color: var(--color-text-title);
+}
+
+.select_seat{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    height: 140px;
+    background: transparent;
+    border-radius: 14px;
+    border: 1px solid #A0A0A0;
+}
+
+.content-pas{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    p{
+        font-size: 18px;
+    }
+}
+.seat_svg{
+    width: 50px;
+    height: 50px;
+}
+
+.arow_svg{
+    width: 20px;
+    height: 20px;
+}
+
+.input_wraper-book-pay{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+
+.input_item-pay{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    p{
+        font-size: 18px;
+    }
+    input{
+        display: none;
+    }
+    label{
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        border: 1px solid #A0A0A0;
+    }
+}
+
+.total_sum-book{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 50px 0;
+    p{
+        font-size: 20px;
+    }
+}
+
+.sum_btn{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    p{
+        font-size: 20px;
+    }
+}
+
+
+

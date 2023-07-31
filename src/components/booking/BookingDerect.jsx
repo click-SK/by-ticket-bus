@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import SearchRouts from '../mainPage/SearchRouts';
 import DerectionList from './bus/DerectionList';
+import { Link } from 'react-router-dom';
 import '../../style/Booking.scss'
 
 const BookingDerect = () => {
@@ -25,7 +26,7 @@ const BookingDerect = () => {
                 <div className='list_wrap'>
                 {isOutbound ?
                     (listArr.map((item, idx) => (
-                        <DerectionList key={idx}/> 
+                        <Link to="/booking-direct№"><DerectionList key={idx}/> </Link>
                     )))
                 :
                     <DerectionList/> 
