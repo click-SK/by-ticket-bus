@@ -1,10 +1,10 @@
 import React from 'react';
 import { BiRightArrow } from 'react-icons/bi';
+import { useTranslation } from "react-i18next";
 import '../../../style/newsSection.scss'
 
-
-
 const NewsSection = () => {
+    const { t } = useTranslation();
 
     const blogItemArr = [
         {
@@ -41,21 +41,21 @@ const NewsSection = () => {
 
     return (
         <div className='news_section_wrap'>
-            <h2 className='news_title'>News</h2>
+            <h2 className='news_title'>{t('News')}</h2>
             <div className='content_wraper'>
                     { blogItemArr.map((item, idx) => (
                         <div key={idx} className='item_wrap'>
                             <img className='blog_item_img' src={item.imgSrc} alt="blogimg" />
                             <div className='text_wrap-blog'>
                             <h2 className='blog_item_title'>{item.title}</h2>
-                            <p className='blog_item_text'>{item.text} <span className='blog_item_text--more'>More...</span></p>
+                            <p className='blog_item_text'>{item.text} <span className='blog_item_text--more'>{t('More')}...</span></p>
                             
                             </div>
                         </div>
                     ))}
             </div>
             <div className='more_btn'>
-                <p>More <BiRightArrow
+                <p>{t('More')} <BiRightArrow
                 className='svg_more-btn'
                 /></p>
                 

@@ -9,13 +9,16 @@ const CurencyRate = () => {
     const [curentRate, setCurentRate] = useState(localStorage.getItem('curentRate') || 'EUR')
 
     const currencies = useSelector((state) => state.currencies.currencies);
-
-    console.log('currencies',currencies);
     
     const hendlerChangeRate = (e) =>{
-        const curentContent = e?.currencieName;
-        setCurentRate(curentContent)
-        localStorage.setItem('curentRate', curentContent)
+        try {
+            const curentContent = e?.currencieName;
+            setCurentRate(curentContent)
+            localStorage.setItem('curentRate', curentContent)
+            window.location.reload();
+        } catch(e) {
+            console.log(e);
+        }
     }
 
     return (

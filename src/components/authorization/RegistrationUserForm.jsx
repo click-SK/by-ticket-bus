@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { registration } from "../../store/authUser";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const RegistrationUserForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -11,33 +12,33 @@ const RegistrationUserForm = () => {
     const [phone, setPhone] = useState("");
     const [birthday, setBirthday] = useState("");
 
+        const { t } = useTranslation();
+
     const dispatch = useDispatch();
     const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //   if(isAuthUser) {
-    //     navigate('/user-profile')
-    //   }
-    // },[isAuthUser])
-
     const handleRegistrationUser = async () => {
+      try {
         const data = await dispatch(registration({email, password, firstName, lastName, phone, birthday}));
         if('user' in data.payload) {
           window.localStorage.setItem('bus-u-t', data.payload.accessToken);
           navigate('/user-profile');
           window.location.reload();
         }
+      } catch(e) {
+        console.log(e);
+      }
     }
 
   return (
     <div className="registration_wraper">
-      <h2>Registration user</h2>
+      <h2>{t('Registration user')}</h2>
       <div className="wrap_content_regist">
       <div className="right_regist_block"> 
           <div className="input_wraper-item">
             <label htmlFor="first">
-              First Name<span>*</span>
+            {t('First Name')}<span>*</span>
             </label>
             <input id="first" type="text" 
             placeholder="First Name" 
@@ -46,7 +47,7 @@ const RegistrationUserForm = () => {
           </div>
           <div className="input_wraper-item">
             <label htmlFor="last">
-              Last Name<span>*</span>
+            {t('Last Name')}<span>*</span>
             </label>
             <input id="last" type="text" 
             placeholder="Last Name" 
@@ -55,7 +56,7 @@ const RegistrationUserForm = () => {
           </div>
           <div className="input_wraper-item">
             <label htmlFor="phone">
-              Phone <span>*</span>
+            {t('Phone')} <span>*</span>
             </label>
             <input id="phone" type="phone" 
             placeholder="0034-27635342424" 
@@ -64,7 +65,7 @@ const RegistrationUserForm = () => {
           </div>
           <div className="input_wraper-item">
             <label htmlFor="mail">
-              Email <span>*</span>
+            {t('Email')} <span>*</span>
             </label>
             <input id="mail" type="text" 
             placeholder="mail@simmmple.com" 
@@ -73,7 +74,7 @@ const RegistrationUserForm = () => {
           </div>
           <div className="input_wraper-item">
             <label htmlFor="password">
-              Password<span>*</span>
+            {t('Password')}<span>*</span>
             </label>
             <input id="password" type="password" 
             placeholder="Min. 8 characters" 
@@ -82,7 +83,7 @@ const RegistrationUserForm = () => {
           </div>
           <div className="input_wraper-item">
             <label htmlFor="birthday">
-              Birthday
+            {t('Birthday')}
             </label>
             <input id="birthday" type="text" 
             placeholder="21/11/1992" 
@@ -91,20 +92,10 @@ const RegistrationUserForm = () => {
           </div>
 
           <div className="input_wraper">
-              <button className="button_singin" onClick={handleRegistrationUser}>Registration</button>{" "}
+              <button className="button_singin" onClick={handleRegistrationUser}>{t('Registration')}</button>{" "}
           </div>
       </div>
-      {/* <div className="left_regist_block"> 
-      <div className=" input_wraper-item input_wraper-item-photo">
-            <label htmlFor="photo">
-              Add photo<span>*</span>
-            </label>
-            <input id="photo" type="file" />
-          </div>
-      </div> */}
       </div>
-      
-      
     </div>
   );
 };

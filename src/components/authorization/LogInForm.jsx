@@ -7,12 +7,15 @@ import ErrorComponent from "../Error/ErrorComponent";
 import { useNavigate } from "react-router-dom";
 import {login} from '../../store/authUser.js'
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 const LoginForm = () => {
   const [isUser, setIsUser] = useState(true);
   const [isPartner, setIsPartner] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
 
   const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
 
@@ -72,13 +75,13 @@ const LoginForm = () => {
         <Link style={{ textAlign: "left", width: "100%" }} to="/">
           <p className="back_home_login">
             <BiRightArrow className="svg-login" />
-            Back to home
+            {t(`Back to home`)}
           </p>{" "}
         </Link>
         <div className="singin_wrap">
           <div className="title_singin">
-            <h2>Sign In</h2>
-            <p>Enter your email and password to sign in!</p>
+            <h2></h2>
+            <p>{t(`Enter your email and password to sign in`)}!</p>
           </div>
           <div className="switch_var-singin">
             <div
@@ -87,7 +90,7 @@ const LoginForm = () => {
                 isUser ? "switch-active" : "switch-non-active"
               }`}
             >
-              <p>Client</p>
+              <p>{t('Client')}</p>
             </div>
             <div
               onClick={handleShowPartnerLogin}
@@ -95,7 +98,7 @@ const LoginForm = () => {
                 isPartner ? "switch-active" : "switch-non-active"
               }`}
             >
-              <p>Partner</p>
+              <p>{t('Partner')}</p>
             </div>
           </div>
           {isUser && (
@@ -118,7 +121,7 @@ const LoginForm = () => {
           )}
         </div>
         <p>
-          © 2023 Horizon UI. All Rights Reserved. Made with love by Simmmple!
+          © 2023 {t('Horizon UI. All Rights Reserved. Made with love by Simple')}!
         </p>
       </div>
       <div className="right_block">

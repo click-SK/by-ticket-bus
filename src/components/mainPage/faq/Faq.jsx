@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { BiRightArrow } from 'react-icons/bi';
 import FaqItem from './FaqItem';
+import { useTranslation } from "react-i18next";
 import '../../../style/faqSection.scss'
 
 const Faq = () => {
     const [isOpen, setIsOpen] = useState(false)
-
+    const { t } = useTranslation();
     const arrFaq = [
         {
             title: 'How to find a ride',
@@ -61,7 +62,7 @@ const Faq = () => {
                 
             </div>
             <div className='more_btn'>
-                <p>More <BiRightArrow
+                <p>{t('More')} <BiRightArrow
                 className='svg_more-btn'
                 /></p>
                 

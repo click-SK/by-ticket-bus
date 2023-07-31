@@ -8,11 +8,13 @@ import { BsCurrencyDollar } from 'react-icons/bs'
 import { useTheme } from '../../hooks/use-thems';
 import ChangeColor from './ChangeColor';
 import CurencyRate from './CurencyRate';
-import CurentLang from './CurentLang';
+import ChooseLanguage from './ChooseLanguage';
 import { useSelector } from 'react-redux';
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
     const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
+    const { t } = useTranslation();
     return (
         <div className='header_wrapper'>
             <div className='content_wrap'>
@@ -22,24 +24,24 @@ const Header = () => {
                     <div className='routs_item_header local_routs'>
                         <MdDirectionsBus
                         className='icon '/>
-                        <p className='p-header'>local</p>
+                        <p className='p-header'>{t('local')}</p>
                     </div>
                     <div className='routs_item_header place_routs'>
                         <BiSolidBusiness
                         className='icon '/>
-                        <p className='p-header'>place</p>
+                        <p className='p-header'>{t('place')}</p>
                     </div>
                 </div>
             </div>
             <div className='custom_profile'>
-                <CurentLang/>
+                <ChooseLanguage/>
                 <CurencyRate/>
                 <ChangeColor/>
                 {isAuthUser 
                 ?
-                <Link to='/user-profile'><button className='btn_prime btn_sing-in'>My profile</button></Link>
+                <Link to='/user-profile'><button className='btn_prime btn_sing-in'>{t('My profile')}</button></Link>
                 :
-                <Link to='/login'><button className='btn_prime btn_sing-in'>Sing In</button></Link>
+                <Link to='/login'><button className='btn_prime btn_sing-in'>{t('Sign in')}</button></Link>
                 }
                 
             </div>

@@ -1,15 +1,18 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const LoginTemplate = ({setIsChecked, isChecked, handleLogin, handleRegistration, registrationPath }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { t } = useTranslation();
 
   return (
     <div>
       <div className="input_wraper">
         <div className="input_wraper-item">
           <label htmlFor="mail">
-            Email <span>*</span>
+          {t(`Email`)} <span>*</span>
           </label>
           <input
             id="mail"
@@ -21,7 +24,7 @@ const LoginTemplate = ({setIsChecked, isChecked, handleLogin, handleRegistration
         </div>
         <div className="input_wraper-item">
           <label htmlFor="password">
-            Password<span>*</span>
+          {t(`Password`)}<span>*</span>
           </label>
           <input
             id="password"
@@ -45,10 +48,10 @@ const LoginTemplate = ({setIsChecked, isChecked, handleLogin, handleRegistration
               htmlFor="forgot-pass"
             ></label>
             <p>
-              Keep me logged in<span>*</span>
+            {t(`Keep me logged in`)}<span>*</span>
             </p>
           </div>
-          <p className="forgot_pasword-link">Forget password?</p>
+          <p className="forgot_pasword-link">{t(`Forgot password`)}?</p>
         </div>
       </div>
       <div className="input_wraper">
@@ -56,7 +59,7 @@ const LoginTemplate = ({setIsChecked, isChecked, handleLogin, handleRegistration
       </div>
       <div className="not_regist">
         <p onClick={() => handleRegistration(email, password)}>
-          Not registered yet? <Link to={registrationPath}> <span>Create an Account </span> </Link>{" "}
+          {t('Not registered yet')}? <Link to={registrationPath}> <span>{t('Create an Account')} </span> </Link>{" "}
         </p>
       </div>
     </div>

@@ -12,12 +12,13 @@ import { CiLogout } from 'react-icons/ci';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../store/authUser';
 import { useNavigate } from 'react-router-dom';
-
+import { useTranslation } from "react-i18next";
 const ClientProfile = () => {
     const [isTrips, setIsTrips] = useState(true)
     const [isPassengers, setIsPassengers] = useState(false)
     const [isSettings, setIsSettings] = useState(false)
     const [isLogout, setIsLogout] = useState(false)
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {user} = useSelector((state) => state.authUser.user);
@@ -48,21 +49,21 @@ const ClientProfile = () => {
 
     return (
         <div className='profile_client_wrap'>
-            <aside className='aside_menu'>
+            <aside className='aside_menu'>s
                 <nav className='nav_bar'>
                     <ul className='nav_list'>
                         <li 
                         onClick={openTrips}
-                        className={`list_item ${isTrips ? 'list_item-active' : ''}`}><BiTrip/>Trips</li>
+                        className={`list_item ${isTrips ? 'list_item-active' : ''}`}><BiTrip/>{t('Trips')}</li>
                         <li 
                         onClick={openPassengers}
-                        className={`list_item ${isPassengers ? 'list_item-active' : ''}`}><AiOutlineUserAdd/>Passengers</li>
+                        className={`list_item ${isPassengers ? 'list_item-active' : ''}`}><AiOutlineUserAdd/>{t('Passengers')}</li>
                         <li 
                         onClick={openSettings}
-                        className={`list_item ${isSettings ? 'list_item-active' : ''}`}><CiSettings/>Settings</li>
+                        className={`list_item ${isSettings ? 'list_item-active' : ''}`}><CiSettings/>{t('Settings')}</li>
                         <li 
                         className={`list_item`}
-                        onClick={handelLogoutUser}><CiLogout/>Log out</li>
+                        onClick={handelLogoutUser}><CiLogout/>{t('Log out')}</li>
                     </ul>
                 </nav>
             </aside>

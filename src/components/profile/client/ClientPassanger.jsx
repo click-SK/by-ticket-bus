@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { API_URL } from '../../../http/baseUrl';
 import axios from 'axios';
+import { useTranslation } from "react-i18next";
 const ClientPassanger = ({user}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-
+    const { t } = useTranslation();
     useEffect(() => {
         setFirstName(user.firstName);
         setLastName(user.lastName);
@@ -15,9 +16,9 @@ const ClientPassanger = ({user}) => {
     }
     return (
         <div className='client_body_item_wrap'>
-                <h3> Account holder</h3>
+                <h3>{t('Account holder')}</h3>
                 <div className='passanger_item'>
-                    <p>FIRST NAME LAST NAME</p>
+                    <p>{t('FIRST NAME LAST NAME')}</p>
                     <input type="text" 
                     placeholder='FIRST NAME'
                     value={firstName}
@@ -27,8 +28,8 @@ const ClientPassanger = ({user}) => {
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)} />
                 </div>
-                <button className='btn_prime' onClick={handleUpdateUserName}> Save</button>
-                <button className='btn_prime'> Add Passanger</button>
+                <button className='btn_prime' onClick={handleUpdateUserName}>{t('Save')}</button>
+                <button className='btn_prime'>{t('Add Passenger')}</button>
         </div>
     );
 };

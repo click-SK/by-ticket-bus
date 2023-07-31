@@ -4,14 +4,12 @@ import BalanceSalesCom from './BalanceSalesCom';
 import Derection from './Direction';
 import PartnerMini from './PartnerMini';
 import TiketsMini from './TiketsMini';
-
+import { useTranslation } from "react-i18next";
 const DashboardWrap = () => {
-
-    const [isSales, setSales] = useState(true)
-
+    const { t } = useTranslation();
     return (
         <div className='admin_content_wrap'>
-            <h2>Main Dashboard</h2>
+            <h2>{t('Main Dashboard')}</h2>
             <div className='erning_sales_info_wrap'>
             <Ernings
                 img = './image/admin/ernings.svg'

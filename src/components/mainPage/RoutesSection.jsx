@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import '../../style/routesSection.scss'
 import { FaLocationDot } from 'react-icons/fa6';
-
+import { useTranslation } from "react-i18next";
 const RoutesSection = () => {
-    const [curentRate, setCurentRate] = useState(localStorage.getItem('curentRate'))
-    const [ratePrice, setRatePrice] = useState(localStorage.getItem('curentRate') || 'EUR')
-   
+    const [curentRate, setCurentRate] = useState(localStorage.getItem('curentRate'));
+    const [ratePrice, setRatePrice] = useState(localStorage.getItem('curentRate') || 'EUR');
+    const { t } = useTranslation();
+
+    const {currencieValue} = useSelector((state) => state.currencies);
     useEffect (() => {
         setRatePrice(curentRate) 
     },[curentRate])
-    
-    console.log(curentRate, ratePrice );
-
-
     
     const directionArr = [
         {
@@ -54,12 +53,12 @@ const RoutesSection = () => {
                 className='route_item'>
                     <div className='direct_name_price'>
                         <div><FaLocationDot/>{item.locStart}</div>
-                        <p>{item.price} {ratePrice}</p>
+                        <p>{(item.price * currencieValue).toFixed(1)} {ratePrice}</p>
                     </div>
                     <img className='routes_img' src="./image/routes.svg" alt="routes" />
                     <div className='direct_name_end'>{item.locEnd}</div>
                     <div className='burron_booking'>
-                    <button className='btn_prime'>Booking</button>
+                    <button className='btn_prime'>{t('Booking')}</button>
                     </div>
                 </div>
             ))}
