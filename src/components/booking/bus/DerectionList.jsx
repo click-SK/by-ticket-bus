@@ -6,7 +6,7 @@ import { AiOutlineWifi } from 'react-icons/ai';
 import { BsFillBadgeWcFill } from 'react-icons/bs';
 import { BsQrCodeScan } from 'react-icons/bs';
 
-const DerectionList = () => {
+const DerectionList = ({cityFrom, cityTo}) => {
     return (
         <div className='list_item_wrap'>
             <div className='item_info_time'>
@@ -25,12 +25,12 @@ const DerectionList = () => {
             <div className='item_info_direct'>
                 <div className='city_wrap city_from'>
                     <p>6:54 am</p>
-                    <p>City</p>
+                    <p>{cityFrom}</p>
                 </div>
                 <PiFlowArrow/>
                 <div className='city_wrap city_to'>
                     <p>6:54 am</p>
-                    <p>City</p>
+                    <p>{cityTo}</p>
                 </div>
             </div> 
             <div className='direct_price'>

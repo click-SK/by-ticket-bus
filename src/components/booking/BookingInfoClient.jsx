@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BusSeats35 from "./bus/BusSeats35";
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { BiRightArrow } from "react-icons/bi";
@@ -7,7 +8,17 @@ import { TbLuggage } from "react-icons/tb";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const BookingInfoClient = () => {
-  const[seats, setSeats] = useState([])
+  const [seats, setSeats] = useState([]);
+  const curentSeats = useSelector(state => state.busSeats.curentSeats);
+  const [firstName, setFirstName] = useState('');
+  const [lustName, setLustName] = useState('');
+
+  useEffect (() => {
+    setSeats(curentSeats)
+  },[])
+
+  const dispatch = useDispatch();
+
   return (
     <div className="info_client_wrap">
       <div className="wrap_info_item info_pasanger">
@@ -34,12 +45,12 @@ const BookingInfoClient = () => {
             <Link to='/bus-seats' className="select_seat">
             <div className="content-pas">
                 <MdOutlineAirlineSeatReclineNormal className="seat_svg" />
-                <p>Select you seat</p>
+                <p>{seats.length !== 0 ? seats : 'Select you seat'}</p>
             </div>
             <BiRightArrow className="arow_svg" />
             </Link>
       </div>
-      <div className="wrap_info_item info_reservation">
+      {/* <div className="wrap_info_item info_reservation">
         <div className="title_wrap_item">
           <p className="title_numb">3</p>
           <p className="title_text">Extras</p>
@@ -61,10 +72,10 @@ const BookingInfoClient = () => {
           </div>
           <BiRightArrow className="arow_svg" />
         </div>
-      </div>
+      </div> */}
       <div className="wrap_info_item info_pasanger">
         <div className="title_wrap_item">
-          <p className="title_numb">4</p>
+          <p className="title_numb">3</p>
           <p className="title_text">Contact</p>
         </div>
         <div className="input_wraper-book">
@@ -84,7 +95,7 @@ const BookingInfoClient = () => {
       </div>
       <div className="wrap_info_item info_pasanger">
         <div className="title_wrap_item">
-          <p className="title_numb">5</p>
+          <p className="title_numb">4</p>
           <p className="title_text">Payment</p>
         </div>
         <div className="input_wraper-book-pay">

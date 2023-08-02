@@ -49,7 +49,7 @@ const ClientProfile = () => {
 
     return (
         <div className='profile_client_wrap'>
-            <aside className='aside_menu'>s
+            <aside className='aside_menu'>
                 <nav className='nav_bar'>
                     <ul className='nav_list'>
                         <li 

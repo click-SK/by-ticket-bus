@@ -16,6 +16,8 @@ import BookingDerect from "./components/booking/BookingDerect";
 import DirectCurent from "./components/booking/DirectCurent";
 import BookingInfoClient from "./components/booking/BookingInfoClient";
 import BusSeats35 from "./components/booking/bus/BusSeats35";
+import BlogPage from "./components/blog/BlogPage";
+import BlogItem from "./components/blog/BlogItem";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -29,6 +31,8 @@ function App() {
   const isOperator = useSelector((state) => state.authAdmin.isOperator);
   const user = useSelector((state) => state.authUser.user);
   const dispatch = useDispatch();
+
+  const {RDX_cityFrom, RDX_cityTo, RDX_curentPasanger, RDX_startDate, RDX_endDate} = useSelector((state) => state.booking);
 
   useEffect(() => {
     try {
@@ -72,6 +76,8 @@ function App() {
         <Route path="/booking-direct№" element={<DirectCurent/>} />
         <Route path="/booking-info-pas" element={<BookingInfoClient/>} />
         <Route path="/bus-seats" element={<BusSeats35/>} />
+        <Route path="/blog" element={<BlogPage/>} />
+        <Route path="/news№" element={<BlogItem/>} />
       </Routes>
       <Footer />
     </div>

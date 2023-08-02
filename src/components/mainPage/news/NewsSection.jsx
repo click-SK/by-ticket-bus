@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BiRightArrow } from 'react-icons/bi';
 import { useTranslation } from "react-i18next";
 import '../../../style/newsSection.scss'
@@ -55,9 +56,11 @@ const NewsSection = () => {
                     ))}
             </div>
             <div className='more_btn'>
+            <Link to='/blog'>
                 <p>{t('More')} <BiRightArrow
                 className='svg_more-btn'
                 /></p>
+            </Link>
                 
             </div>
         </div>
