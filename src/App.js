@@ -18,6 +18,7 @@ import BookingInfoClient from "./components/booking/BookingInfoClient";
 import BusSeats35 from "./components/booking/bus/BusSeats35";
 import BlogPage from "./components/blog/BlogPage";
 import BlogItem from "./components/blog/BlogItem";
+import FaqPage from "./components/faq/FaqPage";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -78,6 +79,7 @@ function App() {
         <Route path="/bus-seats" element={<BusSeats35/>} />
         <Route path="/blog" element={<BlogPage/>} />
         <Route path="/news№" element={<BlogItem/>} />
+        <Route path="'/faq-list" element={<FaqPage/>}/>
       </Routes>
       <Footer />
     </div>
