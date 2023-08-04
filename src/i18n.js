@@ -1,25 +1,25 @@
-import En from './translation/en.json'
-import Sp from './translation/sp.json'
+import ENG from "./translation/ENG.json";
+import ESP from "./translation/ESP.json";
 
-import { initReactI18next } from 'react-i18next'
-import i18n from 'i18next'
-
+import { initReactI18next } from "react-i18next";
+import i18n from "i18next";
 
 const resources = {
-    En: {
-        translation: En,
-    },
-    Sp:{
-        translation: Sp,
-    }
-}
+  ESP: {
+    translation: ESP,
+  },
+  ENG: {
+    translation: ENG,
+  },
+};
 
-i18n
-.use(initReactI18next)
-.init({
-    resources,
-    lng:localStorage.getItem('bus-language')|| '',
-    fallbackLng:'Sp'
-})
+const savedLanguage = (localStorage.getItem('bus-language') || '');
 
+i18n.use(initReactI18next).init({
+  resources,
+  lng:savedLanguage,
+  fallbackLng:'ENG',
+});
+
+console.log("i18n", i18n);
 export default i18n;
