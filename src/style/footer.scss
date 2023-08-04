@@ -68,6 +68,7 @@ h4{
         li{
             cursor: pointer;
             transition: all 0.2s ease-in-out;
+            color: var(--color-text);
             &:hover{
                 color: var(--color-prime);
             }

@@ -110,7 +110,9 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
               <h4>{item.titleSp}</h4>
               <div className="item_text">{item.descriptionSp}</div>
             </div>
-          ) : (
+          ) 
+          :
+          (
             <div className="edit_wrap_blog-item">
               <input
                 type="file"

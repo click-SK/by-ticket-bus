@@ -41,7 +41,7 @@ const BlogPage = () => {
     ]
 
     return (
-        <div className='blog_wrap'>
+        <div className='blog-page_wrap'>
             <h2>News</h2>
             <div className='blog_body'>
                 <div className='blog_content'>

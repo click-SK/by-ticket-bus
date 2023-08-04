@@ -76,11 +76,11 @@ const SettingCurrency = () => {
     return (
         <>
         <div className='admin_panel_items coin_wrap'>
-            <div className='add_coin'>
+            {/* <div className='add_coin'>
                 <button
                 onClick={() => setIsAddCoin(!isAddCoin)}
                 className='ernings_wraper-item admin_panel_items add_user_button active_btn_user' >{t('Add currency')}</button>
-            </div>
+            </div> */}
             <div className='coin_list'>
                 <h5 className='content_title'>{t('Currency')}</h5>
                 {curentCurrencies.length != 0 && curentCurrencies.map((el, idx) => (
@@ -89,11 +89,12 @@ const SettingCurrency = () => {
                     className='coin_list-item-current'>
                             <p>{el.currencieName}</p>    
                             <p>{el.currencieValue}</p>    
-                            <p onClick={() => handleDeleteCurrentCurencies(el._id, el.currencieName)}>X</p>
+                            <p className='del_item' onClick={() => handleDeleteCurrentCurencies(el._id, el.currencieName)}>X</p>
                     </div>
                 ))
                 }
-                {isAddCoin && 
+                     
+            </div>
                     <div className='select_wrap_coin'>
                         <div className='name_coin'>
                             <p
@@ -116,8 +117,6 @@ const SettingCurrency = () => {
                                 ))}
                             </div>
                     </div>
-                }      
-            </div>
         </div>
     </>
     );
