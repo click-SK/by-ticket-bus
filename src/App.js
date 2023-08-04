@@ -40,6 +40,12 @@ function App() {
   const {RDX_cityFrom, RDX_cityTo, RDX_curentPasanger, RDX_startDate, RDX_endDate} = useSelector((state) => state.booking);
 
   useEffect(() => {
+    if(!window.localStorage.getItem("bus-language")) {
+      window.localStorage.setItem("bus-language",'ESP')
+    }
+  },[])
+
+  useEffect(() => {
     try {
       dispatch(getCurrencies());
       dispatch(currentLang());

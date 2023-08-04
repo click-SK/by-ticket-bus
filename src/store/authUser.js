@@ -102,21 +102,6 @@ const authUserSlice = createSlice({
         state.isAuthUser = false;
         state.user = {};
       },
-      // [checkAuth.pending]: (state) => {
-      //   state.status = "loading";
-      //   state.isAuthUser = false;
-      //   state.user = {};
-      // },
-      // [checkAuth.fulfilled]: (state, action) => {
-      //   state.status = "loaded";
-      //   state.isAuthUser = true;
-      //   state.user = action.payload;
-      // },
-      // [checkAuth.rejected]: (state) => {
-      //   state.status = "error";
-      //   state.isAuthUser = false;
-      //   state.user = {};
-      // },
       [logout.pending]: (state) => {
         state.status = "loading";
         state.isAuthUser = false;
