@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const BlogItem = () => {
     return (
-        <div className='blog_wrap'>
+        <div className='blog-page_wrap'>
             <h2>travel easy</h2>
             <div className='blog_body blog_item_body'>
                     <div className='blog_img_wrap'>

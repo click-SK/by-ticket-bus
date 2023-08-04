@@ -43,7 +43,7 @@ const FaqPage = () => {
       });
     
     return (
-<div className='blog_wrap'>
+<div className='blog-page_wrap'>
             <h2>FAQ</h2>
             <div className='search_faq'>
                 <BsSearch
