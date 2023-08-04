@@ -74,8 +74,7 @@ const SettingCurrency = () => {
     }
 
     return (
-        <div className='admin_content_wrap'>
-        <h2>{t('Setting site')}</h2>
+        <>
         <div className='admin_panel_items coin_wrap'>
             <div className='add_coin'>
                 <button
@@ -120,7 +119,7 @@ const SettingCurrency = () => {
                 }      
             </div>
         </div>
-    </div>
+    </>
     );
 };
 

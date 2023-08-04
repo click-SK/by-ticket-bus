@@ -19,6 +19,10 @@ import BusSeats35 from "./components/booking/bus/BusSeats35";
 import BlogPage from "./components/blog/BlogPage";
 import BlogItem from "./components/blog/BlogItem";
 import FaqPage from "./components/faq/FaqPage";
+import ContactPage from "./components/contact/ContactPage";
+import AboutUsPage from "./components/aboutUs/AboutUsPage";
+import PoliciPage from "./components/polici/PoliciPage";
+import RulesPage from "./components/rulePage/RulePage";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -79,7 +83,11 @@ function App() {
         <Route path="/bus-seats" element={<BusSeats35/>} />
         <Route path="/blog" element={<BlogPage/>} />
         <Route path="/news№" element={<BlogItem/>} />
-        <Route path="'/faq-list" element={<FaqPage/>}/>
+        <Route path="/faq" element={<FaqPage/>}/>
+        <Route path="/about-ua" element={<AboutUsPage/>}/>
+        <Route path="/contact" element={<ContactPage/>}/>
+        <Route path="/policy" element={<PoliciPage/>}/>
+        <Route path="/rule" element={<RulesPage/>}/>
       </Routes>
       <Footer />
     </div>

@@ -63,7 +63,7 @@ const Faq = () => {
             </div>
             
             <div className='more_btn'>
-                <Link to='/faq-list'>
+                <Link to='/faq'>
                 <p>{t('More')} <BiRightArrow
                 className='svg_more-btn'
                 /></p>

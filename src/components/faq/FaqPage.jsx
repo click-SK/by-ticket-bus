@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useTranslation } from "react-i18next";
+import { BsSearch } from 'react-icons/bs';
+
+import '../../style/faq.scss'
 import '../../style/blog.scss'
 import { Link } from 'react-router-dom';
 
 const FaqPage = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [search, setSearch] = useState('')
     const { t } = useTranslation();
     const arrFaq = [
         {
@@ -12,7 +16,15 @@ const FaqPage = () => {
             text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
         },
         {
+            title: 'How to 3',
+            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
+        },
+        {
             title: 'How to find a ride',
+            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
+        },
+        {
+            title: 'How to find a 2',
             text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
         },
         {
@@ -23,34 +35,34 @@ const FaqPage = () => {
             title: 'How to find a ride',
             text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
         },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-    ]
+    ];
+
+    const filteredArrFaq = arrFaq.filter((item) => {
+        // Фільтруємо елементи масиву, зберігаючи тільки ті, які містять search
+        return item.title.toLowerCase().includes(search.toLowerCase()) || item.text.toLowerCase().includes(search.toLowerCase());
+      });
     
     return (
 <div className='blog_wrap'>
-            <h2>News</h2>
+            <h2>FAQ</h2>
+            <div className='search_faq'>
+                <BsSearch
+                className='search_svg-faq'/>
+                <input value={search} placeholder='Search' onChange={(e) => setSearch(e.target.value)} type="text" />
+            </div>
             <div className='blog_body'>
                 <div className='blog_content'>
                 <div className='content_wraper'>
-                    {/* { blogItemArr.map((item, idx) => (
-                        <Link to='/news№'>
-                            <div key={idx} className='item_wrap'>
-                                <img className='blog_item_img' src={item.imgSrc} alt="blogimg" />
-                                <div className='text_wrap-blog'>
-                                <h2 className='blog_item_title'>{item.title}</h2>
-                                <p className='blog_item_text'>{item.text} <span className='blog_item_text--more'>{t('More')}...</span></p>
-                                
-                                </div>
+                    {filteredArrFaq.map((item, idx) => (
+                        <div key={idx} className='faq_item_wrap'>
+                            <div >
+                                <h4 className='title_faq-item'>{item.title} ?</h4>
                             </div>
-                        </Link>
-                    ))} */}
+                            <div>
+                                <p>{item.text}</p>
+                            </div>
+                        </div>
+                    ))}
                  </div>
                 </div>
                 <div className='blog_menu'>
