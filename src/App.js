@@ -14,6 +14,15 @@ import ErrorComponent from "./components/Error/ErrorComponent";
 import BussСheme from "./components/booking/bus/BussСheme";
 import BookingDerect from "./components/booking/BookingDerect";
 import DirectCurent from "./components/booking/DirectCurent";
+import BookingInfoClient from "./components/booking/BookingInfoClient";
+import BusSeats35 from "./components/booking/bus/BusSeats35";
+import BlogPage from "./components/blog/BlogPage";
+import BlogItem from "./components/blog/BlogItem";
+import FaqPage from "./components/faq/FaqPage";
+import ContactPage from "./components/contact/ContactPage";
+import AboutUsPage from "./components/aboutUs/AboutUsPage";
+import PoliciPage from "./components/polici/PoliciPage";
+import RulesPage from "./components/rulePage/RulePage";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -27,6 +36,8 @@ function App() {
   const isOperator = useSelector((state) => state.authAdmin.isOperator);
   const user = useSelector((state) => state.authUser.user);
   const dispatch = useDispatch();
+
+  const {RDX_cityFrom, RDX_cityTo, RDX_curentPasanger, RDX_startDate, RDX_endDate} = useSelector((state) => state.booking);
 
   useEffect(() => {
     try {
@@ -66,8 +77,17 @@ function App() {
         <Route path="/user-profile" element={<Profile />} />}
         {(isAdmin || isOperator) && 
         <Route path="/admin-panel" element={<AdminPanel />} />}
-        <Route path="/bus" element={<BookingDerect/>} />
+        <Route path="/trip-list" element={<BookingDerect/>} />
         <Route path="/booking-direct№" element={<DirectCurent/>} />
+        <Route path="/booking-info-pas" element={<BookingInfoClient/>} />
+        <Route path="/bus-seats" element={<BusSeats35/>} />
+        <Route path="/blog" element={<BlogPage/>} />
+        <Route path="/news№" element={<BlogItem/>} />
+        <Route path="/faq" element={<FaqPage/>}/>
+        <Route path="/about-ua" element={<AboutUsPage/>}/>
+        <Route path="/contact" element={<ContactPage/>}/>
+        <Route path="/policy" element={<PoliciPage/>}/>
+        <Route path="/rule" element={<RulesPage/>}/>
       </Routes>
       <Footer />
     </div>

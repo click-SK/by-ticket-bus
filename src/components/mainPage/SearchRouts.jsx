@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../style/searchRouts.scss'
 import "react-datepicker/dist/react-datepicker.css";
 import { AiOutlineSwap } from 'react-icons/ai';
@@ -11,6 +11,10 @@ import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from 'react-redux';
 import { setBookingData } from '../../store/bookingData';
 import { useTranslation } from "react-i18next";
+import BookingDerect from '../booking/BookingDerect';
+import { Link } from 'react-router-dom';
+
+
 const SearchRouts = () => {
     const [isFromTo, setIsFromTo] = useState(true)
     const [cityFrom, setCityFrom] = useState('')
@@ -23,6 +27,12 @@ const SearchRouts = () => {
     const dispatch = useDispatch();
 
     const {RDX_cityFrom, RDX_cityTo, RDX_curentPasanger, RDX_startDate, RDX_endDate} = useSelector((state) => state.booking);
+
+    useEffect (() => {
+        setCityFrom(RDX_cityFrom)
+        setCityTo(RDX_cityTo)
+    }, [])
+
 
     const hendlerChangeInputFrom = (e) => {
         setCityFrom(e)
@@ -54,6 +64,7 @@ const SearchRouts = () => {
         try {
             const serializedStartDate = startDate.toString();
             const serializedEndDate = endDate.toString();
+
             dispatch(setBookingData({cityFrom, cityTo, curentPasanger, startDate: serializedStartDate, endDate: serializedEndDate}));
         } catch(e) {
             console.log(e);
@@ -131,10 +142,14 @@ const SearchRouts = () => {
                     </div>
                 </div>
             </div>
-            <button className='search-btn' onClick={handleSendBookingData}> 
-            <BsSearch className='search-btn-icon'/>
-            {t('Search')}
-            </button>
+            <Link
+            to='/trip-list'
+            style={{height:'100%'}}>
+                <button className='search-btn' onClick={handleSendBookingData}> 
+                <BsSearch className='search-btn-icon'/>
+                {t('Search')}
+                </button>
+            </Link>
         </div>
     );
 };

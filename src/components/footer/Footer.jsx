@@ -3,6 +3,7 @@ import { AiFillInstagram } from 'react-icons/ai';
 import {FaFacebookSquare } from 'react-icons/fa';
 import {FaTwitterSquare } from 'react-icons/fa';
 import { useTranslation } from "react-i18next";
+import { Link } from 'react-router-dom';
 import '../../style/footer.scss'
 
 const Footer = () => {
@@ -18,7 +19,7 @@ const Footer = () => {
                     <div className='policy'>
                         <p>© 2023 {t('Busbud Inc., All rights reserved')}</p>
                         <p className='policy_link'> - {t('Terms of use')}</p>
-                        <p className='policy_link'> - {t('Privacy')}</p>
+                        <Link to='/policy'><p className='policy_link'> - {t('Privacy')}</p> </Link>
                         <p className='policy_link'> - {t('Refund policy')}</p>
                     </div>
                 </div>
@@ -44,6 +45,10 @@ const Footer = () => {
                     <div className='item-text'> 
                         <h4>{t('SUPPORT')}</h4>
                         <ul>
+                            <Link to='/contact'><li>Contact</li> </Link>
+                            <Link to='/about-ua'><li>About Us</li> </Link>
+                            <Link to='/rule'><li>Rules Page</li> </Link>
+                            
                             <li>{t('Help')}</li>
                         </ul>
                     </div>

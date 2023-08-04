@@ -1,15 +1,32 @@
 import React, { useRef, useEffect, useState } from 'react';
 import SearchRouts from '../mainPage/SearchRouts';
 import DerectionList from './bus/DerectionList';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBookingData } from '../../store/bookingData';
+import { Link } from 'react-router-dom';
 import '../../style/Booking.scss'
 
 const BookingDerect = () => {
     const[isOutbound, setIsOutbound] = useState(true)
     const[isReturn, setIsReturn] = useState(false)
+    const [isFromTo, setIsFromTo] = useState(true)
+    const [cityFrom, setCityFrom] = useState('')
+    const [cityTo, setCityTo] = useState('')
+    const [curentPasanger, setCurentPasanger] = useState(1)
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const dispatch = useDispatch();
+    const {RDX_cityFrom, RDX_cityTo, RDX_curentPasanger, RDX_startDate, RDX_endDate} = useSelector((state) => state.booking);
 
     const listArr = [
         1, 2, 3, 4, 5
     ]
+
+    useEffect (() => {
+        setCityFrom(RDX_cityFrom);
+        setCityTo(RDX_cityTo)
+    },[])
+
     return (
         <div className='booking_wrap'>
             <SearchRouts/>
@@ -25,7 +42,11 @@ const BookingDerect = () => {
                 <div className='list_wrap'>
                 {isOutbound ?
                     (listArr.map((item, idx) => (
-                        <DerectionList key={idx}/> 
+                        <Link to={`/booking-direct№`}><DerectionList 
+                        key={idx}
+                        cityFrom = {cityFrom}
+                        cityTo = {cityTo}
+                        /> </Link>
                     )))
                 :
                     <DerectionList/> 

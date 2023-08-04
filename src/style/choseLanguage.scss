@@ -32,12 +32,17 @@
     gap: 5px;
     right: 28px;
     top: 48px;
+    width: 30px;
+    border-radius: 20px;
+    background: var(--color-bg-prime);
+    border: 1px solid var(--color-text-title);
+    align-items: center;
 }
 
 .chose_lang_item {
     padding: 10px 0px;
+    color: var(--color-text-title);
     &:hover {
-        background-color: red;
         cursor: pointer;
     }
 }
