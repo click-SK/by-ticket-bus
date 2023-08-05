@@ -182,3 +182,9 @@ input, textarea {
     left: 0;
     width: 100%;
   } */
+
+  .test_pdf{
+    margin-top: 150px;
+    height: 100vh;
+    width: 100%;
+  }

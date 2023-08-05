@@ -1,23 +1,65 @@
 import React, { useEffect, useState } from "react";
 import BusSeats35 from "./bus/BusSeats35";
+import axios from 'axios';
+import { PDFViewer } from '@react-pdf/renderer';
+import TicketTamplate from "./pdf/TicketTamplate";
+import QRCode from 'qrcode.react';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { BiRightArrow } from "react-icons/bi";
 import { TbLuggage } from "react-icons/tb";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+// import { useSelector } from 'react-redux';
 
 const BookingInfoClient = () => {
   const [seats, setSeats] = useState([]);
   const curentSeats = useSelector(state => state.busSeats.curentSeats);
   const [firstName, setFirstName] = useState('');
   const [lustName, setLustName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [pdfBlob, setPdfBlob] = useState(null);
+  const [pdfFileData, setPdfFileData] = useState([])
+  // const qrCodeImageUrl = QRCode.toDataURL('http://localhost:3000/booking-info-pas');
 
   useEffect (() => {
     setSeats(curentSeats)
   },[])
 
+  useEffect (() => {
+    setPdfFileData(
+      {
+        fName : firstName,
+        lName : lustName,
+        seats:curentSeats,
+        email:email,
+        phone:phone,
+        // qr: qrCodeImageUrl
+      }
+    )
+  },[firstName,lustName, curentSeats, email, phone ])
+
   const dispatch = useDispatch();
+
+  const handleGeneratePdf = async () => {
+    const blob = new Blob([<TicketTamplate />], { type: 'application/pdf' });
+    setPdfBlob(blob); // Зберегти PDF в стані
+    console.log('testtt',<TicketTamplate/>);
+    try {
+      // const response = await axios.post('/api/save-pdf', pdfBlob, {
+      //   headers: {
+      //     'Content-Type': 'application/pdf',
+      //   },
+      // });
+
+      // console.log('PDF збережено на сервері', response.data);
+    } catch (error) {
+      console.error('Помилка при збереженні PDF на сервері', error);
+    }
+  };
+
 
   return (
     <div className="info_client_wrap">
@@ -29,11 +71,11 @@ const BookingInfoClient = () => {
         <div className="input_wraper-book">
           <div className="input_item">
             <label htmlFor="first_name_pas">First name</label>
-            <input id="first_name_pas" type="text" />
+            <input id="first_name_pas" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
           </div>
           <div className="input_item">
             <label htmlFor="last_name_pas">Last name</label>
-            <input id="last_name_pas" type="text" />
+            <input id="last_name_pas" type="text" value={lustName} onChange={(e) => setLustName(e.target.value)} />
           </div>
         </div>
       </div>
@@ -83,13 +125,13 @@ const BookingInfoClient = () => {
             <label className="checked" htmlFor="email_pas">
               Email
             </label>
-            <input id="email_pas" type="email" />
+            <input id="email_pas" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="input_item">
             <label className="checked" htmlFor="phone_pas">
               Phone number
             </label>
-            <input id="phone_pas" type="number" />
+            <input id="phone_pas" type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
           </div>
         </div>
       </div>
@@ -115,9 +157,17 @@ const BookingInfoClient = () => {
         <p>Total (incl. VAT) </p>
         <div className="sum_btn">
           <p>€117.98</p>
-          <Link to="bus-seats">
-            <button className="btn_prime">Buy</button>
-          </Link>
+          <PDFDownloadLink 
+          document={<TicketTamplate 
+                    data = {pdfFileData}
+                    />} 
+          fileName="bus_ticket.pdf">
+            {({ blob, url, loading, error }) =>
+              loading ? 'Loading...' : (
+                <button className="btn_prime" onClick={handleGeneratePdf}>Buy</button>
+              )
+            }
+          </PDFDownloadLink>
         </div>
       </div>
     </div>

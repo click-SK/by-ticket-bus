@@ -62,9 +62,10 @@ const ChooseLanguage = () => {
   return (
     <div
     ref={changeColorRef}
+    onClick={() => setIsOpen(!isOpen)}
     className="change_lang">
       <p className="p-header">{lang}</p>
-      <div className="lang_img_wrap" onClick={() => setIsOpen(!isOpen)}>
+      <div className="lang_img_wrap" >
         <AiOutlineDown 
         style={{rotate: `${isOpen ? '180deg' : '0deg'}`}}
         className="icon" />

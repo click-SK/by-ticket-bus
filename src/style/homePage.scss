@@ -8,7 +8,11 @@
 
 .section_main_search{
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     max-width: 1440px;
+    width: 100%;
     
 }
 .adversting{
@@ -30,8 +34,8 @@ h1{
     position: relative;
     img{
         position: absolute;
-        right: -105rem;
-        top: 0;
+        right: -100rem;
+        top: -60px;
         z-index: -99;
     }
 }
@@ -81,3 +85,9 @@ section{
     padding-bottom: 100px;
 }
 
+
+@media (min-height: 1300px) {
+    .section_main_search{
+        max-height: 700px;
+    }
+  }
