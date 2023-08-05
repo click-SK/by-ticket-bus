@@ -101,9 +101,6 @@ const SettingPolicyAboutRule = ({content,title,input}) => {
                         </div>
                     </div>
                 }
-                <div className='btn_wrap_edit_content'>
-                    <button className='add_user_button active_btn_user save_edit_content'>Save</button>
-                </div>
               </>
               }
               {isSpVar && 
@@ -135,11 +132,11 @@ const SettingPolicyAboutRule = ({content,title,input}) => {
                         </div>
                     </div>
                 }
+              </>
+              }
                 <div className='btn_wrap_edit_content'>
                     <button className='add_user_button active_btn_user save_edit_content'>Save</button>
                 </div>
-              </>
-              }
         </div>
     );
 };

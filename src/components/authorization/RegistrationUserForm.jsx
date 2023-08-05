@@ -4,6 +4,7 @@ import { registration } from "../../store/authUser";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import * as validator from '../../validation/validator-form';
 const RegistrationUserForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -11,8 +12,10 @@ const RegistrationUserForm = () => {
     const [lastName, setLastName] = useState("");
     const [phone, setPhone] = useState("");
     const [birthday, setBirthday] = useState("");
+    const [emailErrorMessage, setEmailErrorMessage] = useState('');
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
 
-        const { t } = useTranslation();
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
@@ -20,11 +23,20 @@ const RegistrationUserForm = () => {
 
     const handleRegistrationUser = async () => {
       try {
-        const data = await dispatch(registration({email, password, firstName, lastName, phone, birthday}));
-        if('user' in data.payload) {
-          window.localStorage.setItem('bus-u-t', data.payload.accessToken);
-          navigate('/user-profile');
-          window.location.reload();
+        const resoult = validator.validationRegistration(email, password);
+        if(resoult.isValid) {
+          const data = await dispatch(registration({email, password, firstName, lastName, phone, birthday}));
+          console.log('registration data',data);
+          if('user' in data.payload) {
+            window.localStorage.setItem('bus-u-t', data.payload.accessToken);
+            navigate('/user-profile');
+            window.location.reload();
+          } else{
+            alert(data.payload.message)
+          }
+        } else {
+          resoult.reason == 'email' ? setEmailErrorMessage(resoult.error) : setEmailErrorMessage('');
+          resoult.reason == 'password' ? setPasswordErrorMessage(resoult.error) : setPasswordErrorMessage('');
         }
       } catch(e) {
         console.log(e);
@@ -72,6 +84,7 @@ const RegistrationUserForm = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}/>
           </div>
+          {emailErrorMessage && <p className="error-message">{emailErrorMessage}</p>}
           <div className="input_wraper-item">
             <label htmlFor="password">
             {t('Password')}<span>*</span>
@@ -81,6 +94,7 @@ const RegistrationUserForm = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}/>
           </div>
+          {passwordErrorMessage && <p className="error-message">{passwordErrorMessage}</p>}
           <div className="input_wraper-item">
             <label htmlFor="birthday">
             {t('Birthday')}

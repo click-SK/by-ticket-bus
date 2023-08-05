@@ -15,6 +15,9 @@ export const login = createAsyncThunk('admin-auth/login', async (payload, thunkA
       const { login, password } = payload;
       const response = await $api.post('/login-admin',{login, password});
       console.log('response',response);
+      if(response.data.message == 'Password not found' || response.data.message ==  'User not found') {
+        return {message: 'Login error'};
+      }
       if(response.data.user.isAdmin) {
         thunkAPI.dispatch(authAdministrationSlice.actions.setAuthAdmin(true));
       }
@@ -22,7 +25,7 @@ export const login = createAsyncThunk('admin-auth/login', async (payload, thunkA
         thunkAPI.dispatch(authAdministrationSlice.actions.setAuthOperator(true));
       }
       thunkAPI.dispatch(authAdministrationSlice.actions.setUser(response.data));
-      localStorage.setItem('bus-a-t', response.data.accessToken);
+      // localStorage.setItem('bus-a-t', response.data.accessToken);
       return response.data;
     } catch (e) {
       console.log(e);
@@ -32,14 +35,10 @@ export const registration = createAsyncThunk('admin-auth/registration', async (p
     try {
       const { login, password, firstName, lastName } = payload;
       const response = await $api.post('/register-admin',{login, password, firstName, lastName});
-      // if(response.data.user.isAdmin) {
-      //   thunkAPI.dispatch(authAdministrationSlice.actions.setAuthAdmin(true));
-      // }
-      // if(response.data.user.isOperator) {
-      //   thunkAPI.dispatch(authAdministrationSlice.actions.setAuthOperator(true));
-      // }
-      // thunkAPI.dispatch(authAdministrationSlice.actions.setUser(response.data));
-      // localStorage.setItem('bus-a-t', response.data.accessToken);
+      console.log('redux manager',response);
+      if(response.data.message == 'Email already exists') {
+        return {message: response.data.message};
+      }
       return response.data;
     } catch (e) {
       console.log(e);
@@ -49,12 +48,10 @@ export const registration = createAsyncThunk('admin-auth/registration', async (p
   export const checkAuthAdministration = createAsyncThunk('admin-auth/checkAuth ', async (_, thunkAPI) => {
     try {
       const response = await axios.get(`${API_URL}/refresh-admin`,{withCredentials: true})
-      console.log('response auth',response);
       if(response.data.message == 'Validation error') {
         console.log('response auth not work');
         return thunkAPI.dispatch(authAdministrationSlice.actions.setAuth(false));
       }
-      console.log('maybie work');
       if(response.data.user.isAdmin) {
         thunkAPI.dispatch(authAdministrationSlice.actions.setAuthAdmin(true));
       }

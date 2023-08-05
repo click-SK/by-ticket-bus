@@ -78,7 +78,6 @@ const ClientProfile = () => {
                     <ClientSetting user={user}/>
                 }
             </div>
-
         </div>
     );
 };

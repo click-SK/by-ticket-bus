@@ -15,7 +15,7 @@ const DriverForm = () => {
 
     const handleRegisterDriver = async () => {
         try {
-            const {data} = await axios.post(`${API_URL}/register-driver`,{
+            const data = await axios.post(`${API_URL}/register-driver`,{
                 fullName: driverName,
                 login: driverLogin,
                 email: driverEmail,
@@ -24,8 +24,10 @@ const DriverForm = () => {
                 license: driverLicense,
                 address: driverAddress,
             })
+
+            console.log('driver data',data);
     
-            if('fullName' in data) {
+            if('fullName' in data.data) {
                 alert('A new driver has been added')
                 setDriverName('');
                 setDriverEmail('');
@@ -34,6 +36,8 @@ const DriverForm = () => {
                 setDriverLicense('');
                 setDriverPhone('');
                 setDriverAddress('');
+              } else {
+                alert('Email already exists')
               }
         } catch(e) {
             console.log(e);
