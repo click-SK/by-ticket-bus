@@ -1,13 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BiRightArrow } from 'react-icons/bi';
 import FaqItem from './FaqItem';
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+import { API_URL } from '../../../http/baseUrl';
 import '../../../style/faqSection.scss'
 import { Link } from 'react-router-dom';
 const Faq = () => {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false);
+    const [allFaqPost, setAllFaqPost] = useState([]);
     const { t } = useTranslation();
+
+    useEffect(() => {
+        axios.get(`${API_URL}/get-all-faq-posts`)
+        .then((res) => setAllFaqPost(res.data.slice(-6)))
+    },[])
+
+    console.log('allFaqPost',allFaqPost);
     const arrFaq = [
+        {
+            title: 'How to find a ride',
+            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
+        },
+        {
+            title: 'How to find a ride',
+            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
+        },
+        {
+            title: 'How to find a ride',
+            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
+        },
+        {
+            title: 'How to find a ride',
+            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
+        },
         {
             title: 'How to find a ride',
             text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
@@ -38,12 +64,12 @@ const Faq = () => {
         <div className='faq_section_wrap'>
             <h2 className='news_title'>FAQ</h2>
             <div className='content_wrap-faq' >
-                {arrFaq.map((item,idx) => (
+                {allFaqPost.length != 0 && allFaqPost.map((item,idx) => (
                     <FaqItem
                     key={idx}
                     idx = {idx}
-                    itemTitle = {item.title} 
-                    itemText = {item.text} 
+                    itemTitle = {item.titleEn} 
+                    itemText = {item.descriptionEn} 
                     isOpen= {isOpen}
                     setIsOpen={setIsOpen}
                     />

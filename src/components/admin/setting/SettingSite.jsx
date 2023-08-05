@@ -23,7 +23,6 @@ const SettingSite = () => {
 
     <p>Join us on a journey that goes beyond travel. Experience the difference with [Your Bus Company Name] and create memories that last a lifetime. We look forward to welcoming you on board.</p>`
     
-
     return (
         <div className='admin_content_wrap'>
         <h2>{t('Setting site')}</h2>
@@ -33,21 +32,29 @@ const SettingSite = () => {
             title = {'Contact Us'}
             content = {contactContent}
             input={false}
+            getUrl={'/get-contact-us'}
+            updateUrl={'/update-contact-us'}
         />
         <SettingPolicyAboutRule
             title = {'About Us'}
             content = {contactAboutUs}
             input={false}
+            getUrl={'/get-about-us'}
+            updateUrl={'/update-about-us'}
         />
         <SettingPolicyAboutRule
             title = {'Policy'}
             content = {policy}
             input={false}
+            getUrl={'/get-policy'}
+            updateUrl={'/update-policy'}
         />
         <SettingPolicyAboutRule
             title = {'Travel Rules'}
             content = {ruleContent}
             input={false}
+            getUrl={'/get-travel-rules'}
+            updateUrl={'/update-travel-rules'}
         />
     </div>
     );

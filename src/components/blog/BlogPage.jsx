@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useTranslation } from "react-i18next";
 import '../../style/blog.scss'
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
+import { API_URL } from '../../http/baseUrl';
 
 const BlogPage = () => {
+    const [allPosts, setAllPosts] = useState([]);
     const { t } = useTranslation();
+
+    useEffect(() => {
+        axios.get(`${API_URL}/get-all-blog-posts`)
+        .then((res) => setAllPosts(res.data))
+    },[])
 
     const blogItemArr = [
         {
@@ -46,13 +53,13 @@ const BlogPage = () => {
             <div className='blog_body'>
                 <div className='blog_content'>
                 <div className='content_wraper'>
-                    { blogItemArr.map((item, idx) => (
+                    {allPosts.length != 0 && allPosts.map((item, idx) => (
                         <Link to='/news№'>
                             <div key={idx} className='item_wrap'>
-                                <img className='blog_item_img' src={item.imgSrc} alt="blogimg" />
+                                <img className='blog_item_img' src={API_URL + item.blogImage} alt="blogimg" />
                                 <div className='text_wrap-blog'>
-                                <h2 className='blog_item_title'>{item.title}</h2>
-                                <p className='blog_item_text'>{item.text} <span className='blog_item_text--more'>{t('More')}...</span></p>
+                                <h2 className='blog_item_title'>{item.titleEn}</h2>
+                                <p className='blog_item_text'>{item.descriptionEn} <span className='blog_item_text--more'>{t('More')}...</span></p>
                                 
                                 </div>
                             </div>

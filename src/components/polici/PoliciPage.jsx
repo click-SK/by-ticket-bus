@@ -2,10 +2,17 @@ import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../../style/aboutUsPage.scss'
-
+import axios from 'axios';
+import { API_URL } from '../../http/baseUrl';
 const PoliciPage = () => {
     const [editorHtml, setEditorHtml] = useState('');
+    const [policyData, setPolicyData] = useState('');
 
+    useEffect(() => {
+      axios.get(`${API_URL}/get-policy`)
+      .then((res) => setPolicyData(res.data[0]))
+    },[])
+    
     const handleChange = (html) => {
       setEditorHtml(html);
     };
@@ -13,8 +20,8 @@ const PoliciPage = () => {
     const adressArr = "Ukraine, Kyiv"
   
     useEffect (() => {
-      setEditorHtml(`<p>Your privacy is important to us. This page outlines how we collect, use, and protect your personal information when you use our services. Please review our privacy policy to understand our practices.</p>`)
-    },[])
+      setEditorHtml(policyData?.descriptionEn)
+    },[policyData])
 
 
     const modules = {

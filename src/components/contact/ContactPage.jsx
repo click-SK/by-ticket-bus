@@ -3,20 +3,27 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import GoogleMap from './GoogleMap';
 import '../../style/contact.scss'
-
+import axios from 'axios';
+import { API_URL } from '../../http/baseUrl';
 const ContactPage = () => {
 
   const [editorHtml, setEditorHtml] = useState('');
-
+  const [contactUsData, setContactUsData] = useState('');
   const handleChange = (html) => {
     setEditorHtml(html);
   };
 
+  useEffect(() => {
+    axios.get(`${API_URL}/get-contact-us`)
+    .then((res) => setContactUsData(res.data[0]))
+  },[])
+
+
   const adressArr = "Ukraine, Kyiv"
 
   useEffect (() => {
-    setEditorHtml(`<p>If you have any questions or inquiries, please feel free to get in touch with us. Our customer support team is here to assist you.</p> <ul><li>Email: info@buscompany.com</li><li>Phone: +123-456-7890</li><li>Address: Ukraine, Kyiv</li></ul>`)
-  },[])
+    setEditorHtml(contactUsData?.descriptionEn)
+  },[contactUsData])
 
   const mapStyles = [
     {
