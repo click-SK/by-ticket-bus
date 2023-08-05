@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../../style/header.scss'
 import { useTheme } from '../../hooks/use-thems';
 import { AiOutlineDown } from 'react-icons/ai'
@@ -9,6 +9,7 @@ const ChangeColor = () => {
     const [imgColor, setImgColor] = useState('')
     const [imgColorMain, setImgColorMain] = useState('')
     const [locStoreColor, setLocStoreColo] = useState('')
+    const changeColorRef = useRef(null);
 
     useEffect (() => {
         try{
@@ -37,6 +38,7 @@ const ChangeColor = () => {
             setTheme('violet-dark_gray')
             setImgColorMain("./color/violet-dark.webp")
             setIsOpen(!isOpen)
+            
         } catch (error) {
             console.log(error)
         }
@@ -70,9 +72,30 @@ const ChangeColor = () => {
     }
 
 
+    useEffect(() => {
+        try{
+            const handleOutsideClick = (event) => {
+                if (changeColorRef.current && !changeColorRef.current.contains(event.target)) {
+                    setIsOpen(false);
+                }
+            };
+
+            document.addEventListener('mousedown', handleOutsideClick);
+    
+
+            return () => {
+                document.removeEventListener('mousedown', handleOutsideClick);
+            };
+        } catch (error) {
+            console.log(error)
+        }
+    }, []);
+
 
     return (
-        <div className='change_color_wrapper'>
+        <div 
+        ref={changeColorRef}
+        className='change_color_wrapper'>
             <div className='change_color_wrapper_main-item '
             onClick={() => setIsOpen(!isOpen)}>
                 <div className='color border-1px'>
