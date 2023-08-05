@@ -1,15 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useTranslation } from "react-i18next";
 import { BsSearch } from 'react-icons/bs';
-
+import axios from 'axios';
+import { API_URL } from '../../http/baseUrl';
 import '../../style/faq.scss'
 import '../../style/blog.scss'
 import { Link } from 'react-router-dom';
 
 const FaqPage = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [search, setSearch] = useState('')
+    const [isOpen, setIsOpen] = useState(false);
+    const [search, setSearch] = useState('');
+    const [allPosts, setAllPosts] = useState([]);
     const { t } = useTranslation();
+
+    useEffect(() => {
+        axios.get(`${API_URL}/get-all-faq-posts`)
+        .then((res) => setAllPosts(res.data))
+    },[])
+
     const arrFaq = [
         {
             title: 'How to find a ride',
@@ -53,13 +61,13 @@ const FaqPage = () => {
             <div className='blog_body'>
                 <div className='blog_content'>
                 <div className='content_wraper'>
-                    {filteredArrFaq.map((item, idx) => (
+                    {allPosts.length != 0 && allPosts.map((item, idx) => (
                         <div key={idx} className='faq_item_wrap'>
                             <div >
-                                <h4 className='title_faq-item'>{item.title} ?</h4>
+                                <h4 className='title_faq-item'>{item.titleEn} ?</h4>
                             </div>
                             <div>
-                                <p>{item.text}</p>
+                                <p>{item.descriptionEn}</p>
                             </div>
                         </div>
                     ))}

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import '../../../style/aboutUsPage.scss'
+import '../../../style/aboutUsPage.scss';
+import axios from 'axios';
+import { API_URL } from '../../../http/baseUrl';
 
-const SettingPolicyAboutRule = ({content,title,input}) => {
+const SettingPolicyAboutRule = ({content, title, input, getUrl, updateUrl}) => {
 
     const [editorHtml, setEditorHtml] = useState('');
     const [editCityEng, setEditCityEng] = useState('');
@@ -18,6 +20,17 @@ const SettingPolicyAboutRule = ({content,title,input}) => {
     const [isSpVar, setIsSpVar] = useState(false);
     const [contentSpain, setContentSpain] = useState("");
     const [contentEng, setContentEng] = useState("");
+    const [currentObject, setCurrentObject] = useState(null);
+
+    useEffect(() => {
+      axios.get(`${API_URL}${getUrl}`)
+      .then((res) => setCurrentObject(res.data[0]))
+    },[])
+
+    useEffect (() => {
+      setContentEng(currentObject?.descriptionEn)
+      setContentSpain(currentObject?.descriptionSp)
+    },[currentObject])
 
     const handleChange = (html) => {
       setEditorHtml(html);
@@ -40,16 +53,26 @@ const SettingPolicyAboutRule = ({content,title,input}) => {
         setIsSpVar(false);
       };
   
-    useEffect (() => {
-        setEditorHtml(content)
-        setContentEng(content)
-        setContentSpain(content)
-      },[])
+    // useEffect (() => {
+    //     setEditorHtml(content)
+    //     setContentEng(content)
+    //     setContentSpain(content)
+    //   },[])
 
     const modules = {
       toolbar: true, // Вимкнути панель інструментів
     };
     const readOnly = false;
+
+    const handleUpdateInfo = () => {
+      axios.patch(`${API_URL}${updateUrl}`,{
+        id: currentObject._id,
+        descriptionSp: contentSpain,
+        descriptionEn: contentEng
+      })
+    }
+
+    console.log('currentObject',currentObject);
 
     return (
         <div className='admin_panel_items content_additional_page_edit'>
@@ -135,7 +158,7 @@ const SettingPolicyAboutRule = ({content,title,input}) => {
               </>
               }
                 <div className='btn_wrap_edit_content'>
-                    <button className='add_user_button active_btn_user save_edit_content'>Save</button>
+                    <button className='add_user_button active_btn_user save_edit_content' onClick={handleUpdateInfo}>Save</button>
                 </div>
         </div>
     );
