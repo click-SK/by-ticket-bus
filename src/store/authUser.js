@@ -13,13 +13,12 @@ export const login = createAsyncThunk('user-auth/login', async (payload, thunkAP
     try {
       const { email, password } = payload;
       const response = await $api.post('/login-user',{email, password});
-      console.log('response login',response);
-      if(response.data.message == ('Password not found' || 'User not found')) {
+      if(response.data.message == 'Password not found' || response.data.message ==  'User not found') {
         return {message: 'Login error'};
       }
       thunkAPI.dispatch(authUserSlice.actions.setAuth(true));
+      thunkAPI.dispatch(authUserSlice.actions.setUser(response.data));
       console.log('redux work');
-      // localStorage.setItem('bus-u-t', response.data.accessToken);
       return response.data;
     } catch (e) {
       console.log(e);
@@ -29,6 +28,12 @@ export const registration = createAsyncThunk('user-auth/registration', async (pa
     try {
       const { email, password, firstName, lastName, phone, birthday } = payload;
       const response = await $api.post('/register-user',{email, password, firstName, lastName, phone, birthday});
+      if(response.data.message == 'Email already exists') {
+        return {message: response.data.message};
+      }
+      console.log('work after error');
+      thunkAPI.dispatch(authUserSlice.actions.setAuth(true));
+      thunkAPI.dispatch(authUserSlice.actions.setUser(response.data));
       return response.data;
     } catch (e) {
       console.log(e);
@@ -38,7 +43,7 @@ export const registration = createAsyncThunk('user-auth/registration', async (pa
   export const checkAuthUser = createAsyncThunk('user-auth/checkAuth ', async (_, thunkAPI) => {
     try {
       const response = await axios.get(`${API_URL}/refresh-user`,{withCredentials: true})
-      console.log('response auth',response);
+      console.log('response auth user',response);
       if(response.data.message == 'Validation error') {
         console.log('response auth not work');
         return thunkAPI.dispatch(authUserSlice.actions.setAuth(false));
@@ -75,33 +80,6 @@ const authUserSlice = createSlice({
       },
     },
     extraReducers: {
-      [login.pending]: (state) => {
-        state.status = "loading";
-        state.user = {};
-      },
-      [login.fulfilled]: (state, action) => {
-        state.status = "loaded";
-        state.user = action.payload;
-      },
-      [login.rejected]: (state) => {
-        state.status = "error";
-        state.user = {};
-      },
-      [registration.pending]: (state) => {
-        state.status = "loading";
-        state.isAuthUser = false;
-        state.user = {};
-      },
-      [registration.fulfilled]: (state, action) => {
-        state.status = "loaded";
-        state.isAuthUser = true;
-        state.user = action.payload;
-      },
-      [registration.rejected]: (state) => {
-        state.status = "error";
-        state.isAuthUser = false;
-        state.user = {};
-      },
       [logout.pending]: (state) => {
         state.status = "loading";
         state.isAuthUser = false;

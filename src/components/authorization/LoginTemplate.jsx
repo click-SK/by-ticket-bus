@@ -7,6 +7,12 @@ const LoginTemplate = ({setIsChecked, isChecked, handleLogin, handleRegistration
 
   const { t } = useTranslation();
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   return (
     <div>
       <div className="input_wraper">
@@ -20,6 +26,7 @@ const LoginTemplate = ({setIsChecked, isChecked, handleLogin, handleRegistration
             placeholder="mail@simmmple.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
         <div className="input_wraper-item">
@@ -32,6 +39,7 @@ const LoginTemplate = ({setIsChecked, isChecked, handleLogin, handleRegistration
             placeholder="Min. 8 characters"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
         <div className="input_wraper input-checkbox">

@@ -33,13 +33,12 @@ const LoginForm = () => {
   const handleLoginUser = async (email, password) => {
     try {
       const data = await dispatch(login({email, password}))
-      if(data.payload.message == 'Login error') {
-        return alert('Login error')
-      }
       if('user' in data.payload) {
         window.localStorage.setItem('bus-u-t', data.payload.accessToken);
         navigate('/user-profile');
         window.location.reload();
+      } else {
+        return alert(data.payload.message)
       }
     } catch(e) {
       console.log(e);

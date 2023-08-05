@@ -15,12 +15,15 @@ const ManagerForm = () => {
     const handleRegistrationManager = async () => {
         try{
             const data = await dispatch(registration({login: managerLogin, password: managerPassword, firstName: managerFirstName, lastName: managerLastName}));
+            console.log('register manager',data);
             if('user' in data.payload) {
               alert('A new manager has been added')
               setManagerFirstName('');
               setManagerLastName('');
               setManagerPassword('');
               setManagerLogin('');
+            } else {
+                alert(data.payload.message)
             }
         } catch(e) {
             console.log(e);

@@ -31,6 +31,10 @@ body::-webkit-scrollbar-track {
 }
 
 
+.error-message {
+  color: red;
+}
+
 /* color theme */
 
 /* white */

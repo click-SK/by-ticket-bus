@@ -37,8 +37,6 @@ function App() {
   const user = useSelector((state) => state.authUser.user);
   const dispatch = useDispatch();
 
-  const {RDX_cityFrom, RDX_cityTo, RDX_curentPasanger, RDX_startDate, RDX_endDate} = useSelector((state) => state.booking);
-
   useEffect(() => {
     if(!window.localStorage.getItem("bus-language")) {
       window.localStorage.setItem("bus-language",'ESP')
@@ -64,6 +62,8 @@ function App() {
     }
   },[])
 
+  console.log('isAuthUser',isAuthUser);
+
 
   return (
     <div className="App">
@@ -79,8 +79,9 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/registration-user" element={<RegistrationUserForm />} />
         </>}
-        {isAuthUser && 
-        <Route path="/user-profile" element={<Profile />} />}
+        <Route path="/user-profile" element={<Profile />} />
+        {/* {isAuthUser && 
+        <Route path="/user-profile" element={<Profile />} />} */}
         {(isAdmin || isOperator) && 
         <Route path="/admin-panel" element={<AdminPanel />} />}
         <Route path="/trip-list" element={<BookingDerect/>} />

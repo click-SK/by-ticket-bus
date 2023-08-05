@@ -28,9 +28,23 @@ const AdminLogin = () => {
         }
       },[isAdmin, isOperator])
 
-    const handleLoginAdministration = () => {
-        dispatch(login({login: email, password}))
+    const handleLoginAdministration = async () => {
+        const data = await dispatch(login({login: email, password}));
+        if('user' in data.payload) {
+            window.localStorage.setItem('bus-a-t', data.payload.accessToken);
+            navigate('/admin-panel');
+            window.location.reload();
+          } else {
+            return alert(data.payload.message)
+          }
+        console.log('data admin loging',data);
     }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleLoginAdministration();
+        }
+      };
     return (
         <div className='login_wrap-admin'>
             <div className='left_block-admin'>
@@ -42,11 +56,11 @@ const AdminLogin = () => {
                     <div className='input_wraper-admin'>
                         <div className='input_wraper-item-admin'>
                             <label htmlFor="mail">{t('Email')}<span>*</span></label>
-                            <input id='mail' type="text" placeholder='mail@simmmple.com' value={email} onChange={(e) => setEmail(e.target.value)}/>
+                            <input id='mail' type="text" placeholder='mail@simmmple.com' value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={handleKeyDown}/>
                         </div>
                         <div className='input_wraper-item-admin'>
                             <label htmlFor="password">{t('Password')}<span>*</span></label>
-                            <input id='password' type="password" placeholder='Min. 8 characters' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <input id='password' type="password" placeholder='Min. 8 characters' value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={handleKeyDown}/>
                         </div>
                     </div>
                     <div className='input_wraper input-checkbox-admin'>

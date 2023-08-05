@@ -32,7 +32,7 @@ const SettingSite = () => {
         <SettingPolicyAboutRule
             title = {'Contact Us'}
             content = {contactContent}
-            input={true}
+            input={false}
         />
         <SettingPolicyAboutRule
             title = {'About Us'}
