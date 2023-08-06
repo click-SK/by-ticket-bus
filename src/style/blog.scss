@@ -43,6 +43,7 @@
     justify-content: center;
     li{
         color: var(--color-text-title);
+        border-radius: 5px;
     }
 
 }
@@ -123,4 +124,36 @@
     max-width: none;
 }
 
+.blog_item_wraper-item{
+    flex: 0 1 45%;
+}
+
+.blog_text{
+    .ql-container{
+        border: none;
+        .ql-editor{
+            p{
+                color: var(--color-text-title);
+                span{
+                    color: var(--color-text-title);
+                }
+            }
+        }
+    }
+
+}
+.text_wrap-blog{
+    .ql-container{
+        border: none;
+        .ql-editor{
+            p{
+                color: var(--color-text-title) !important;
+                span{
+                    color: var(--color-text-title) !important;
+                }
+            }
+        }
+    }
+
+}
 

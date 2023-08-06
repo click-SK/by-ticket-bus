@@ -18,7 +18,27 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+    width: 100%;
+
+
 }
+
+.text_wrap-blog{
+    .blog_item_text{
+        .ql-container{
+            border: none;
+            .ql-editor{
+                p{
+                    color: #fff;
+                    span{
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 .item_wrap{
     flex: 0 1 33%;

@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../http/baseUrl';
 import { useSelector } from 'react-redux';
+import ReactQuill from 'react-quill';
+
+
 const BlogItem = () => {
     const [currentPost, setCurrentPost] = useState(null);
     const [userrentId, setCurrentId] = useState('');
+    const [editorHtml, setEditorHtml] = useState('');
 
     const lang = useSelector((state) => state.lang.language);
 
@@ -25,6 +29,15 @@ const BlogItem = () => {
         }
     },[userrentId])
 
+    const handleChange = (html) => {
+      setEditorHtml(html);
+    };
+
+    const modules = {
+      toolbar: false, // Вимкнути панель інструментів
+    };
+    const readOnly = true;
+
     console.log('currentPost',currentPost);
     return (
       <>
@@ -37,8 +50,28 @@ const BlogItem = () => {
                 <img src={`${API_URL}${currentPost.blogImage}`} alt="" />
               </div>
               <div className="blog_text">
-              {lang == "ENG" && <p>{currentPost.descriptionEn}</p>}
-              {lang == "ESP" && <p>{currentPost.descriptionSp}</p>}
+              {lang == "ENG" && 
+              // <p>{currentPost.descriptionEn}</p>
+              <ReactQuill
+              className='item_faq_text-description'
+              theme="snow"
+              modules={modules}
+              readOnly={readOnly}
+              value={currentPost.descriptionEn}
+              onChange={handleChange}
+               />
+              }
+              {lang == "ESP" &&
+              //  <p>{currentPost.descriptionSp}</p>
+               <ReactQuill
+               className='item_faq_text-description'
+               theme="snow"
+               modules={modules}
+               readOnly={readOnly}
+               value={currentPost.descriptionSp}
+               onChange={handleChange}
+                />
+               }
               </div>
               <div className="button_wrap_blog">
                 <Link to="/blog">

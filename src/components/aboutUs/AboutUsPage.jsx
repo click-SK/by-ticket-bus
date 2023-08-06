@@ -37,8 +37,8 @@ const AboutUsPage = () => {
 
     return (
         <div className='about_us_page_wraper'>
-        <h2>About Us</h2>
-        <ReactQuill
+          <h2>About Us</h2>
+                <ReactQuill
                   className='contact_content_text about_as_content_text'
                   theme="snow"
                   modules={modules}
@@ -46,7 +46,7 @@ const AboutUsPage = () => {
                   value={editorHtml}
                   onChange={handleChange}
                 />
-      </div>
+         </div>
     );
 };
 

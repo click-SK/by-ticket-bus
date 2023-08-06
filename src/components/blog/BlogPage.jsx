@@ -5,9 +5,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../http/baseUrl';
 import { useSelector } from 'react-redux';
+import ReactQuill from 'react-quill';
+
+
 const BlogPage = () => {
     const [allPosts, setAllPosts] = useState([]);
     const { t } = useTranslation();
+    const [editorHtml, setEditorHtml] = useState('');
 
     const lang = useSelector((state) => state.lang.language);
 
@@ -15,6 +19,15 @@ const BlogPage = () => {
         axios.get(`${API_URL}/get-all-blog-posts`)
         .then((res) => setAllPosts(res.data))
     },[])
+
+    const handleChange = (html) => {
+      setEditorHtml(html);
+    };
+
+    const modules = {
+      toolbar: false, // Вимкнути панель інструментів
+    };
+    const readOnly = true;
 
     return (
       <div className="blog-page_wrap">
@@ -24,7 +37,9 @@ const BlogPage = () => {
             <div className="content_wraper">
               {allPosts.length != 0 &&
                 allPosts.map((item, idx) => (
-                  <Link to={`/blog/${item._id}`} key={idx}>
+                  <Link
+                  className='blog_item_wraper-item'
+                  to={`/blog/${item._id}`} key={idx}>
                     <div className="item_wrap">
                       <img
                         className="blog_item_img"
@@ -35,23 +50,39 @@ const BlogPage = () => {
                         {lang == "ENG" && (
                           <>
                             <h2 className="blog_item_title">{item.titleEn}</h2>
-                            <p className="blog_item_text">
-                              {item.descriptionEn}{" "}
-                              <span className="blog_item_text--more">
+                            {/* <p className="blog_item_text"> */}
+                              {/* {item.descriptionEn}{" "} */}
+                              <ReactQuill
+                        className='item_faq_text-description'
+                        theme="snow"
+                        modules={modules}
+                        readOnly={readOnly}
+                        value={item.descriptionEn}
+                        onChange={handleChange}
+                      />
+                              {/* <span className="blog_item_text--more">
                                 {t("More")}...
-                              </span>
-                            </p>
+                              </span> */}
+                            {/* </p> */}
                           </>
                         )}
                         {lang == "ESP" && (
                           <>
                             <h2 className="blog_item_title">{item.titleSp}</h2>
-                            <p className="blog_item_text">
-                              {item.descriptionSp}{" "}
-                              <span className="blog_item_text--more">
+                            {/* <p className="blog_item_text"> */}
+                              {/* {item.descriptionSp}{" "} */}
+                              <ReactQuill
+                        className='item_faq_text-description'
+                        theme="snow"
+                        modules={modules}
+                        readOnly={readOnly}
+                        value={item.descriptionSp}
+                        onChange={handleChange}
+                      />
+                              {/* <span className="blog_item_text--more">
                                 {t("More")}...
-                              </span>
-                            </p>
+                              </span> */}
+                            {/* </p> */}
                           </>
                         )}
                       </div>

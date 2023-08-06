@@ -7,10 +7,12 @@ import { API_URL } from '../../../http/baseUrl';
 import '../../../style/faqSection.scss'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import ReactQuill from 'react-quill';
 const Faq = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [allFaqPost, setAllFaqPost] = useState([]);
     const { t } = useTranslation();
+    const [editorHtml, setEditorHtml] = useState('');
 
     const lang = useSelector((state) => state.lang.language);
 
@@ -18,6 +20,15 @@ const Faq = () => {
         axios.get(`${API_URL}/get-all-faq-posts`)
         .then((res) => setAllFaqPost(res.data.slice(-6)))
     },[])
+
+    const handleChange = (html) => {
+      setEditorHtml(html);
+    };
+
+    const modules = {
+      toolbar: false, // Вимкнути панель інструментів
+    };
+    const readOnly = true;
 
     return (
       <div className="faq_section_wrap">
