@@ -259,7 +259,7 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
               className="admin_panel_items add_user_button active_btn_user"
               onClick={handleUpdatePost}
             >
-              {t('Publish')}
+              {t('Update')}
             </button>
             <button
               onClick={() => setIsOpenPostItem(!isOpenPostItem)}

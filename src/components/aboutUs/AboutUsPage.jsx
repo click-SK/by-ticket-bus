@@ -5,9 +5,12 @@ import '../../style/aboutUsPage.scss'
 import axios from 'axios';
 import { API_URL } from '../../http/baseUrl';
 import { useSelector } from 'react-redux';
+import { useTranslation } from "react-i18next";
 const AboutUsPage = () => {
     const [editorHtml, setEditorHtml] = useState('');
     const [aboutUsData, setAboutUsData] = useState('');
+
+    const { t } = useTranslation();
 
     const lang = useSelector((state) => state.lang.language);
     console.log('lang about',lang);
@@ -37,7 +40,7 @@ const AboutUsPage = () => {
 
     return (
         <div className='about_us_page_wraper'>
-        <h2>About Us</h2>
+        <h2>{t('About Us')}</h2>
         <ReactQuill
                   className='contact_content_text about_as_content_text'
                   theme="snow"
