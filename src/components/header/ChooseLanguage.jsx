@@ -3,6 +3,7 @@ import i18n from "../../i18n";
 import { currentLang } from "../../store/language";
 import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineDown } from "react-icons/ai";
+import { setLanguageReducer } from '../../store/language';
 import "../../style/choseLanguage.scss";
 
 
@@ -10,7 +11,7 @@ const ChooseLanguage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [curentLangIcon, setCurentLangIcon] = useState("./lang/eng.svg");
   const dispatch = useDispatch();
-  const [language, setLanguage] = useState(localStorage.getItem('bus-language' || 'ESP'))
+  const [language, setLanguage] = useState(localStorage.getItem('bus-language' || 'ESP'));
   const lang = useSelector((state) => state.lang.language);
   const changeColorRef = useRef(null);
 
@@ -28,9 +29,10 @@ const ChooseLanguage = () => {
 
   const handleLenguageChange = (e) => {
     try {
+      console.log('chose event',e);
+      dispatch(setLanguageReducer(e))
       i18n.changeLanguage(e);
       setLanguage(e);
-      dispatch(currentLang());
       localStorage.setItem('bus-language', e);
       setIsOpen(false);
     } catch(e) {
