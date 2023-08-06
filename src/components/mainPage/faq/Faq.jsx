@@ -6,96 +6,58 @@ import axios from 'axios';
 import { API_URL } from '../../../http/baseUrl';
 import '../../../style/faqSection.scss'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 const Faq = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [allFaqPost, setAllFaqPost] = useState([]);
     const { t } = useTranslation();
+
+    const lang = useSelector((state) => state.lang.language);
 
     useEffect(() => {
         axios.get(`${API_URL}/get-all-faq-posts`)
         .then((res) => setAllFaqPost(res.data.slice(-6)))
     },[])
 
-    console.log('allFaqPost',allFaqPost);
-    const arrFaq = [
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-    ]
-
     return (
-        <div className='faq_section_wrap'>
-            <h2 className='news_title'>FAQ</h2>
-            <div className='content_wrap-faq' >
-                {allFaqPost.length != 0 && allFaqPost.map((item,idx) => (
-                    <FaqItem
+      <div className="faq_section_wrap">
+        <h2 className="news_title">FAQ</h2>
+        <div className="content_wrap-faq">
+          {allFaqPost.length != 0 &&
+            allFaqPost.map((item, idx) => (
+              <>
+                {lang == "ENG" && (
+                  <FaqItem
                     key={idx}
-                    idx = {idx}
-                    itemTitle = {item.titleEn} 
-                    itemText = {item.descriptionEn} 
-                    isOpen= {isOpen}
+                    idx={idx}
+                    itemTitle={item.titleEn}
+                    itemText={item.descriptionEn}
+                    isOpen={isOpen}
                     setIsOpen={setIsOpen}
-                    />
-                    // <div key={idx}
-                    //     onClick={() => setIsOpen(!isOpen)}
-                    //     className={`item_faq ${idx === 0 || idx % 2 === 0 ? 'faq-prime' : 'faq-second'} ${isOpen ? 'open' : ''}`}>
-                    //     <div className='item_title'>
-                    //         <p>{idx + 1}.   {item.title}</p>
-                    //         <BiRightArrow className='svg-faq'/>
-                    //     </div>
-                    //     {isOpen && 
-                    //         <p className='item_faq_text-description'>{item.text}</p>
-                    //     }
-                    // </div>
-                ))}
-                
-            </div>
-            
-            <div className='more_btn'>
-                <Link to='/faq'>
-                <p>{t('More')} <BiRightArrow
-                className='svg_more-btn'
-                /></p>
-                </Link>
-            </div>
+                  />
+                )}
+                {lang == "ESP" && (
+                  <FaqItem
+                    key={idx}
+                    idx={idx}
+                    itemTitle={item.titleSp}
+                    itemText={item.descriptionSp}
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                  />
+                )}
+              </>
+            ))}
         </div>
+
+        <div className="more_btn">
+          <Link to="/faq">
+            <p>
+              {t("More")} <BiRightArrow className="svg_more-btn" />
+            </p>
+          </Link>
+        </div>
+      </div>
     );
 };
 

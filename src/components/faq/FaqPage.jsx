@@ -6,50 +6,22 @@ import { API_URL } from '../../http/baseUrl';
 import '../../style/faq.scss'
 import '../../style/blog.scss'
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 const FaqPage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [allPosts, setAllPosts] = useState([]);
     const { t } = useTranslation();
 
+    const lang = useSelector((state) => state.lang.language);
+
     useEffect(() => {
         axios.get(`${API_URL}/get-all-faq-posts`)
         .then((res) => setAllPosts(res.data))
     },[])
 
-    const arrFaq = [
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to 3',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a 2',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-        {
-            title: 'How to find a ride',
-            text: 'Lorem ipsum dolor sit amet consectetur. Quisque pellentesque tincidunt id turpis. Netus quisque nec dui sit placerat urna id. Diam aenean eu orci porttitor nec. Congue imperdiet amet elit etiam enim. Mauris dignissim etiam at tincidunt quis. Pellentesque in nisi mi imperdiet a non viverra eu. Tristique vulputate proin adipiscing semper convallis consequat dignissim. Sit proin ullamcorper est mus. Risus quis aliquam a montes. Viverra nascetur rhoncus rhoncus risus vulputate proin orci lacinia mattis pellentesque. Duis amet enim non egestas sem sagittis et. Lectus dignissim erat interdum suspendisse. Massa bibendum massa eu pulvinar.'
-        },
-    ];
+    console.log('lang',lang);
 
-    const filteredArrFaq = arrFaq.filter((item) => {
-        // Фільтруємо елементи масиву, зберігаючи тільки ті, які містять search
-        return item.title.toLowerCase().includes(search.toLowerCase()) || item.text.toLowerCase().includes(search.toLowerCase());
-      });
-    
     return (
 <div className='blog-page_wrap'>
             <h2>FAQ</h2>
@@ -64,10 +36,12 @@ const FaqPage = () => {
                     {allPosts.length != 0 && allPosts.map((item, idx) => (
                         <div key={idx} className='faq_item_wrap'>
                             <div >
-                                <h4 className='title_faq-item'>{item.titleEn} ?</h4>
+                                {lang == 'ENG' && <h4 className='title_faq-item'>{item.titleEn} ?</h4>}
+                                {lang == 'ESP' && <h4 className='title_faq-item'>{item.titleSp} ?</h4>}
                             </div>
                             <div>
-                                <p>{item.descriptionEn}</p>
+                            {lang == 'ENG' && <p>{item.descriptionEn}</p>}
+                            {lang == 'ESP' && <p>{item.descriptionSp}</p>}
                             </div>
                         </div>
                     ))}

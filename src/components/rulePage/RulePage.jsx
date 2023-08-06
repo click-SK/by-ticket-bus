@@ -4,10 +4,13 @@ import 'react-quill/dist/quill.snow.css';
 import '../../style/aboutUsPage.scss'
 import axios from 'axios';
 import { API_URL } from '../../http/baseUrl';
+import { useSelector } from 'react-redux';
 
 const RulesPage = () => {
     const [editorHtml, setEditorHtml] = useState('');
     const [rulesData, setRulesData] = useState('');
+
+    const lang = useSelector((state) => state.lang.language);
 
     useEffect(() => {
       axios.get(`${API_URL}/get-travel-rules`)
@@ -18,11 +21,13 @@ const RulesPage = () => {
       setEditorHtml(html);
     };
   
-    const adressArr = "Ukraine, Kyiv"
-  
-    useEffect (() => {
-      setEditorHtml(rulesData?.descriptionEn)
-    },[rulesData])
+    useEffect(() => {
+      if (lang == "ENG") {
+        setEditorHtml(rulesData?.descriptionEn);
+      } else if (lang == "ESP") {
+        setEditorHtml(rulesData?.descriptionSp);
+      }
+    }, [rulesData, lang]);
 
 
     const modules = {

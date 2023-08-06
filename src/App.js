@@ -90,7 +90,7 @@ function App() {
         <Route path="/booking-info-pas" element={<BookingInfoClient/>} />
         <Route path="/bus-seats" element={<BusSeats35/>} />
         <Route path="/blog" element={<BlogPage/>} />
-        <Route path="/news№" element={<BlogItem/>} />
+        <Route path="/blog/:id" element={<BlogItem/>} />
         <Route path="/faq" element={<FaqPage/>}/>
         <Route path="/about-ua" element={<AboutUsPage/>}/>
         <Route path="/contact" element={<ContactPage/>}/>

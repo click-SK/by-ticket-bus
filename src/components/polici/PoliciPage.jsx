@@ -4,9 +4,12 @@ import 'react-quill/dist/quill.snow.css';
 import '../../style/aboutUsPage.scss'
 import axios from 'axios';
 import { API_URL } from '../../http/baseUrl';
+import { useSelector } from 'react-redux';
 const PoliciPage = () => {
     const [editorHtml, setEditorHtml] = useState('');
     const [policyData, setPolicyData] = useState('');
+
+    const lang = useSelector((state) => state.lang.language);
 
     useEffect(() => {
       axios.get(`${API_URL}/get-policy`)
@@ -17,11 +20,13 @@ const PoliciPage = () => {
       setEditorHtml(html);
     };
   
-    const adressArr = "Ukraine, Kyiv"
-  
     useEffect (() => {
-      setEditorHtml(policyData?.descriptionEn)
-    },[policyData])
+      if(lang == 'ENG') {
+        setEditorHtml(policyData?.descriptionEn)
+      } else if(lang == 'ESP') {
+        setEditorHtml(policyData?.descriptionSp)
+      }
+    },[policyData,lang])
 
 
     const modules = {

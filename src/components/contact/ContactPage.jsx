@@ -5,10 +5,14 @@ import GoogleMap from './GoogleMap';
 import '../../style/contact.scss'
 import axios from 'axios';
 import { API_URL } from '../../http/baseUrl';
+import { useSelector } from 'react-redux';
 const ContactPage = () => {
 
   const [editorHtml, setEditorHtml] = useState('');
   const [contactUsData, setContactUsData] = useState('');
+
+  const lang = useSelector((state) => state.lang.language);
+
   const handleChange = (html) => {
     setEditorHtml(html);
   };
@@ -18,12 +22,13 @@ const ContactPage = () => {
     .then((res) => setContactUsData(res.data[0]))
   },[])
 
-
-  const adressArr = "Ukraine, Kyiv"
-
   useEffect (() => {
-    setEditorHtml(contactUsData?.descriptionEn)
-  },[contactUsData])
+    if(lang == 'ENG') {
+      setEditorHtml(contactUsData?.descriptionEn)
+    } else if(lang == 'ESP') {
+      setEditorHtml(contactUsData?.descriptionSp)
+    }
+  },[contactUsData,lang])
 
   const mapStyles = [
     {
