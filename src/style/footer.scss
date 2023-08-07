@@ -110,4 +110,24 @@ h4{
     align-items: center;
     gap: 10px;
     height: 150px;
+    img{
+        width: 50%;
+    }
+}
+
+
+@media (max-width: 1440px) {
+    .content_footer-wrap{
+        padding: 0 20px;
+    }
+}
+@media (max-width: 1200px) {
+    .content_footer-wrap{
+        gap: 20px;
+    }
+}
+@media (max-width: 1030px) {
+    .content_footer-wrap{
+        flex-direction: column;
+    }
 }
