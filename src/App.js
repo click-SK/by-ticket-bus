@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import CookieModal from "./components/CookieModal";
 import Header from "./components/header/Header";
 import HomePage from "./components/mainPage/HomePage";
 import Footer from "./components/footer/Footer";
@@ -70,6 +71,7 @@ function App() {
     <div className="App">
       {/* <img className='img_baner_absolute' src="./image/bus-main.svg" alt="" /> */}
       {/* <FirstRequest/> */}
+      <CookieModal/>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

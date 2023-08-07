@@ -5,7 +5,9 @@ import { IoMdAddCircle } from 'react-icons/io';
 import ManagerForm from './ManagerForm';
 import DriverForm from './DriverForm';
 import { useTranslation } from "react-i18next";
+import $api from '../../../http/httpUsers';
 const AddUser = () => {
+    const [reloadState, setReloadState ] = useState(false)
     const [isManager, setIsManager ] = useState(false)
     const [isDriver, setIsDriver ] = useState(false)
     const [isPartner, setIsPartner ] = useState(false)
@@ -16,7 +18,7 @@ const AddUser = () => {
 
     useEffect(() => {
         try {
-            axios.get(`${API_URL}/get-all-managers`)
+            $api.get(`${API_URL}/get-all-managers`)
             .then((res) => {
                 const curArray = res.data;
                 const withoutFirst = curArray.slice(1);
@@ -26,17 +28,20 @@ const AddUser = () => {
         } catch(e) {
             console.log(e);
         }
-    },[])
+    },[reloadState])
     useEffect(() => {
         try {
-            axios.get(`${API_URL}/get-all-drivers`)
+            $api.get(`${API_URL}/get-all-drivers`)
             .then((res) => {
                 setDriverList(res.data);
             })
         } catch(e) {
             console.log(e);
         }
-    },[])
+    },[reloadState])
+
+    console.log('managerList',managerList);
+    console.log('driverList',driverList);
 
     useEffect(() => {
         try {
@@ -68,6 +73,32 @@ const AddUser = () => {
         setIsPartner(!isPartner)
     }
 
+    const handleDeleteDriver = (id) => {
+        axios.delete(`${API_URL}/delete-driver`, {
+        data: {
+          id
+        },
+      }) .then(() => setTimeout(setReloadState((state) => !state)),500)
+    }
+
+    const handleDeleteManager = (id) => {
+        axios.delete(`${API_URL}/delete-manager`, {
+            data: {
+              id
+            },
+          }) .then(() => setTimeout(setReloadState((state) => !state)),500)
+    }
+
+
+
+    const handleDeleteUser = (item) => {
+        if(item.role == "Manager") {
+            handleDeleteManager(item._id);
+        } else if (item.role == "Driver") {
+            handleDeleteDriver(item._id);
+        }
+    }
+
     return (
         <div className='admin_content_wrap'>
             <h2>{t('Add User')}</h2>
@@ -91,10 +122,10 @@ const AddUser = () => {
                 </div>
             </div>
             {isManager && 
-                <ManagerForm/>
+                <ManagerForm setReloadState={setReloadState}/>
             }
             {isDriver && 
-                <DriverForm/>
+                <DriverForm setReloadState={setReloadState}/>
             }
             {isPartner && 
                 <DriverForm/>
@@ -117,6 +148,7 @@ const AddUser = () => {
                         <div key={idx} className='table_info_item'> 
                             <p className='colum row colum_name table_partner-item'>{(item.fullName) || (item.firstName + ' ' + item.lastName)}</p>
                             <p className='colum row colum_progres table_partner-item'> {item.role}</p>
+                            <p onClick={() => handleDeleteUser(item)}> X</p>
                         </div>
                     ))
                     }

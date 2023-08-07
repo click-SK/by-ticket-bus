@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { API_URL } from '../../../http/baseUrl';
 import axios from 'axios';
 import { useTranslation } from "react-i18next";
-const ClientSetting = ({user}) => {
+const ClientSetting = ({user, setReloadUser}) => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [birthday, setBirthday] = useState('');
@@ -18,9 +18,19 @@ const ClientSetting = ({user}) => {
 
     const handleUpdateUserName = () => {
         axios.patch(`${API_URL}/update-user-contacts`, {id: user._id, email, phone, birthday})
+        .then(() => {
+            setTimeout(() => {
+                setReloadUser((state) => ! state)
+            },500)
+        })
     }
     const handleUpdateUserPassword = () => {
         axios.patch(`${API_URL}/update-user-password`, {id: user._id, currentPassword, newPassword})
+        .then(() => {
+            setTimeout(() => {
+                setReloadUser((state) => ! state)
+            },500)
+        })
     }
 
     return (

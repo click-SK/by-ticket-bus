@@ -45,9 +45,9 @@ const Footer = () => {
                     <div className='item-text'> 
                         <h4>{t('SUPPORT')}</h4>
                         <ul>
-                            <Link to='/contact'><li>Contact</li> </Link>
-                            <Link to='/about-ua'><li>About Us</li> </Link>
-                            <Link to='/rule'><li>Rules Page</li> </Link>
+                            <Link to='/contact'><li>{t('Contact Us')}</li> </Link>
+                            <Link to='/about-ua'><li>{t('Privacy Policy')}</li> </Link>
+                            <Link to='/rule'><li>{t('Travel Rules')}</li> </Link>
                             
                             <li>{t('Help')}</li>
                         </ul>

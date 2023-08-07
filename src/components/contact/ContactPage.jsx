@@ -6,10 +6,13 @@ import '../../style/contact.scss'
 import axios from 'axios';
 import { API_URL } from '../../http/baseUrl';
 import { useSelector } from 'react-redux';
+import { useTranslation } from "react-i18next";
 const ContactPage = () => {
 
   const [editorHtml, setEditorHtml] = useState('');
   const [contactUsData, setContactUsData] = useState('');
+
+  const { t } = useTranslation();
 
   const lang = useSelector((state) => state.lang.language);
 
@@ -52,7 +55,7 @@ const ContactPage = () => {
 
   return (
     <div className='contact_page_wraper'>
-      <h2 className='contact_page_wraper-title'>Contact Us</h2>
+      <h2 className='contact_page_wraper-title'>{t('Contact Us')}</h2>
       <div className='contact_page_contant' >
             <div className='contact_page_left'>
                 {/* <p>If you have any questions or inquiries, please feel free to get in touch with us. Our customer support team is here to assist you.</p>

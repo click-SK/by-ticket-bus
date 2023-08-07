@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { API_URL } from '../../../http/baseUrl';
 import axios from 'axios';
 import { useTranslation } from "react-i18next";
-const ClientPassanger = ({user}) => {
+const ClientPassanger = ({user, setReloadUser}) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const { t } = useTranslation();
@@ -13,6 +13,11 @@ const ClientPassanger = ({user}) => {
 
     const handleUpdateUserName = () => {
         axios.patch(`${API_URL}/update-user-name`, {id: user._id, firstName, lastName})
+        .then(() => {
+            setTimeout(() => {
+                setReloadUser((state) => ! state)
+            },500)
+        })
     }
     return (
         <div className='client_body_item_wrap'>
