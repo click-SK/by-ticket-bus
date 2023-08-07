@@ -190,15 +190,18 @@
 
 .button_open-menu{
     position: fixed;
-    display: flex;
+    display: none;
     justify-content: flex-end;
-    height: 100vh;
+    min-height: 100px;
     width: 100%;
     z-index: 2000;
     overflow: hidden;
 }
 
 
+.btn_opened_mobile-menu{
+    display: none;
+}
 
 
 
@@ -214,7 +217,9 @@
     .header_wrapper {
         display: none;
       }
-      
+      .button_open-menu{
+        display: flex;
+      }
       .header_wrapper-mobile {
         display: flex;
         position: fixed;

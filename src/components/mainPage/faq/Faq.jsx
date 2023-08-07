@@ -36,7 +36,7 @@ const Faq = () => {
         <div className="content_wrap-faq">
           {allFaqPost.length != 0 &&
             allFaqPost.map((item, idx) => (
-              <>
+              <div key={idx}>
                 {lang == "ENG" && (
                   <FaqItem
                     key={idx}
@@ -57,7 +57,7 @@ const Faq = () => {
                     setIsOpen={setIsOpen}
                   />
                 )}
-              </>
+              </div>
             ))}
         </div>
 

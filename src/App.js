@@ -64,7 +64,7 @@ function App() {
     }
   },[])
 
-  console.log('isAuthUser',isAuthUser);
+  // console.log('isAuthUser',isAuthUser);
 
 
   return (
