@@ -14,6 +14,9 @@ const RegistrationUserForm = () => {
     const [birthday, setBirthday] = useState("");
     const [emailErrorMessage, setEmailErrorMessage] = useState('');
     const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+    const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
+    const [firstNameErrorMessage, setFirstNameErrorMessage] = useState('');
+    const [lastNameErrorMessage, setLastNameErrorMessage] = useState('');
 
     const { t } = useTranslation();
 
@@ -23,7 +26,7 @@ const RegistrationUserForm = () => {
 
     const handleRegistrationUser = async () => {
       try {
-        const resoult = validator.validationRegistration(email, password);
+        const resoult = validator.validationRegistration({email, password, phone, firstName, lastName});
         if(resoult.isValid) {
           const data = await dispatch(registration({email, password, firstName, lastName, phone, birthday}));
           console.log('registration data',data);
@@ -37,6 +40,9 @@ const RegistrationUserForm = () => {
         } else {
           resoult.reason == 'email' ? setEmailErrorMessage(resoult.error) : setEmailErrorMessage('');
           resoult.reason == 'password' ? setPasswordErrorMessage(resoult.error) : setPasswordErrorMessage('');
+          resoult.reason == 'phone' ? setPhoneErrorMessage(resoult.error) : setPhoneErrorMessage('');
+          resoult.reason == 'firstName' ? setFirstNameErrorMessage(resoult.error) : setFirstNameErrorMessage('');
+          resoult.reason == 'lastName' ? setLastNameErrorMessage(resoult.error) : setLastNameErrorMessage('');
         }
       } catch(e) {
         console.log(e);
@@ -57,6 +63,7 @@ const RegistrationUserForm = () => {
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}/>
           </div>
+          {firstNameErrorMessage && <p className="error-message">{firstNameErrorMessage}</p>}
           <div className="input_wraper-item">
             <label htmlFor="last">
             {t('Last Name')}<span>*</span>
@@ -66,6 +73,7 @@ const RegistrationUserForm = () => {
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}/>
           </div>
+          {lastNameErrorMessage && <p className="error-message">{lastNameErrorMessage}</p>}
           <div className="input_wraper-item">
             <label htmlFor="phone">
             {t('Phone')} <span>*</span>
@@ -75,6 +83,7 @@ const RegistrationUserForm = () => {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}/>
           </div>
+          {phoneErrorMessage && <p className="error-message">{phoneErrorMessage}</p>}
           <div className="input_wraper-item">
             <label htmlFor="mail">
             {t('Email')} <span>*</span>

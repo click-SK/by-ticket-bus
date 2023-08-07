@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../../http/baseUrl';
 import axios from 'axios';
 import { useTranslation } from "react-i18next";
-const DriverForm = () => {
+const DriverForm = ({setReloadState}) => {
     const [driverName, setDriverName] = useState('')
     const [driverEmail, setDriverEmail] = useState('')
     const [driverPassword, setDriverPassword] = useState('')
@@ -36,6 +36,7 @@ const DriverForm = () => {
                 setDriverLicense('');
                 setDriverPhone('');
                 setDriverAddress('');
+                setReloadState((state) => !state)
               } else {
                 alert('Email already exists')
               }

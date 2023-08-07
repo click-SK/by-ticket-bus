@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { API_URL } from '../../../http/baseUrl';
 import { useTranslation } from "react-i18next";
-const FaqAddPost = ({setIsAddNews}) => {
+const FaqAddPost = ({setIsAddNews, setReloadState}) => {
     const [contentSpain, setContentSpain] = useState('');
     const [contentEng, setContentEng] = useState('');
     const [isEngVar, setIsEngVar] = useState(true);
@@ -45,6 +45,8 @@ const FaqAddPost = ({setIsAddNews}) => {
           setContentEng('');
           setTitleEng('');
           setTitleSpain('');
+          setReloadState((state) => ! state);
+          setIsAddNews(false);
       })
       } catch(e) {
         console.log(e);

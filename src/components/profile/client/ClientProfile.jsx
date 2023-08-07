@@ -1,4 +1,4 @@
-import { React, useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import ClientPlaceholder from './ClientPlaceholder';
 import ClientTrips from './ClientTrips';
 import ClientPassanger from './ClientPassanger';
@@ -13,15 +13,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../store/authUser';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+import { API_URL } from '../../../http/baseUrl';
+import $api from '../../../http/httpUsers';
 const ClientProfile = () => {
     const [isTrips, setIsTrips] = useState(true)
-    const [isPassengers, setIsPassengers] = useState(false)
-    const [isSettings, setIsSettings] = useState(false)
-    const [isLogout, setIsLogout] = useState(false)
+    const [isPassengers, setIsPassengers] = useState(false);
+    const [isSettings, setIsSettings] = useState(false);
+    const [isLogout, setIsLogout] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [reloadUser, setReloadUser] = useState(false);
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {user} = useSelector((state) => state.authUser.user);
+
+    useEffect(() => {
+        if(user) {
+            $api.get(`${API_URL}/get-me/${user._id}`)
+            .then((res) => setCurrentUser(res.data))
+        }
+    },[user, reloadUser])
+
+    console.log('currentUser',currentUser);
 
     const openTrips = () => {
         setIsTrips(true)
@@ -72,10 +86,10 @@ const ClientProfile = () => {
                     <ClientTrips/>
                 }
                 {isPassengers && 
-                    <ClientPassanger user={user}/>
+                    <ClientPassanger user={currentUser} setReloadUser={setReloadUser}/>
                 }
                 {isSettings && 
-                    <ClientSetting user={user}/>
+                    <ClientSetting user={currentUser} setReloadUser={setReloadUser}/>
                 }
             </div>
         </div>

@@ -41,7 +41,8 @@ const FaqAdmin = () => {
 
                     </div>
                     {isAddNews && 
-                        <FaqAddPost setIsAddNews={setIsAddNews}/>
+                        <FaqAddPost setIsAddNews={setIsAddNews}
+                        setReloadState={setReloadState}/>
                     }
                     <div className='table_body'>
                     {allFaqPosts.length != 0 && allFaqPosts.map((item, idx) => (

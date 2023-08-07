@@ -70,6 +70,7 @@ const SettingPolicyAboutRule = ({content, title, input, getUrl, updateUrl}) => {
         descriptionSp: contentSpain,
         descriptionEn: contentEng
       })
+      .then(() => alert('Information updated'))
     }
 
     console.log('currentObject',currentObject);

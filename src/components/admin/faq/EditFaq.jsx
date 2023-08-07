@@ -198,7 +198,7 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
           <div className="btn_faq_item_wrap">
             <button className="admin_panel_items add_user_button active_btn_user"
             onClick={handleUpdatePost}>
-              {t('Publish')}
+              {t('Update')}
             </button>
             <button
               onClick={() => setIsOpenPostItem(!isOpenPostItem)}

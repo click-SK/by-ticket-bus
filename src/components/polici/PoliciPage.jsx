@@ -5,9 +5,12 @@ import '../../style/aboutUsPage.scss'
 import axios from 'axios';
 import { API_URL } from '../../http/baseUrl';
 import { useSelector } from 'react-redux';
+import { useTranslation } from "react-i18next";
 const PoliciPage = () => {
     const [editorHtml, setEditorHtml] = useState('');
     const [policyData, setPolicyData] = useState('');
+
+    const { t } = useTranslation();
 
     const lang = useSelector((state) => state.lang.language);
 
@@ -35,7 +38,7 @@ const PoliciPage = () => {
     const readOnly = true;
     return (
         <div className='about_us_page_wraper'>
-        <h2>Privacy Policy</h2>
+        <h2>{t('Privacy Policy')}</h2>
         <ReactQuill
                   className='contact_content_text about_as_content_text'
                   theme="snow"

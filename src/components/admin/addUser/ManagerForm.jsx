@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registration } from '../../../store/authAdministration';
 import { useTranslation } from "react-i18next";
-const ManagerForm = () => {
+const ManagerForm = ({setReloadState}) => {
     const [managerFirstName, setManagerFirstName] = useState('')
     const [managerLastName, setManagerLastName] = useState('')
     const [managerPassword, setManagerPassword] = useState('')
@@ -22,6 +22,7 @@ const ManagerForm = () => {
               setManagerLastName('');
               setManagerPassword('');
               setManagerLogin('');
+              setReloadState((state) => !state)
             } else {
                 alert(data.payload.message)
             }
