@@ -19,8 +19,6 @@ const styles = StyleSheet.create({
           flex: 1,
           flexDirection:'row',
           justifyContent: 'center',
-          backgroundColor: '3f1fc1',
-          padding: '5px 0px',
       },
       headerLogo:{
           flexDirection:'row',
@@ -53,7 +51,7 @@ const TicketTamplate = ({data}) => {
     const qrCodeValue = 'http://localhost:3000/booking-info-pas';
 
     return (
-        <Document>
+<Document>
         <Page size="A4" style={styles.page}>
             <View style={styles.header}>
                 <View style={styles.headerLogo}>
@@ -66,16 +64,48 @@ const TicketTamplate = ({data}) => {
                 </View>
             </View>
           <View style={styles.section}>
-            <Text>Bus Ticket</Text>
+            <Text style={styles.title}>Bus Ticket</Text>
             <Text>Name: Lex</Text>
             <Text>Name: Lut</Text>
             <Text>email: 1@g.com</Text>
             <Text>phone: +38066371</Text>
             <Text>Bus Route: Route 123</Text>
-            {/* Add more text or components as needed */}
           </View>
-          <View>
-          <Image style={styles.qr} src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrCodeValue)}`} />
+          <View style={styles.section}>
+            <Text style={styles.title}>Ride info</Text>
+            <Text>From: 24 Avon street, 4th Parkon, New York</Text>
+            <Text>To: outhgate LRT Bus Stop 2217, New York</Text>
+            <Text>Department Time: 10:00 AM</Text>
+            <Text>Arrive Time: 1:00 PM</Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.title}>Bus</Text>
+            <Text>Bus Type:Volvo AC</Text>
+            <Text>Bus Number:10DIB</Text>
+            <Text>Seat No:A1, A2</Text>
+            <Text>Ticket Pnr:23156-89512M</Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.title}>Details</Text>
+            <Text>Delux Business Seat - 10:00 AM Sat</Text>
+            <Text>Price: $120</Text>
+            <Text>Qty: 2</Text>
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.title}>Details</Text>
+            <Text>Sub Total:	$240.00</Text>
+            <Text>Tax (18%)	$43.20</Text>
+            <Text>Grand Total:	$283.20</Text>
+          </View>
+          <View style={styles.headerText}>
+            <View>
+                <Text>Link to your ticket</Text>
+                <Image style={styles.qr} src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrCodeValue)}`} />
+            </View>
+            <View>
+                <Text>Link for driver</Text>
+                <Image style={styles.qr} src={`https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrCodeValue)}`} />
+            </View>
           </View>
         </Page>
       </Document>
