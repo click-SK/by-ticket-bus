@@ -48,46 +48,25 @@ function App() {
     }
   },[])
 
-  // useEffect(() => {
-  //   axios.get(`${API_URL}/cheked-admin-token`, {withCredentials: true})
-  //   .then((res) => {
-  //     console.log('res.data',res.data);
-  //     if(res.data.message == 'success') {
-  //       setValidateAdmin(true)
-  //     } else {
-  //       setValidateAdmin(false)
-  //     }
-  //   })
-  // },[])
-
-  // console.log('validateAdmin',validateAdmin);
-
   useEffect(() => {
     try {
       dispatch(getCurrencies());
       dispatch(currentLang());
       if(localStorage.getItem('bus-u-t')) {
+        setTimeout(() => {
           dispatch(checkAuthUser());
+        },1000)
       }
+
+      if(localStorage.getItem('bus-a-t')) {
+        setTimeout(() => {
+          dispatch(checkAuthAdministration());
+        },1000)
+    }
     } catch(e) {
       console.log(e);
     }
   },[])
-
-  useEffect(() => {
-    try {
-      if(localStorage.getItem('bus-a-t')) {
-        setTimeout(() => {
-          dispatch(checkAuthAdministration());
-        },500)
-    }
-    } catch(error) {
-      console.log(error);
-    }
-  },[])
-
-  // console.log('isAuthUser',isAuthUser);
-
 
   return (
     <div className="App">
