@@ -21,5 +21,5 @@ i18n.use(initReactI18next).init({
   fallbackLng:'ENG',
 });
 
-console.log("i18n", i18n);
+// console.log("i18n", i18n);
 export default i18n;

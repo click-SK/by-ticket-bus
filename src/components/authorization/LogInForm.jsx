@@ -19,7 +19,7 @@ const LoginForm = () => {
 
   const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
 
-  console.log('isAuthUser',isAuthUser);
+  // console.log('isAuthUser',isAuthUser);
 
   const handleShowUserLogin = () => {
     setIsUser(true);

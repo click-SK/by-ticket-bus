@@ -17,7 +17,7 @@ export const getCurrencies = createAsyncThunk('currencies', async (payload, thun
         const choseCurrenci = allArray.filter(item => item.currencieName == currentCur);
         thunkAPI.dispatch(currenciesSlice.actions.setCurrenciesValue(choseCurrenci[0].currencieValue))
       })
-      console.log('currentCur',currentCur);
+      // console.log('currentCur',currentCur);
     } catch (e) {
       console.log(e);
     }

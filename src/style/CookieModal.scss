@@ -3,7 +3,7 @@
     flex-direction: column;
     height: 50%;
     position: fixed;
-    z-index: 10;
+    z-index: 1010;
     width: 300px;
     height: 150px;
     bottom: 100px;
@@ -44,13 +44,11 @@
         border: none;
         border-radius: 5px;
         padding: 10px 30px;
-        background-color: rgb(158, 11, 11);
+        background-color: var(--color-prime);
         font-weight: 600;
         letter-spacing: 1px;
         transition: 0.5s;
         color: rgb(255, 255, 255);
-        @media(max-width:992px) {
-            box-shadow: 0px 0px 3px 1px rgb(158, 11, 11);
-        }
+
     }
 }

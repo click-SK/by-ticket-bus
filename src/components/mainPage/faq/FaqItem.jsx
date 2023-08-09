@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
 import { BiRightArrow } from 'react-icons/bi';
+import ReactQuill from 'react-quill';
 
 const FaqItem = ({idx, itemTitle, itemText}) => {
     const [isOpen, setIsOpen] = useState(false)
+    const [editorHtml, setEditorHtml] = useState('');
+    
+    
+    const handleChange = (html) => {
+        setEditorHtml(html);
+      };
+  
+
+const modules = {
+  toolbar: false, // Вимкнути панель інструментів
+};
+const readOnly = true;
     return (
             <div key={idx}
                 onClick={() => setIsOpen(!isOpen)}
@@ -11,7 +24,17 @@ const FaqItem = ({idx, itemTitle, itemText}) => {
                     <p>{idx + 1}.   {itemTitle}</p>
                     <BiRightArrow className='svg-faq'/>
                 </div>
-                <p className={`item_faq_text-description ${isOpen ? '' : 'none'}`}>{itemText}</p>
+                <div className={`item_faq_text-description ${isOpen ? '' : 'none'}`}>
+                    {/* {itemText} */}
+                    <ReactQuill
+                        className='item_faq_text-description'
+                        theme="snow"
+                        modules={modules}
+                        readOnly={readOnly}
+                        value={itemText}
+                        onChange={handleChange}
+                      />
+                </div>
                 {/* {isOpen && 
                 } */}
             </div>

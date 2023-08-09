@@ -9,7 +9,7 @@ const HowItWork = () => {
     return (
         <div className='how_it_work_wraper'>
             <h2>{t('How it work')}</h2>
-            <div className='content_wrap' >
+            <div className='content_wrap_how-it-work' >
                 <div className='item_how-it-work'>
                     <h3 className='item_h3'> 1. {t('How it work item 1')}</h3>
                     <SelectRouteSvg/>

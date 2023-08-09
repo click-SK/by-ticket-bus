@@ -18,7 +18,27 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+    width: 100%;
+
+
 }
+
+.text_wrap-blog{
+    .blog_item_text{
+        .ql-container{
+            border: none;
+            .ql-editor{
+                p{
+                    color: #fff;
+                    span{
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 .item_wrap{
     flex: 0 1 33%;
@@ -29,6 +49,7 @@
 
     position: relative;
     max-width: 450px;
+    min-width: 400px;
     height: 250px;
     border-radius: 20px;
     overflow: hidden;
@@ -116,3 +137,16 @@
         color: var(--color-text-title);
     }
 }
+
+@media (max-width: 780px) {
+    .item_wrap{
+        flex: 0 1 90%;
+        max-width: none;
+    }
+    .more_btn {
+        width: 80%;
+    }
+    .content_wraper{
+        width: 80%;
+    }
+  }

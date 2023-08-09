@@ -7,11 +7,14 @@ import '../../style/faq.scss'
 import '../../style/blog.scss'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import ReactQuill from 'react-quill';
+
 const FaqPage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [allPosts, setAllPosts] = useState([]);
     const { t } = useTranslation();
+    const [editorHtml, setEditorHtml] = useState('');
 
     const lang = useSelector((state) => state.lang.language);
 
@@ -21,6 +24,15 @@ const FaqPage = () => {
     },[])
 
     console.log('lang',lang);
+
+    const handleChange = (html) => {
+        setEditorHtml(html);
+      };
+  
+      const modules = {
+        toolbar: false, // Вимкнути панель інструментів
+      };
+      const readOnly = true;
 
     return (
 <div className='blog-page_wrap'>
@@ -39,9 +51,29 @@ const FaqPage = () => {
                                 {lang == 'ENG' && <h4 className='title_faq-item'>{item.titleEn} ?</h4>}
                                 {lang == 'ESP' && <h4 className='title_faq-item'>{item.titleSp} ?</h4>}
                             </div>
-                            <div>
-                            {lang == 'ENG' && <p>{item.descriptionEn}</p>}
-                            {lang == 'ESP' && <p>{item.descriptionSp}</p>}
+                            <div className='faq_item_text'>
+                            {lang == 'ENG' && 
+                            // <p>{item.descriptionEn}</p>
+                            <ReactQuill
+                            className='item_faq_text-description'
+                            theme="snow"
+                            modules={modules}
+                            readOnly={readOnly}
+                            value={item.descriptionEn}
+                            onChange={handleChange}
+                          />
+                          }
+                            {lang == 'ESP' && 
+                            // <p>{item.descriptionSp}</p>
+                            <ReactQuill
+                            className='item_faq_text-description'
+                            theme="snow"
+                            modules={modules}
+                            readOnly={readOnly}
+                            value={item.descriptionSp}
+                            onChange={handleChange}
+                          />
+                            }
                             </div>
                         </div>
                     ))}
