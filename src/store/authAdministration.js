@@ -48,6 +48,7 @@ export const registration = createAsyncThunk('admin-auth/registration', async (p
   export const checkAuthAdministration = createAsyncThunk('admin-auth/checkAuth ', async (_, thunkAPI) => {
     try {
       const response = await axios.get(`${API_URL}/refresh-admin`,{withCredentials: true})
+      console.log('response admin redux',response.data);
       if(response.data.message == 'Validation error') {
         console.log('response auth not work');
         return thunkAPI.dispatch(authAdministrationSlice.actions.setAuth(false));
@@ -59,7 +60,7 @@ export const registration = createAsyncThunk('admin-auth/registration', async (p
         thunkAPI.dispatch(authAdministrationSlice.actions.setAuthOperator(true));
       }
       thunkAPI.dispatch(authAdministrationSlice.actions.setUser(response.data));
-      if(response.data.accessToke) {
+      if(response.data.accessToken) {
       localStorage.setItem('bus-a-t', response.data.accessToken);
       }
       return response.data;

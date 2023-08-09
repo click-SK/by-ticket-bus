@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import logo from "./logo.svg";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
@@ -31,8 +31,11 @@ import { checkAuthUser } from "./store/authUser";
 import { checkAuthAdministration } from "./store/authAdministration";
 import { getCurrencies } from "./store/currentCurrencies";
 import { currentLang } from "./store/language";
+import axios from "axios";
+import { API_URL } from "./http/baseUrl";
 // import FirstRequest from './components/FirstRequest';
 function App() {
+  const [validateAdmin, setValidateAdmin] = useState(false);
   const isAuthUser = useSelector((state) => state.authUser.isAuthUser);
   const isAdmin = useSelector((state) => state.authAdmin.isAdmin);
   const isOperator = useSelector((state) => state.authAdmin.isOperator);
@@ -45,22 +48,41 @@ function App() {
     }
   },[])
 
+  // useEffect(() => {
+  //   axios.get(`${API_URL}/cheked-admin-token`, {withCredentials: true})
+  //   .then((res) => {
+  //     console.log('res.data',res.data);
+  //     if(res.data.message == 'success') {
+  //       setValidateAdmin(true)
+  //     } else {
+  //       setValidateAdmin(false)
+  //     }
+  //   })
+  // },[])
+
+  // console.log('validateAdmin',validateAdmin);
+
   useEffect(() => {
     try {
       dispatch(getCurrencies());
       dispatch(currentLang());
       if(localStorage.getItem('bus-u-t')) {
-        setTimeout(() => {
           dispatch(checkAuthUser());
-        },500)
       }
+    } catch(e) {
+      console.log(e);
+    }
+  },[])
+
+  useEffect(() => {
+    try {
       if(localStorage.getItem('bus-a-t')) {
         setTimeout(() => {
           dispatch(checkAuthAdministration());
         },500)
-      }
-    } catch(e) {
-      console.log(e);
+    }
+    } catch(error) {
+      console.log(error);
     }
   },[])
 

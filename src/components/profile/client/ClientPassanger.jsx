@@ -7,8 +7,8 @@ const ClientPassanger = ({user, setReloadUser}) => {
     const [lastName, setLastName] = useState('');
     const { t } = useTranslation();
     useEffect(() => {
-        setFirstName(user.firstName);
-        setLastName(user.lastName);
+        setFirstName(user?.firstName);
+        setLastName(user?.lastName);
     },[user])
 
     const handleUpdateUserName = () => {

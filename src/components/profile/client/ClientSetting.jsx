@@ -11,13 +11,13 @@ const ClientSetting = ({user, setReloadUser}) => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        setEmail(user.email);
-        setPhone(user.phone);
-        setBirthday(user.birthday);
+        setEmail(user?.email);
+        setPhone(user?.phone);
+        setBirthday(user?.birthday);
     },[user])
 
     const handleUpdateUserName = () => {
-        axios.patch(`${API_URL}/update-user-contacts`, {id: user._id, email, phone, birthday})
+        axios.patch(`${API_URL}/update-user-contacts`, {id: user?._id, email, phone, birthday})
         .then(() => {
             setTimeout(() => {
                 setReloadUser((state) => ! state)
@@ -25,7 +25,7 @@ const ClientSetting = ({user, setReloadUser}) => {
         })
     }
     const handleUpdateUserPassword = () => {
-        axios.patch(`${API_URL}/update-user-password`, {id: user._id, currentPassword, newPassword})
+        axios.patch(`${API_URL}/update-user-password`, {id: user?._id, currentPassword, newPassword})
         .then(() => {
             setTimeout(() => {
                 setReloadUser((state) => ! state)

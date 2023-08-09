@@ -146,8 +146,8 @@ const AddUser = () => {
                     <div className='table_body'>
                     {allRoleList.length != 0 && allRoleList.map((item, idx) => (
                         <div key={idx} className='table_info_item'> 
-                            <p className='colum row colum_name table_partner-item'>{(item.fullName) || (item.firstName + ' ' + item.lastName)}</p>
-                            <p className='colum row colum_progres table_partner-item'> {item.role}</p>
+                            <p className='colum row colum_name table_partner-item'>{(item?.fullName) || (item?.firstName + ' ' + item?.lastName)}</p>
+                            <p className='colum row colum_progres table_partner-item'> {item?.role}</p>
                             <p onClick={() => handleDeleteUser(item)}> X</p>
                         </div>
                     ))
