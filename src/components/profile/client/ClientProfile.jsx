@@ -30,7 +30,7 @@ const ClientProfile = () => {
 
     useEffect(() => {
         if(user) {
-            $api.get(`${API_URL}/get-me/${user._id}`)
+            $api.get(`${API_URL}/get-me/${user?._id}`)
             .then((res) => setCurrentUser(res.data))
         }
     },[user, reloadUser])

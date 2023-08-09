@@ -51,7 +51,7 @@ export const registration = createAsyncThunk('user-auth/registration', async (pa
       console.log('maybie work');
       thunkAPI.dispatch(authUserSlice.actions.setAuth(true));
       thunkAPI.dispatch(authUserSlice.actions.setUser(response.data));
-      if(response.data.accessToke) {
+      if(response.data.accessToken) {
       localStorage.setItem('bus-u-t', response.data.accessToken);
       }
       return response.data;
