@@ -15,9 +15,13 @@ const Faq = () => {
   const lang = useSelector((state) => state.lang.language);
 
   useEffect(() => {
-    axios
+    try {
+      axios
       .get(`${API_URL}/get-all-faq-posts`)
       .then((res) => setAllFaqPost(res.data.slice(-6)));
+    } catch(error) {
+      console.log(error);
+    }
   }, []);
 
   return (

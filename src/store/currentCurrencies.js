@@ -10,7 +10,7 @@ const initialState = {
 export const getCurrencies = createAsyncThunk('currencies', async (payload, thunkAPI) => {
     try {
       const currentCur = localStorage.getItem('curentRate');
-      axios.get(`${API_URL}/get-all-current-currencies`)
+      await axios.get(`${API_URL}/get-all-current-currencies`)
       .then((res) => {
         thunkAPI.dispatch(currenciesSlice.actions.setCurrencies(res.data))
         const allArray = [...res.data];
