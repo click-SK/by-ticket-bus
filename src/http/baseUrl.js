@@ -1,1 +1,1 @@
-export const API_URL = 'https://ticket-bus-b3512da3e0fb.herokuapp.com/api';
+export const API_URL = 'https://bus-server-0e59887bbd2d.herokuapp.com/api';
