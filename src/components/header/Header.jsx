@@ -77,7 +77,7 @@ const Header = () => {
                     onClick={() => setIsMenu(!isMenu)}
                     > Close menu</button>
                     <div className='logo_wrap'>
-                        <Link to={'/'} ><p style={{fontSize: '48px'}}>BUS LOGO</p> </Link>
+                        <Link to={'/'} ><p onClick={() => setIsMenu(!isMenu)} style={{fontSize: '48px'}}>BUS LOGO</p> </Link>
                         <div className='routs_var'>
                             <div className='routs_item_header local_routs'>
                                 <MdDirectionsBus
@@ -97,9 +97,9 @@ const Header = () => {
                         <ChangeColor/>
                         {isAuthUser 
                         ?
-                        <Link to='/user-profile'><button className='btn_prime btn_sing-in'>{t('My profile')}</button></Link>
+                        <Link to='/user-profile'><button onClick={() => setIsMenu(!isMenu)} className='btn_prime btn_sing-in'>{t('My profile')}</button></Link>
                         :
-                        <Link to='/login'><button className='btn_prime btn_sing-in'>{t('Sign in')}</button></Link>
+                        <Link to='/login'><button onClick={() => setIsMenu(!isMenu)} className='btn_prime btn_sing-in'>{t('Sign in')}</button></Link>
                         }
                         
                     </div>

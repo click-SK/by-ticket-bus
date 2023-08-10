@@ -85,7 +85,15 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
     } catch(e) {
       console.log(e);
     }
+    
   };
+
+
+
+  const modules = {
+    toolbar: false, // Вимкнути панель інструментів
+  };
+  const readOnly = true;
     return (
         <div>
         <div className="post_item_wrap">
@@ -105,10 +113,24 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
               <p>{t('Eng post')} </p>
               <div>{item.date}</div>
               <h4 className="item_content_blog-title">{item.titleEn}</h4>
-              <div className="item_text">{item.descriptionEn}</div>
+              {/* <div className="item_text">{item.descriptionEn}</div> */}
+              <ReactQuill
+                        className='blog_item_text'
+                        theme="snow"
+                        modules={modules}
+                        readOnly={readOnly}
+                        value={item.descriptionEn}
+                      />
               <p style={{ marginTop: 20 }}>{t('ESP post')} </p>
               <h4>{item.titleSp}</h4>
-              <div className="item_text">{item.descriptionSp}</div>
+              {/* <div className="item_text">{item.descriptionSp}</div> */}
+              <ReactQuill
+                        className='blog_item_text'
+                        theme="snow"
+                        modules={modules}
+                        readOnly={readOnly}
+                        value={item.descriptionSp}
+                      />
             </div>
           ) 
           :

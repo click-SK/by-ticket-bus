@@ -57,6 +57,13 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
         console.log(e);
       }
     }
+
+    const modules = {
+      toolbar: false, // Вимкнути панель інструментів
+    };
+    const readOnly = true;
+
+
     return (
         <div className="post_item_wrap">
           <FcEditImage onClick={() => setIsEditTextEng(!isEditTextEng)} />
@@ -66,14 +73,28 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
                           <p>{t('Eng post')} </p> 
                         <div>{item.createdAt}</div>
                         <h4 className="item_content_blog-title">{item.titleEn}</h4>
-                        <div className="item_text">
+                        {/* <div className="item_text">
                           {item.descriptionEn}          
-                        </div>
+                        </div> */}
+                        <ReactQuill
+                        className='blog_item_text'
+                        theme="snow"
+                        modules={modules}
+                        readOnly={readOnly}
+                        value={item.descriptionEn}
+                        />
                         <p style={{marginTop: 20}}>{t('ESP post')} </p> 
                         <h4>{item.titleSp}</h4>
-                        <div className="item_text">
+                        {/* <div className="item_text">
                           {item.descriptionSp}          
-                        </div>
+                        </div> */}
+                                                <ReactQuill
+                        className='blog_item_text'
+                        theme="snow"
+                        modules={modules}
+                        readOnly={readOnly}
+                        value={item.descriptionSp}
+                        />
                         </div>
 
               :

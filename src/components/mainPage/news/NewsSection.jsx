@@ -10,6 +10,8 @@ import ReactQuill from 'react-quill';
 const NewsSection = () => {
     const [allPosts, setAllPosts] = useState([])
     const { t } = useTranslation();
+    const [editorEng, setEditorEng] = useState('');
+    const [editorEsp, setEditorEsp] = useState('');
     const [editorHtml, setEditorHtml] = useState('');
 
     const lang = useSelector((state) => state.lang.language);
@@ -23,8 +25,8 @@ const NewsSection = () => {
       }
     },[])
 
-    const handleChange = (html) => {
-      setEditorHtml(html);
+    const handleChange = (editorEng) => {
+      setEditorEng(editorEng);
     };
 
     const modules = {
@@ -67,12 +69,20 @@ const NewsSection = () => {
                   {lang == "ESP" && (
                     <>
                       <h2 className="blog_item_title">{item.titleSp}</h2>
-                      <p className="blog_item_text">
+                      {/* <p className="blog_item_text">
                         {item.descriptionSp}{" "}
                         <span className="blog_item_text--more">
                           {t("More")}...
                         </span>
-                      </p>
+                      </p> */}
+                       <ReactQuill
+                        className='blog_item_text'
+                        theme="snow"
+                        modules={modules}
+                        readOnly={readOnly}
+                        value={item.descriptionSp}
+                        onChange={handleChange}
+                      />
                     </>
                   )}
                 </div>
