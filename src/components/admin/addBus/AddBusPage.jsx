@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../http/baseUrl';
 import { IoMdAddCircle } from 'react-icons/io';
-import ManagerForm from './ManagerForm';
-import DriverForm from './DriverForm';
+// import ManagerForm from './ManagerForm';
+// import DriverForm from './DriverForm';
 import { useTranslation } from "react-i18next";
 import $api from '../../../http/httpUsers';
-const AddUser = () => {
+
+const AddBusPage = () => {
     const [reloadState, setReloadState ] = useState(false)
     const [isManager, setIsManager ] = useState(false)
     const [isDriver, setIsDriver ] = useState(false)
@@ -15,88 +16,6 @@ const AddUser = () => {
     const [driverList, setDriverList] = useState([]);
     const [allRoleList, setAllRoleList] = useState([]);
     const { t } = useTranslation();
-
-    useEffect(() => {
-        try {
-            $api.get(`${API_URL}/get-all-managers`)
-            .then((res) => {
-                const curArray = res.data;
-                const withoutFirst = curArray.slice(1);
-                console.log('withoutFirst',withoutFirst);
-                setManagerList(withoutFirst)
-            })
-        } catch(e) {
-            console.log(e);
-        }
-    },[reloadState])
-    useEffect(() => {
-        try {
-            $api.get(`${API_URL}/get-all-drivers`)
-            .then((res) => {
-                setDriverList(res.data);
-            })
-        } catch(e) {
-            console.log(e);
-        }
-    },[reloadState])
-
-
-    useEffect(() => {
-        try {
-            if(driverList.length != 0 && managerList.length != 0) {
-                console.log('new Array');
-                setAllRoleList([
-                    ...managerList,
-                    ...driverList
-                ])
-            }
-        } catch(e) {
-            console.log(e);
-        }
-    },[managerList,driverList])
-    
-    const hendlerOpenAddManager = () =>{
-        setIsManager(!isManager)
-        setIsDriver(false)
-        setIsPartner(false)
-    }
-    const hendlerOpenAddDriver = () =>{
-        setIsManager(false)
-        setIsDriver(!isDriver)
-        setIsPartner(false)
-    }
-    const hendlerOpenAddPartner = () =>{
-        setIsManager(false)
-        setIsDriver(false)
-        setIsPartner(!isPartner)
-    }
-
-    const handleDeleteDriver = (id) => {
-        axios.delete(`${API_URL}/delete-driver`, {
-        data: {
-          id
-        },
-      }) .then(() => setTimeout(setReloadState((state) => !state)),500)
-    }
-
-    const handleDeleteManager = (id) => {
-        axios.delete(`${API_URL}/delete-manager`, {
-            data: {
-              id
-            },
-          }) .then(() => setTimeout(setReloadState((state) => !state)),500)
-    }
-
-
-
-    const handleDeleteUser = (item) => {
-        if(item.role == "Manager") {
-            handleDeleteManager(item._id);
-        } else if (item.role == "Driver") {
-            handleDeleteDriver(item._id);
-        }
-    }
-
     return (
         <div className='admin_content_wrap'>
             <h2>{t('Add User')}</h2>
@@ -119,7 +38,7 @@ const AddUser = () => {
                     </div>
                 </div>
             </div>
-            {isManager && 
+            {/* {isManager && 
                 <ManagerForm setReloadState={setReloadState}/>
             }
             {isDriver && 
@@ -127,7 +46,7 @@ const AddUser = () => {
             }
             {isPartner && 
                 <DriverForm/>
-            }
+            } */}
             <div className='admin_panel_items partner_wrap_content'>
                 <h3 className='admin_panel_items-title'>{t('User List')}</h3>
                 <div className='filter_wrap'>
@@ -142,14 +61,13 @@ const AddUser = () => {
 
                     </div>
                     <div className='table_body'>
-                    {allRoleList.length != 0 && allRoleList.map((item, idx) => (
+                    
                         <div key={idx} className='table_info_item'> 
-                            <p className='colum row colum_name table_partner-item'>{(item?.fullName) || (item?.firstName + ' ' + item?.lastName)}</p>
-                            <p className='colum row colum_progres table_partner-item'> {item?.role}</p>
-                            <p onClick={() => handleDeleteUser(item)}> X</p>
+                            <p className='colum row colum_name table_partner-item'>Name bus</p>
+                            <p className='colum row colum_progres table_partner-item'> number</p>
+                            {/* <p onClick={() => handleDeleteUser(item)}> X</p> */}
                         </div>
-                    ))
-                    }
+
                     </div>
                 </div>
             </div>
@@ -158,4 +76,4 @@ const AddUser = () => {
     );
 };
 
-export default AddUser;
+export default AddBusPage;
