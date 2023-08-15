@@ -4,7 +4,8 @@ import { API_URL } from "../http/baseUrl";
 
 const initialState = {
     currencies: [],
-    currencieValue: 0
+    currencieValue: 0,
+    currencieName: 'EUR'
 }
 
 export const getCurrencies = createAsyncThunk('currencies', async (payload, thunkAPI) => {
@@ -14,8 +15,10 @@ export const getCurrencies = createAsyncThunk('currencies', async (payload, thun
       .then((res) => {
         thunkAPI.dispatch(currenciesSlice.actions.setCurrencies(res.data))
         const allArray = [...res.data];
+        console.log('allArray',allArray);
         const choseCurrenci = allArray.filter(item => item.currencieName == currentCur);
         thunkAPI.dispatch(currenciesSlice.actions.setCurrenciesValue(choseCurrenci[0].currencieValue))
+        thunkAPI.dispatch(currenciesSlice.actions.setCurrenciesName(choseCurrenci[0].currencieName))
       })
       // console.log('currentCur',currentCur);
     } catch (e) {
@@ -32,8 +35,13 @@ export const getCurrencies = createAsyncThunk('currencies', async (payload, thun
         },
         setCurrenciesValue(state, action) {
             state.currencieValue = action.payload;
+        },
+        setCurrenciesName(state, action) {
+            state.currencieName = action.payload;
         }
     }
   })
+
+  export const {setCurrenciesName, setCurrenciesValue} = currenciesSlice.actions;
 
   export const currentCurrenciesReducer = currenciesSlice.reducer;
