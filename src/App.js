@@ -42,11 +42,36 @@ function App() {
   const user = useSelector((state) => state.authUser.user);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     if(!window.localStorage.getItem("bus-language")) {
       window.localStorage.setItem("bus-language",'ESP')
     }
   },[])
+
+  useEffect(() => {
+    let currenciesNameFromStorage = window.localStorage.getItem("curentRate");
+    if (!currenciesNameFromStorage) {
+      window.localStorage.setItem("curentRate", 'EUR');
+    }
+    let existingCurrencies = [];
+  
+    axios.get(`${API_URL}/get-all-current-currencies`)
+      .then((res) => {
+        res.data.forEach((item) => {
+          existingCurrencies.push(item.currencieName);
+        });
+  
+      if(!existingCurrencies.includes(currenciesNameFromStorage)) {
+        window.localStorage.setItem("curentRate", 'EUR');
+        dispatch(getCurrencies());
+      }
+      })
+      .catch((error) => {
+        console.error('Error fetching currencies:', error);
+      });
+  }, []);
+
 
   useEffect(() => {
     try {
@@ -70,8 +95,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <img className='img_baner_absolute' src="./image/bus-main.svg" alt="" /> */}
-      {/* <FirstRequest/> */}
       <CookieModal/>
       <Header />
       <Routes>
@@ -84,8 +107,6 @@ function App() {
         <Route path="/registration-user" element={<RegistrationUserForm />} />
         </>}
         <Route path="/user-profile" element={<Profile />} />
-        {/* {isAuthUser && 
-        <Route path="/user-profile" element={<Profile />} />} */}
         {(isAdmin || isOperator) && 
         <Route path="/admin-panel" element={<AdminPanel />} />}
         <Route path="/trip-list" element={<BookingDerect/>} />
