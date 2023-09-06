@@ -4,6 +4,8 @@ import Direction from './direction/Direction';
 import AddUser from './addUser/AddUser';
 import FaqAdmin from './faq/FaqAdmin';
 import AddBlog from './blogAdd/AddBlog';
+import AddBusPage from './addBus/AddBusPage';
+import AddRouts from './addRutes/AddRouts';
 import { BiRightArrow } from 'react-icons/bi';
 import { PiNewspaperClippingFill } from 'react-icons/pi';
 import { AiFillHome } from 'react-icons/ai';
@@ -30,6 +32,8 @@ const AdminPanel = () => {
     const [isFaq, setIsFaq] = useState(false)
     const [isAddUser, setIsAddUser] = useState(false)
     const [isSetting, setIsSetting] = useState(false)
+    const [isAddBus, setIsAddBus] = useState(false)
+    const [isAddRouts, setIsAddRouts] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -45,6 +49,8 @@ const AdminPanel = () => {
         setIsFaq(false)
         setIsAddUser(false)
         setIsSetting(false)
+        setIsAddBus(false)
+        setIsAddRouts(false)
     }
     const hendlerOpenDirection = () => {
         setIsDashboadr(false)
@@ -53,6 +59,8 @@ const AdminPanel = () => {
         setIsFaq(false)
         setIsAddUser(false)
         setIsSetting(false)
+        setIsAddBus(false)
+        setIsAddRouts(false)
     }
     const hendlerOpenBlog = () => {
         setIsDashboadr(false)
@@ -61,6 +69,8 @@ const AdminPanel = () => {
         setIsFaq(false)
         setIsAddUser(false)
         setIsSetting(false)
+        setIsAddBus(false)
+        setIsAddRouts(false)
     }
     const hendlerOpenFaq = () => {
         setIsDashboadr(false)
@@ -69,6 +79,8 @@ const AdminPanel = () => {
         setIsFaq(true)
         setIsAddUser(false)
         setIsSetting(false)
+        setIsAddBus(false)
+        setIsAddRouts(false)
     }
     const hendlerOpenAddUser = () => {
         setIsDashboadr(false)
@@ -77,6 +89,8 @@ const AdminPanel = () => {
         setIsFaq(false)
         setIsAddUser(true)
         setIsSetting(false)
+        setIsAddBus(false)
+        setIsAddRouts(false)
     }
     const hendlerOpenSetting = () => {
         setIsDashboadr(false)
@@ -85,6 +99,28 @@ const AdminPanel = () => {
         setIsFaq(false)
         setIsAddUser(false)
         setIsSetting(true)
+        setIsAddBus(false)
+        setIsAddRouts(false)
+    }
+    const hendlerOpenAddBus = () => {
+        setIsDashboadr(false)
+        setIsDirection(false)
+        setIsBlog(false)
+        setIsFaq(false)
+        setIsAddUser(false)
+        setIsSetting(false)
+        setIsAddBus(true)
+        setIsAddRouts(false)
+    }
+    const hendlerOpenAddRoutes = () => {
+        setIsDashboadr(false)
+        setIsDirection(false)
+        setIsBlog(false)
+        setIsFaq(false)
+        setIsAddUser(false)
+        setIsSetting(false)
+        setIsAddBus(false)
+        setIsAddRouts(true)
     }
 
     const logoutAdministration = () => {
@@ -105,8 +141,13 @@ const AdminPanel = () => {
                             <li 
                             onClick={hendlerOpenDirection}
                             className={`nav_list-item ${isDirection ? 'nav_list-item-active' : ''} `}><RiDirectionFill />{t('Creating directions')}</li>
-                            <li className='nav_list-item'><FaBus/>{t('Add bus')}</li>
-                            <li className='nav_list-item'><TbEaseInOutControlPoints/>{t('Add stops and routes')}</li>
+                            <li 
+                            onClick={hendlerOpenAddBus}
+                            className={`nav_list-item ${isAddBus ? 'nav_list-item-active' : ''} `}><FaBus/>{t('Add bus')}</li>
+                            <li 
+                            onClick={hendlerOpenAddRoutes}
+                            className={`nav_list-item ${isAddRouts ? 'nav_list-item-active' : ''} `}>
+                                <TbEaseInOutControlPoints/>{t('Add stops and routes')}</li>
                             {!isOperator &&
                             <li 
                             onClick={hendlerOpenSetting}
@@ -133,6 +174,12 @@ const AdminPanel = () => {
                         }
                         {isDirection && 
                             <Direction/>
+                        }
+                        {isAddBus && 
+                            <AddBusPage/>
+                        }
+                        {isAddRouts && 
+                            <AddRouts/>
                         }
                         {isSetting && 
                             <SettingSite/>

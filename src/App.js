@@ -25,6 +25,7 @@ import AboutUsPage from "./components/aboutUs/AboutUsPage";
 import PoliciPage from "./components/polici/PoliciPage";
 import RulesPage from "./components/rulePage/RulePage";
 import TestPdf from "./components/booking/pdf/TestPdf";
+import AddRouts from "./components/admin/addRutes/AddRouts";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -121,6 +122,7 @@ function App() {
         <Route path="/policy" element={<PoliciPage/>}/>
         <Route path="/rule" element={<RulesPage/>}/>
         <Route path="/pdf-test" element={<TestPdf/>}/>
+        <Route path="/admin-panel/add-routs" element={<AddRouts/>}/>
       </Routes>
       <Footer />
     </div>

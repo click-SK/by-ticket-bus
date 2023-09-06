@@ -40,8 +40,6 @@ const AddUser = () => {
         }
     },[reloadState])
 
-    console.log('managerList',managerList);
-    console.log('driverList',driverList);
 
     useEffect(() => {
         try {
