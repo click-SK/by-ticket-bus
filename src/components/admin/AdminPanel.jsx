@@ -146,7 +146,8 @@ const AdminPanel = () => {
                             className={`nav_list-item ${isAddBus ? 'nav_list-item-active' : ''} `}><FaBus/>{t('Add bus')}</li>
                             <li 
                             onClick={hendlerOpenAddRoutes}
-                            className='nav_list-item'><TbEaseInOutControlPoints/>{t('Add stops and routes')}</li>
+                            className={`nav_list-item ${isAddRouts ? 'nav_list-item-active' : ''} `}>
+                                <TbEaseInOutControlPoints/>{t('Add stops and routes')}</li>
                             {!isOperator &&
                             <li 
                             onClick={hendlerOpenSetting}

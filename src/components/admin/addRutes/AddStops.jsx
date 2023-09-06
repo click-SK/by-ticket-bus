@@ -1,29 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io';
 import ReactQuill from 'react-quill';
+import CityStops from './CityStops';
+import UrbanStops from './UrbanStops';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import { API_URL } from '../../../http/baseUrl';
 import { useTranslation } from "react-i18next";
 import '../../../style/addRoutes.scss'
 
+
 const AddStops = () => {
+    const [ isAddRoutesCity, setIsAddRoutesCity] = useState(false);
+    const [ isAddRoutesUrban, setIsAddRoutesUrban] = useState(false);
+
+    const hendlerAddRoutesCity = () =>{
+        setIsAddRoutesCity(!isAddRoutesCity)
+        setIsAddRoutesUrban(false)
+    }
+    const hendlerAddRoutesUrban = () =>{
+        setIsAddRoutesUrban(!isAddRoutesUrban)
+        setIsAddRoutesCity(false)
+    }
+    
     return (
-        <div className="add_post_wrap add_stops_wrap">
-            <div className='one_block_wrap right_block-stops'>
-                <input type="text" placeholder='Start' />
+        <div className="add_post_wrap add_stops_wrap ">
+            <div className='btn_wrap_add-routes'>
+                <div
+                    onClick={hendlerAddRoutesCity} 
+                    className={`ernings_wraper-item admin_panel_items add_user_button ${true ? 'active_btn_user' : ''}`}>
+                    <p className='curent_sum add_user-item'>City routs<IoMdAddCircle/></p>
+                </div>
+                <div
+                    onClick={hendlerAddRoutesUrban} 
+                    className={`ernings_wraper-item admin_panel_items add_user_button ${true ? 'active_btn_user' : ''}`}>
+                    <p className='curent_sum add_user-item'>Urban routs <IoMdAddCircle/></p>
+                </div>
             </div>
-            <div className='one_block_wrap left_block-stops'>
-                <iframe
-                    title="Company Location"
-                    width="100%"
-                    height="100%"
-                    frameBorder="0"
-                    style={{ border: '0' }}
-                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCzM_aopt5Y3rgR-o30mKxKoRrsSv2k02w&q=Ukraine,Kyiv&zoom=15`}
-                    allowFullScreen
-                    ></iframe>
-            </div>
+                {isAddRoutesCity &&
+                <CityStops/>
+                }
+                {isAddRoutesUrban &&
+                <UrbanStops/>
+                }
         </div>
     );
 };

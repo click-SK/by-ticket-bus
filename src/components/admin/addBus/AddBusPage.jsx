@@ -61,7 +61,7 @@ const AddBusPage = () => {
 
     return (
         <div className='admin_content_wrap'>
-            <h2>{t('Add User')}</h2>
+            <h2>Add bus</h2>
             <div className='add_user_button-wrap'>
                 <div className='ernings_wraper add-use_wrap'>
                     <div 
