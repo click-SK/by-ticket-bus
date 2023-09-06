@@ -13,6 +13,40 @@
 
 .edit-bus-form{
     background: #f4f7fe;
-    width: 400px;
-    height: 400px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 20px;
+    width: 600px;
+    // height: 400px;
+}
+
+.edit-bus-input{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    input{
+        margin-left: 10px;
+        height: 50px;
+        padding: 5px 10px;
+    }
+    .checkbox{
+        width: 20px;
+        height: 20px;
+    }
+
+}
+
+.input-checkbox_bus{
+    flex-direction: row;
+}
+
+.edit-bus-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    background: red;
 }

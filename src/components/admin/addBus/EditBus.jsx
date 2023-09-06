@@ -51,21 +51,23 @@ const EditBus = ({ bus, onSave, onCancel }) => {
             onChange={handleInputChange}
           />
         </div>
-        <div className="edit-bus-input">
+        <div className="edit-bus-input input-checkbox_bus">
           <label htmlFor="edit-toilet">Toilet</label>
           <input
             id="edit-toilet"
+            className='checkbox'
             type="checkbox"
             name="toilet"
             checked={editedBus.toilet}
             onChange={handleInputChange}
           />
         </div>
-        <div className="edit-bus-input">
+        <div className="edit-bus-input input-checkbox_bus">
           <label htmlFor="edit-wifi">Wifi</label>
           <input
             id="edit-wifi"
             type="checkbox"
+            className='checkbox'
             name="wifi"
             checked={editedBus.wifi}
             onChange={handleInputChange}
