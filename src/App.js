@@ -34,6 +34,7 @@ import { getCurrencies } from "./store/currentCurrencies";
 import { currentLang } from "./store/language";
 import axios from "axios";
 import { API_URL } from "./http/baseUrl";
+import UrbanStops from "./components/admin/addRutes/UrbanStops";
 // import FirstRequest from './components/FirstRequest';
 function App() {
   const [validateAdmin, setValidateAdmin] = useState(false);
@@ -122,7 +123,7 @@ function App() {
         <Route path="/policy" element={<PoliciPage/>}/>
         <Route path="/rule" element={<RulesPage/>}/>
         <Route path="/pdf-test" element={<TestPdf/>}/>
-        <Route path="/admin-panel/add-routs" element={<AddRouts/>}/>
+        <Route path="/urban" element={<UrbanStops/>}/>
       </Routes>
       <Footer />
     </div>
