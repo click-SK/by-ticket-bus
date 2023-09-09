@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { registration } from '../../../store/authAdministration';
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+import { API_URL } from '../../../http/baseUrl';
 
 const AddBusForm = ({setBusList, busList, setIsAddBusForm}) => {
     const [nameBus, setNameBus] = useState('')
-    const [namberBus, setNamberBus] = useState('')
+    const [numberBus, setNumberBus] = useState('')
     const [seats, setSeats] = useState('')
     const [toilet, setToilet] = useState(false)
     const [wifi, setWifi] = useState(false)
@@ -14,42 +16,33 @@ const AddBusForm = ({setBusList, busList, setIsAddBusForm}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const henderAddBus = () => {
+    const handleAddBus = () => {
         try {
-          setBusList((prevBusList) => [
-            ...prevBusList,
-            {
-              nameBus: nameBus,
-              number: namberBus,
-              seats: seats,
-              toilet: toilet,
-              wifi: wifi,
-            },
-          ]);
-          setIsAddBusForm(false)
+          axios.post(`${API_URL}/create-bus`, {
+            nameBus,
+            numberBus,
+            seats,
+            toilet,
+            wifi
+          }) .then(() => {
+            setTimeout(() => {
+              alert('Bus added');
+              setNameBus('');
+              setNumberBus('');
+              setSeats('');
+              setToilet(false);
+              setWifi(false);
+            },500)
+
+          }).catch((error) => {
+            console.log(error);
+          })
         } catch (error) {
           console.log(error);
         }
       };
 
-    // const handleRegistrationManager = async () => {
-    //     try{
-    //         const data = await dispatch(registration({login: toilet, password: managerPasnameBus: nameBus, lastName: namberBus}));
-    //         console.log('register manager',data);
-    //         if('user' in data.payload) {
-    //           alert('A new manager has been added')
-    //           setNameBus('');
-    //           setNamberBus('');
-    //           setSeats('');
-    //           setToilet('');
-    //           setReloadState((state) => !state)
-    //         } else {
-    //             alert(data.payload.message)
-    //         }
-    //     } catch(e) {
-    //         console.log(e);
-    //     }
-    // }
+    
     return (
         <>
             <div className='add_user-content'>
@@ -59,7 +52,7 @@ const AddBusForm = ({setBusList, busList, setIsAddBusForm}) => {
                     </div>
                     <div className='add_user-input'>
                         <label htmlFor="lust_name">Bus Number</label>
-                        <input id='lust_name' type="text" value={namberBus} onChange={(e) => setNamberBus(e.target.value)}  />
+                        <input id='lust_name' type="text" value={numberBus} onChange={(e) => setNumberBus(e.target.value)}  />
                     </div>
                     <div className='add_user-input'>
                         <label htmlFor="password">Seats</label>
@@ -67,15 +60,15 @@ const AddBusForm = ({setBusList, busList, setIsAddBusForm}) => {
                     </div>
                     <div className='add_user-input'>
                         <label htmlFor="toilet">Toilet</label>
-                        <input id='toilet' type="checkbox" value={toilet} onChange={(e) => setToilet(e.target.value)}  />
+                        <input id='toilet' type="checkbox" value={toilet} onChange={(e) => setToilet((state) => !state)}  />
                     </div>
                     <div className='add_user-input'>
                         <label htmlFor="wifi">Wifi</label>
-                        <input id='wifi' type="checkbox" value={wifi} onChange={(e) => setWifi(e.target.value)}  />
+                        <input id='wifi' type="checkbox" value={wifi} onChange={(e) => setWifi((state) => !state)}  />
                     </div>
                     <button className='btn-save add_user_button'
                     //  onClick={handleRegistrationManager}
-                     onClick={henderAddBus}
+                     onClick={handleAddBus}
                      >
                         {t('Save')}</button>
                 </div>
