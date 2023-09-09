@@ -7,9 +7,9 @@ import { IoMdAddCircle } from 'react-icons/io';
 import ManagerForm from '../addUser/ManagerForm';
 import DriverForm from '../addUser/DriverForm';
 import AddBusForm from './AddBusForm';
-import EditBus from './EditBus';
 import { useTranslation } from "react-i18next";
 import $api from '../../../http/httpUsers';
+import VisibleAllBuses from './VisibleAllBuses';
 
 const AddBusPage = () => {
     const [reloadState, setReloadState ] = useState(false)
@@ -19,7 +19,6 @@ const AddBusPage = () => {
     const [managerList, setManagerList] = useState([]);
     const [driverList, setDriverList] = useState([]);
     const [allRoleList, setAllRoleList] = useState([]);
-    const [selectedBusIndex, setSelectedBusIndex] = useState(null);
     const { t } = useTranslation();
     const [busList, setBusList] = useState([
         {
@@ -101,38 +100,7 @@ const AddBusPage = () => {
                     <p className='filter-item'>{t('Driver')}</p>
                     <p className='filter-item'>{t('Partner')}</p>
                 </div> */}
-                <div className='derection_table_wrap'>
-                    <div className='table_header  '>
-                        <p className='colum colum_name table_partner-item'>{t('Name')}</p>
-                        <p className='colum table_partner-item'>Number</p>
-
-                    </div>
-                    <div className='table_body'>
-                        {busList.map((item, idx) => (
-                            <div key={idx} 
-                            onClick={() => setSelectedBusIndex(idx)}
-                            className='table_info_item'> 
-                                <p className='colum row colum_name table_partner-item'>{item.nameBus}</p>
-                                <p className='colum row colum_progres table_partner-item'> {item.number}</p>
-                                
-                                {/* <p onClick={() => handleDeleteUser(item)}> X</p> */}
-                            </div>
-                        ))
-                        }
-                    </div>
-                </div>
-                {selectedBusIndex !== null && (
-                <EditBus
-                    bus={busList[selectedBusIndex]}
-                    onSave={(editedBus) => {
-                    const updatedBusList = [...busList];
-                    updatedBusList[selectedBusIndex] = editedBus;
-                    setBusList(updatedBusList);
-                    setSelectedBusIndex(null); 
-                    }}
-                    onCancel={() => setSelectedBusIndex(null)} 
-                />
-                )}
+                <VisibleAllBuses/>
             </div>
 
         </div>
