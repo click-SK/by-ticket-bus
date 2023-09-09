@@ -10,6 +10,7 @@ const SettingCurrency = () => {
     const [curentCurrencies, setCurrentCurrencies] = useState([])
     const [isOpenSelect, setIsOpenSelect] = useState('')
     const { t } = useTranslation();
+    
     useEffect(() => {
         try {
             axios.get(`${API_URL}/get-all-default-currencies`)

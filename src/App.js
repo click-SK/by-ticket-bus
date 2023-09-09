@@ -25,6 +25,7 @@ import AboutUsPage from "./components/aboutUs/AboutUsPage";
 import PoliciPage from "./components/polici/PoliciPage";
 import RulesPage from "./components/rulePage/RulePage";
 import TestPdf from "./components/booking/pdf/TestPdf";
+import RoutOne from "./components/admin/addRutes/RoutOne";
 import AddRouts from "./components/admin/addRutes/AddRouts";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
@@ -124,6 +125,7 @@ function App() {
         <Route path="/rule" element={<RulesPage/>}/>
         <Route path="/pdf-test" element={<TestPdf/>}/>
         <Route path="/urban" element={<UrbanStops/>}/>
+        <Route path='/rout/:id' element={<RoutOne/>}/>
       </Routes>
       <Footer />
     </div>

@@ -23,6 +23,7 @@ const UrbanStops = () => {
     const [routesOrigin, setRoutesOrigin] = useState([]);
     const [distance, setDistance] = useState('');
     const [duration, setDuration] = useState('');
+    const [routName, setRoutName] = useState('');
     const [inputBlocks, setInputBlocks] = useState([0]);
     const [markers, setMarkers] = useState([]);
 
@@ -105,8 +106,8 @@ const UrbanStops = () => {
         const totalDurationInMinutes = (totalDuration / 60).toFixed(0);
     
         setRoutes(newRoutes);
-        setDistance(`${totalDistanceInKm} km`);
-        setDuration(`${totalDurationInMinutes} min`);
+        setDistance(totalDistanceInKm);
+        setDuration(totalDurationInMinutes);
     
         console.log('newRoutes',newRoutes);
       };
@@ -136,11 +137,16 @@ const UrbanStops = () => {
         );
       };
 
+      console.log('routes',routes);
+
       
   const handleSaveDb = () => {
     console.log('routesOrigin',routesOrigin);
-    axios.post('http://localhost:4444/create-routes', {
-      routes: routesOrigin
+    axios.post(`${API_URL}/create-routes`, {
+      routes: routesOrigin,
+      distance,
+      duration,
+      routName
     }) .then(() => {
       alert('sucsses')
     })
@@ -148,34 +154,69 @@ const UrbanStops = () => {
 
     return (
       <div className="content_wrap">
-        <div className="one_block_wrap right_block-stops" >
+        <div className="one_block_wrap right_block-stops">
           <h3 className="right_block-title">Add adress urban</h3>
-          <p>Distance: {distance}</p>
-          <p>Duration: {duration}</p>
-          <div>
-              <button onClick={handleAddBlock} style={{background: 'black', color: 'white'}}>Add route +</button>
+          <p>Distance: {distance ? distance + " km" : ""} </p>
+          <p>Distance: {duration ? duration + " min" : ""} </p>
+          {duration && distance && (
+            <div>
+              Rout name:
+              <input 
+              value={routName}
+              onChange={(e) => setRoutName(e.target.value)}/>
             </div>
-          <div style={{display: 'flex', flexDirection: 'column', position: 'relative'}}>
-          <Autocomplete >
+          )}
+          <div>
+            <button
+              onClick={calculateRouteInput}
+              style={{ background: "black", color: "white" }}
+            >
+              Generate route
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={handleSaveDb}
+              style={{ background: "black", color: "white" }}
+            >
+              Save route
+            </button>
+          </div>
+          <div>
+            <button
+              onClick={handleAddBlock}
+              style={{ background: "black", color: "white" }}
+            >
+              Add input +
+            </button>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
+            }}
+          >
+            <Autocomplete>
               <input
-                type='text'
+                type="text"
                 placeholder={`Origin`}
                 ref={originRef}
-                style={{margin: '5px 0px',padding: '5px 25px'}}
+                style={{ margin: "5px 0px", padding: "5px 25px" }}
               />
             </Autocomplete>
             {inputBlocks.map((block, index) => (
-              <div key={index} style={{display: 'flex', gap: '10px'}}>
+              <div key={index} style={{ display: "flex", gap: "10px" }}>
                 <Autocomplete>
                   <input
-                    type='text'
+                    type="text"
                     placeholder={`Destination ${index + 1}`}
                     ref={(ref) => (destinationRefs.current[index] = ref)}
-                    style={{margin: '5px 0px', padding: '5px 25px'}}
+                    style={{ margin: "5px 0px", padding: "5px 25px" }}
                   />
                 </Autocomplete>
                 <button
-                  className='btn_add_team'
+                  className="btn_add_team"
                   onClick={() => handleRemoveBlock(index)}
                 >
                   Remove -
