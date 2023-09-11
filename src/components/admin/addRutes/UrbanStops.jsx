@@ -26,6 +26,7 @@ const UrbanStops = () => {
     const [routName, setRoutName] = useState('');
     const [inputBlocks, setInputBlocks] = useState([0]);
     const [markers, setMarkers] = useState([]);
+    const [allStops, setAllStops] = useState([]);
 
     const originRef = useRef();
     const destinationRefs = useRef([]);
@@ -50,6 +51,7 @@ const UrbanStops = () => {
         }
     
         let prevDestination = origin;
+
         console.log('prevDestination',prevDestination);
         console.log('directionsRequests',directionsRequests);
     
@@ -108,8 +110,26 @@ const UrbanStops = () => {
         setRoutes(newRoutes);
         setDistance(totalDistanceInKm);
         setDuration(totalDurationInMinutes);
+
+        let stopsArray = [];
+
+        newRoutes.forEach((item) => {
+          item.routes.forEach((el) => {
+            el.legs.forEach((rout) => {
+              const formatDistance = (rout.distance.value / 1000).toFixed(2);
+              const formatDuration = (rout.duration.value / 60).toFixed(0);
+
+              stopsArray.push({
+                start: rout.start_address,
+                end: rout.end_address,
+                distance: formatDistance,
+                duration: formatDuration,
+              })
+            })
+          })
+        })
+        setAllStops(stopsArray);
     
-        console.log('newRoutes',newRoutes);
       };
 
       const clearRoute = () => {
@@ -146,7 +166,8 @@ const UrbanStops = () => {
       routes: routesOrigin,
       distance,
       duration,
-      routName
+      routName,
+      allStops
     }) .then(() => {
       alert('sucsses')
     })
