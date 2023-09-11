@@ -1,85 +1,86 @@
 .App {
-    /* text-align: center; */
-    /* max-width: 1440px; */
-    position: relative;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1000;
+  /* text-align: center; */
+  /* max-width: 1440px; */
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
 
 }
 
 .pac-container{
-  z-index: 1100;
+z-index: 1100;
 }
 
 /* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+height: 40vmin;
+pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+background-color: #282c34;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+font-size: calc(10px + 2vmin);
+color: white;
 }
 
 .App-link {
-  color: #61dafb;
+color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+from {
+  transform: rotate(0deg);
+}
+to {
+  transform: rotate(360deg);
+}
 } */
 
 * {
-  padding: 0%;
-  margin: 0;
-  border: 0;
+padding: 0%;
+margin: 0;
+border: 0;
 }
 *,
 *::before,
 *::after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
 }
 
 :focus-active {
-  outline: none;
+outline: none;
 }
 a:focus,
 a:active {
-  outline: none;
+outline: none;
 }
 nav,
 footer,
 header,
 aside {
-  display: block;
+display: block;
 }
 html,
 body {
   display: flex;
+  /* justify-content: center; */
   align-items: center;
   height: 100%;
   width: 100%;
@@ -91,86 +92,87 @@ body {
 }
 
 input::-ms-clear {
-  display: none;
+display: none;
 }
 button {
-  cursor: pointer;
+cursor: pointer;
 }
 
 button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
+padding: 0;
+border: 0;
 }
 a,
 a:visited {
-  text-decoration: none;
+text-decoration: none;
 }
 a:hover {
-  text-decoration: none;
+text-decoration: none;
 }
 ul li {
-  list-style: none;
+list-style: none;
 }
 img {
-  vertical-align: top;
+vertical-align: top;
 }
 
 a {
-  text-decoration:none;
+text-decoration:none;
 }
 
 input, textarea {
   outline: none;
   border: none;
+  /* border: solid 1px #f2f2f2; */
   }
 
-  body {
-    margin-left: auto;
-    margin-right: auto;
-    background: var(--color-bg-prime);
-    transition: all 2s ease-in-out;
-    font-family: Kanit;
-    font-style: normal;
-    font-weight: 400;
-  }
+body {
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--color-bg-prime);
+  transition: all 2s ease-in-out;
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: 400;
+}
 
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,span, button, a {
-    font-family: Kanit;
-    font-style: normal;
-    font-weight: 400;
-    color: var(--color-text-title);
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,span, button, a {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--color-text-title);
+}
 
 
-  h2{
-    font-size: 40px;
-  }
-  h3{
-    font-size: 30px;
-  }
+h2{
+  font-size: 40px;
+}
+h3{
+  font-size: 30px;
+}
 
-  button:hover{
-    background-color: var(--color-btn-hover);
-  }
-  button{
-    color: var(--color-btn);
-  }
+button:hover{
+  background-color: var(--color-btn-hover);
+}
+button{
+  color: var(--color-btn);
+}
 
-  .btn_prime{
-    background-color: var(--color-prime);
-    color: var(--color-btn);
-    padding: 10px 44px;
-    box-shadow: 0px 0px 20px 2px var(--color-prime);
-    transition: all 0.2s ease-in-out;
-    border-radius: 10px;
-  }
+.btn_prime{
+  background-color: var(--color-prime);
+  color: var(--color-btn);
+  padding: 10px 44px;
+  box-shadow: 0px 0px 20px 2px var(--color-prime);
+  transition: all 0.2s ease-in-out;
+  border-radius: 10px;
+}
 
   .btn_prime:hover{
     box-shadow: 0px 0px 20px 2px var(--color-btn-hover);
@@ -181,13 +183,19 @@ input, textarea {
     transition: all 0.2s ease-in-out;
   }
 
+  /* .img_baner_absolute{
+    position: absolute;
+    left: 0;
+    width: 100%;
+  } */
+
   .test_pdf{
     margin-top: 150px;
     height: 100vh;
     width: 100%;
   }
 
-  .pac-container span{
+  
+  .pac-container span {
     color: black;
   }
-

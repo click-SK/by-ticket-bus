@@ -155,74 +155,66 @@ const UrbanStops = () => {
     return (
       <div className="content_wrap">
         <div className="one_block_wrap right_block-stops">
-          <h3 className="right_block-title">Add adress urban</h3>
-          <p>Distance: {distance ? distance + " km" : ""} </p>
-          <p>Distance: {duration ? duration + " min" : ""} </p>
-          {duration && distance && (
-            <div>
-              Rout name:
-              <input 
-              value={routName}
-              onChange={(e) => setRoutName(e.target.value)}/>
+          <div className='info-block-wrap'>
+            <h3 className="right_block-title">Add adress urban</h3>
+            <p>Distance: {distance ? distance + " km" : ""} </p>
+            <p>Distance: {duration ? duration + " min" : ""} </p>
+            <div className='wrap-btn-map'>
+                <button
+                  onClick={calculateRouteInput}
+                  className='btn-map'
+                >
+                  Generate route
+                </button>
+
+                <button
+                  onClick={handleSaveDb}
+                  className='btn-map'
+                >
+                  Save route
+                </button>
             </div>
-          )}
-          <div>
-            <button
-              onClick={calculateRouteInput}
-              style={{ background: "black", color: "white" }}
-            >
-              Generate route
-            </button>
+
           </div>
-          <div>
-            <button
-              onClick={handleSaveDb}
-              style={{ background: "black", color: "white" }}
-            >
-              Save route
-            </button>
-          </div>
-          <div>
-            <button
-              onClick={handleAddBlock}
-              style={{ background: "black", color: "white" }}
-            >
-              Add input +
-            </button>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-            }}
-          >
+          <div className='input_wrap-map' >
+                <input 
+                className='input-name_routs'
+                placeholder='Rout name:'
+                value={routName}
+                onChange={(e) => setRoutName(e.target.value)}/>
+
             <Autocomplete>
               <input
                 type="text"
                 placeholder={`Origin`}
                 ref={originRef}
-                style={{ margin: "5px 0px", padding: "5px 25px" }}
+                
               />
             </Autocomplete>
             {inputBlocks.map((block, index) => (
-              <div key={index} style={{ display: "flex", gap: "10px" }}>
-                <Autocomplete>
+              <div className='input_point-wrap' key={index} >
+                <Autocomplete className='input-map'>
                   <input
                     type="text"
                     placeholder={`Destination ${index + 1}`}
                     ref={(ref) => (destinationRefs.current[index] = ref)}
-                    style={{ margin: "5px 0px", padding: "5px 25px" }}
+                    
                   />
                 </Autocomplete>
                 <button
-                  className="btn_add_team"
+                  className=" btn-map  btn_add_team"
                   onClick={() => handleRemoveBlock(index)}
                 >
                   Remove -
                 </button>
               </div>
             ))}
+                          <button
+                onClick={handleAddBlock}
+                className='btn-map'
+              >
+                Add input +
+              </button>
           </div>
         </div>
         <div className="one_block_wrap left_block-stops">
