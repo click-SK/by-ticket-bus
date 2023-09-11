@@ -45,3 +45,65 @@
     width: 100%;
 
 }
+
+.wrap-btn-map{
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+.btn-map{
+    padding: 5px 10px;
+    background: black;
+    color: #fff;
+    border-radius: 8px;
+    height: 50px;
+    width: 100%;
+}
+
+.input_wrap-map{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    input{
+        height: 50px;
+        padding: 0px 10px;
+        width: 100%;
+        border-radius: 8px;
+    }
+    span{
+        color: black;
+    }
+}
+
+
+.input-name_routs{
+    height: 50px;
+    padding: 0px 10px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+
+.input_point-wrap{
+    display: flex;
+    gap: 5px;
+    input{
+        
+    }
+    button{
+        flex: 0 1 30%;
+    }
+}
+
+.input-map{
+    flex: 0 1 70%;
+}
+
+.info-block-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}

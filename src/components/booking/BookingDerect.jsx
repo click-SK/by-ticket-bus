@@ -42,7 +42,7 @@ const BookingDerect = () => {
                 <div className='list_wrap'>
                 {isOutbound ?
                     (listArr.map((item, idx) => (
-                        <Link to={`/booking-direct№`}><DerectionList 
+                        <Link to={`/booking-info-pas`}><DerectionList 
                         key={idx}
                         cityFrom = {cityFrom}
                         cityTo = {cityTo}
