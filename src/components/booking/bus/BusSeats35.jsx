@@ -34,7 +34,7 @@ const BusSeats35 = ({seats}) => {
 
   console.log("number", curentSeats);
   return (
-    <div>
+    <div className="bus_wraper">
 
     
     <svg
@@ -1259,7 +1259,10 @@ const BusSeats35 = ({seats}) => {
         </clipPath>
       </defs>
     </svg>
-    <button className="btn_prime">/booking-info-pas</button>
+    <Link to='/booking-info-pas'>
+    <button className="btn_prime">Save</button>
+
+    </Link>
     </div>
   );
 };

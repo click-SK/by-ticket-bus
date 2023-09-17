@@ -19,6 +19,14 @@
     max-width: 1440px;
 }
 
+.content_wrap-header{
+    max-width: 1440px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
 .p-header, .icon{
     color: var(--color-text-title);
     transition: all 0.2s ease-in-out;

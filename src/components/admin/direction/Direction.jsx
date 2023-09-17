@@ -7,6 +7,7 @@ import DispalayDirectionData from './DispalayDirectionData';
 import axios from 'axios';
 import { API_URL } from '../../../http/baseUrl';
 import SelectDays from './SelectDays';
+import '../../../style/adminDirection.scss'
 const Direction = () => {
     const [selectedRout, setSelectedRout] = useState(null);
     const [formatedSelectedRout, setFormatedSelectedRout] = useState(null);
@@ -106,10 +107,13 @@ const Direction = () => {
             setDrivers={setDrivers}/>
             <SelectDays setDays={setDaysArray} days={daysArray}/>
             <textarea 
+            className='info_road-clients'
             value={description}
+            placeholder='info direct'
             onChange={(e) => setDescription(e.target.value)}/>
             <div>
                 <button 
+                className='btn-map'
                 style={{background: 'black'}}
                 onClick={handleGenerateDirection}>Generate direction</button>
             </div>
