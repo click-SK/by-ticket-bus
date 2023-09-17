@@ -4,7 +4,7 @@ import { API_URL } from '../../../http/baseUrl';
 import { useTranslation } from "react-i18next";
 import { BiDownArrow } from 'react-icons/bi';
 import $api from '../../../http/httpUsers';
-const SelectDrivers = ({setSelectedDrivers}) => {
+const SelectDrivers = ({setSelectedDrivers, drivers, setDrivers}) => {
     const [isOpenSelect, setIsOpenSelect] = useState(false);
     const [allDrivers, setAllDrivers] = useState([]);
     const { t } = useTranslation();
@@ -20,8 +20,19 @@ const SelectDrivers = ({setSelectedDrivers}) => {
     },[])
 
     const handleAdd = (el) => {
-        setSelectedDrivers(el)
+        if(!drivers.includes(el.fullName)) {
+            setDrivers((state) => [...state, el.fullName])
+        } else {
+            alert('Driver added')
+        }
     }
+
+    const handleDelete = (el) => {
+        const newArray = drivers.filter((item) => item !== el.fullName);
+        setDrivers(newArray);
+    }
+
+
     return (
         <div className='select_wrap_coin'>
         <div className='name_coin'>
@@ -37,9 +48,9 @@ const SelectDrivers = ({setSelectedDrivers}) => {
                 {allDrivers.length != 0 && allDrivers.map((el, idx) => (
                     <div
                         key={idx}
-                        onClick={() => handleAdd(el)}
                         className='coin_list-item-new'>
-                            <p>{el.fullName}</p>    
+                            <p onClick={() => handleAdd(el)}>{el.fullName}</p>    
+                            <p onClick={() => handleDelete(el)}>X</p>
                     </div>
                 ))}
             </div>
