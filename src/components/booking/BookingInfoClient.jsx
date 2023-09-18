@@ -3,6 +3,7 @@ import BusSeats35 from "./bus/BusSeats35";
 import axios from 'axios';
 import { PDFViewer } from '@react-pdf/renderer';
 import TicketTamplate from "./pdf/TicketTamplate";
+import TicketView from "./pdf/TicketView";
 import QRCode from 'qrcode.react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useSelector, useDispatch } from 'react-redux';
@@ -46,7 +47,7 @@ const BookingInfoClient = () => {
   const handleGeneratePdf = async () => {
     const blob = new Blob([<TicketTamplate />], { type: 'application/pdf' });
     setPdfBlob(blob); // Зберегти PDF в стані
-    console.log('testtt',<TicketTamplate/>);
+    // console.log('testtt',<TicketTamplate/>);
     try {
       // const response = await axios.post('/api/save-pdf', pdfBlob, {
       //   headers: {
@@ -87,34 +88,15 @@ const BookingInfoClient = () => {
             <Link to='/bus-seats' className="select_seat">
             <div className="content-pas">
                 <MdOutlineAirlineSeatReclineNormal className="seat_svg" />
-                <p>{seats.length !== 0 ? seats : 'Select you seat'}</p>
+                <div className="seat-wraper">{seats.length !== 0 ? 
+                seats.map((item,idx) => (
+                  <p>{item.length == 1 ? `${item} seat` : ''}</p>
+                )) : 
+                <p>Select you seat</p>}</div>
             </div>
             <BiRightArrow className="arow_svg" />
             </Link>
       </div>
-      {/* <div className="wrap_info_item info_reservation">
-        <div className="title_wrap_item">
-          <p className="title_numb">3</p>
-          <p className="title_text">Extras</p>
-        </div>
-        <div className="select_seat">
-          <div className="content-pas">
-            <TbLuggage className="seat_svg" />
-            <p>Included per person</p>
-            <p>1 Hand Luggage | 7 kg · 42×30×18 cm</p>
-            <p>1 Hold Luggage | 20 kg · 80×50×30 cm</p>
-          </div>
-          <BiRightArrow className="arow_svg" />
-        </div>
-        <div className="select_seat">
-          <div className="content-pas">
-            <AiOutlinePlusCircle className="seat_svg" />
-            <p>Add more luggage</p>
-            <p>from 4.99 eur</p>
-          </div>
-          <BiRightArrow className="arow_svg" />
-        </div>
-      </div> */}
       <div className="wrap_info_item info_pasanger">
         <div className="title_wrap_item">
           <p className="title_numb">3</p>
@@ -154,7 +136,14 @@ const BookingInfoClient = () => {
         </div>
       </div>
       <div className="total_sum-book">
+        <div>
         <p>Total (incl. VAT) </p>
+          <p>Date</p>
+          <p>City From - 1</p>
+          <p>City To - 2</p>
+          <p>Time</p>
+
+        </div>
         <div className="sum_btn">
           <p>€117.98</p>
           <PDFDownloadLink 

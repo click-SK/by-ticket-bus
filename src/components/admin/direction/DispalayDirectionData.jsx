@@ -69,50 +69,55 @@ const DispalayDirectionData = ({dataRout, setDataRout, dataBus, dataDriver, pric
 
     return (
         <div>
-            <p>Rout name: {dataRout && dataRout.routName}</p>
+            {/* <p>Rout name: {dataRout && dataRout.routName}</p>
             <p>Bus name: {dataBus && dataBus.nameBus}</p>
             <div>Driver name: {drivers.map((item,idx) => (
                 <p key={idx}>{item}</p>
-            ))}</div>
-            <p>All distance: {dataRout && dataRout.distanceAll}</p>
-            <div>
-                <p>Price per kilometer</p>
-                <input
-                type='number'
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}/>
+            ))}</div> */}
+            <div className='info-roads'>
+                <p>All distance: {dataRout && dataRout.distanceAll}</p>
+                <div className='road_price'>
+                    <p>Price per kilometer</p>
+                    <input
+                    type='number'
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}/>
+                </div>
             </div>
 
-            <div>
+            <div className='point_stops_wrap'>
                 {dataRout && dataRout?.allStops.map((rout, idx) => (
-                    <div key={rout._id} style={{margin: '10px 0px', borderBottom: '1px solid black'}}>
-                        <p>From: {rout?.start}</p>
-                        <p>To: {rout.end}</p>
-                        <div>
+                    <div key={rout._id} className='point_item'>
+                        <div className='google_info-road'>
+                            <p>From: {rout?.start}</p>
+                            <p>To: {rout.end}</p>
                             <div>Google duration: {rout.duration} min</div>
                             <div>Google distance: {rout.distance} km</div>
-                        <div>
-                            <p>Time start</p>
-                            <input 
-                            value={rout?.timeStart || "00:00"}
-                            onChange={(e) => handleChangeStarTime(e.target.value, idx)}
-                            type='time'/>
                         </div>
-                        <div>
-                            <p>Time end</p>
-                            <input 
-                            value={rout?.timeEnd || "00:00"}
-                            onChange={(e) => handleChangeEndTime(e.target.value, idx)}
-                            type='time'/>
+                        <div className='wrap_time-stops'>
+                            <div>
+                                <p>Time start</p>
+                                <input 
+                                value={rout?.timeStart || "00:00"}
+                                onChange={(e) => handleChangeStarTime(e.target.value, idx)}
+                                type='time'/>
+                            </div>
+                            <div>
+                                <p>Time end</p>
+                                <input 
+                                value={rout?.timeEnd || "00:00"}
+                                onChange={(e) => handleChangeEndTime(e.target.value, idx)}
+                                type='time'/>
+                            </div>
+                            <div>
+                                <p>Time stop</p>
+                                <input 
+                                value={rout?.timeStops || 0}
+                                onChange={(e) => handleChangeStopTime(e.target.value, idx)}
+                                type='number'/>
+                            </div>
                         </div>
-                        <div>
-                            <p>Time stop</p>
-                            <input 
-                            value={rout?.timeStops || 0}
-                            onChange={(e) => handleChangeStopTime(e.target.value, idx)}
-                            type='number'/>
-                        </div>
-                        </div>
+
                     </div>
                 ))}
             </div>

@@ -34,7 +34,7 @@ const Header = () => {
     return (
         <>
         <div className='header_wrapper'>
-            <div className='content_wrap'>
+            <div className='content_wrap-header'>
             <div className='logo_wrap'>
                 <Link to={'/'} ><p style={{fontSize: '48px'}}>BUS LOGO</p> </Link>
                 <div className='routs_var'>

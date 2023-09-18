@@ -10,7 +10,7 @@ const SelectDays = ({setDays, days}) => {
         }
     }
     return (
-        <div>
+        <div className='days_wrap-activs'>
             <div>
             <p>Sunday</p>
             <input

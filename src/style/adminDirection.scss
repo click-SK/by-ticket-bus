@@ -1,0 +1,68 @@
+.info-roads{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 30px;
+    input{
+        border: 1px solid #494949;
+        border-radius: 20px;
+        padding: 0px 10px;
+        height: 30px;
+        width: 100px;
+    }
+}
+
+.road_price{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.point_stops_wrap{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 80px;
+}
+
+.point_item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 30px;
+}
+
+.google_info-road{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wrap_time-stops{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.days_wrap-activs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 30px;
+}
+
+.info_road-clients{
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 30px;
+}
