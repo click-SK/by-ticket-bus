@@ -41,7 +41,8 @@ const Direction = () => {
             price,
             drivers,
             daysWork: daysArray,
-            description
+            description,
+            routName: selectedRout?.routName
         }).then(() => {
             alert('succsess')
         })
@@ -86,7 +87,7 @@ const Direction = () => {
         return childRouts;
       }
 
-    console.log('formatedSelectedRout',formatedSelectedRout);
+    console.log('selectedRout',selectedRout?.routName);
 
     return (
         <div className='admin_content_wrap'>

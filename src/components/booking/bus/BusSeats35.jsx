@@ -12,6 +12,8 @@ const BusSeats35 = ({seats}) => {
   const [curentSeatsArr, setCurentSeatsArr] = useState([]);
   const dispatch = useDispatch();
 
+  console.log('curentSeatsArr',curentSeatsArr);
+
   const hendler = (e) => {
     try {
       if (curentSeatsArr.includes(e.target.id)) {
