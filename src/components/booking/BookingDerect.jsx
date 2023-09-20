@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setBookingData } from '../../store/bookingData';
 import { Link } from 'react-router-dom';
 import '../../style/Booking.scss'
+import axios from 'axios';
+import { API_URL } from '../../http/baseUrl';
 
 const BookingDerect = () => {
     const[isOutbound, setIsOutbound] = useState(true)
@@ -15,17 +17,43 @@ const BookingDerect = () => {
     const [curentPasanger, setCurentPasanger] = useState(1)
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
+    const [allDirections, setAllDirections] = useState([]);
+    const [currentDirections, setCurrentDirections] = useState([]);
     const dispatch = useDispatch();
     const {RDX_cityFrom, RDX_cityTo, RDX_curentPasanger, RDX_startDate, RDX_endDate} = useSelector((state) => state.booking);
 
     const listArr = [
-        1, 2, 3, 4, 5
+        1, 2, 3, 4
     ]
 
     useEffect (() => {
         setCityFrom(RDX_cityFrom);
         setCityTo(RDX_cityTo)
     },[])
+
+    useEffect(() => {
+        axios.get(`${API_URL}/get-all-directions`).then((res) => {
+            setAllDirections(res.data)
+        }).catch((error) => {
+            console.log(error);
+        })
+    },[])
+
+    useEffect(() => {
+        console.log('effect work');
+        const currentRoutes = [];
+        if(allDirections.length != 0) {
+            allDirections.forEach((rout) => {
+                if(rout.startRout == RDX_cityFrom && rout.endRout == RDX_cityTo) {
+                    console.log('rout',rout);
+                    currentRoutes.push(rout)
+                }
+            })
+        }
+        setCurrentDirections(currentRoutes)
+    },[allDirections])
+
+    console.log('currentDirections',currentDirections);
 
     return (
         <div className='booking_wrap'>
@@ -41,12 +69,15 @@ const BookingDerect = () => {
                 </div>
                 <div className='list_wrap'>
                 {isOutbound ?
-                    (listArr.map((item, idx) => (
-                        <Link to={`/booking-info-pas`}><DerectionList 
+                    (currentDirections.length != 0 && currentDirections.map((item, idx) => (
+                        <Link to={`/booking-info-pas`}>
+                        <DerectionList 
                         key={idx}
                         cityFrom = {cityFrom}
                         cityTo = {cityTo}
-                        /> </Link>
+                        item={item}
+                        /> 
+                        </Link>
                     )))
                 :
                     <DerectionList/> 

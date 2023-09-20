@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {logout} from '../../store/authAdministration.js'; 
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
+import Statistic from './Statistic';
 
 const AdminPanel = () => {
 
@@ -32,6 +33,7 @@ const AdminPanel = () => {
     const [isFaq, setIsFaq] = useState(false)
     const [isAddUser, setIsAddUser] = useState(false)
     const [isSetting, setIsSetting] = useState(false)
+    const [isStatistic, setIsStatistic] = useState(false)
     const [isAddBus, setIsAddBus] = useState(false)
     const [isAddRouts, setIsAddRouts] = useState(false)
     const dispatch = useDispatch();
@@ -51,6 +53,7 @@ const AdminPanel = () => {
         setIsSetting(false)
         setIsAddBus(false)
         setIsAddRouts(false)
+        setIsStatistic(false)
     }
     const hendlerOpenDirection = () => {
         setIsDashboadr(false)
@@ -61,6 +64,7 @@ const AdminPanel = () => {
         setIsSetting(false)
         setIsAddBus(false)
         setIsAddRouts(false)
+        setIsStatistic(false)
     }
     const hendlerOpenBlog = () => {
         setIsDashboadr(false)
@@ -71,6 +75,7 @@ const AdminPanel = () => {
         setIsSetting(false)
         setIsAddBus(false)
         setIsAddRouts(false)
+        setIsStatistic(false)
     }
     const hendlerOpenFaq = () => {
         setIsDashboadr(false)
@@ -81,6 +86,7 @@ const AdminPanel = () => {
         setIsSetting(false)
         setIsAddBus(false)
         setIsAddRouts(false)
+        setIsStatistic(false)
     }
     const hendlerOpenAddUser = () => {
         setIsDashboadr(false)
@@ -91,6 +97,7 @@ const AdminPanel = () => {
         setIsSetting(false)
         setIsAddBus(false)
         setIsAddRouts(false)
+        setIsStatistic(false)
     }
     const hendlerOpenSetting = () => {
         setIsDashboadr(false)
@@ -101,6 +108,7 @@ const AdminPanel = () => {
         setIsSetting(true)
         setIsAddBus(false)
         setIsAddRouts(false)
+        setIsStatistic(false)
     }
     const hendlerOpenAddBus = () => {
         setIsDashboadr(false)
@@ -111,6 +119,7 @@ const AdminPanel = () => {
         setIsSetting(false)
         setIsAddBus(true)
         setIsAddRouts(false)
+        setIsStatistic(false)
     }
     const hendlerOpenAddRoutes = () => {
         setIsDashboadr(false)
@@ -120,7 +129,19 @@ const AdminPanel = () => {
         setIsAddUser(false)
         setIsSetting(false)
         setIsAddBus(false)
+        setIsStatistic(false)
         setIsAddRouts(true)
+    }
+    const hendlerOpenStatistic = () => {
+        setIsDashboadr(false)
+        setIsDirection(false)
+        setIsBlog(false)
+        setIsFaq(false)
+        setIsAddUser(false)
+        setIsSetting(false)
+        setIsAddBus(false)
+        setIsAddRouts(false)
+        setIsStatistic(true)
     }
 
     const logoutAdministration = () => {
@@ -152,6 +173,14 @@ const AdminPanel = () => {
                             <li 
                             onClick={hendlerOpenSetting}
                             className={`nav_list-item ${isSetting ? 'nav_list-item-active' : ''} `}><AiFillSetting/>{t('Setting')}</li>}
+                            <li 
+                            onClick={hendlerOpenAddRoutes}
+                            className={`nav_list-item ${isAddRouts ? 'nav_list-item-active' : ''} `}>
+                                <TbEaseInOutControlPoints/>{t('Add stops and routes')}</li>
+                            {!isOperator &&
+                            <li 
+                            onClick={hendlerOpenStatistic}
+                            className={`nav_list-item ${isStatistic ? 'nav_list-item-active' : ''} `}><AiFillSetting/>Statistic</li>}
                             {!isOperator &&
                             <li 
                             onClick={hendlerOpenAddUser}
@@ -183,6 +212,9 @@ const AdminPanel = () => {
                         }
                         {isSetting && 
                             <SettingSite/>
+                        }
+                        {isStatistic && 
+                            <Statistic/>
                         }
                         {isAddUser&&
                             <AddUser/>
