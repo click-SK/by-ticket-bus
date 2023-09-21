@@ -5,11 +5,22 @@ import { PiFlowArrow } from 'react-icons/pi';
 import { AiOutlineWifi } from 'react-icons/ai';
 import { BsFillBadgeWcFill } from 'react-icons/bs';
 import { BsQrCodeScan } from 'react-icons/bs';
-
+import { useNavigate } from 'react-router-dom';
+import { setBookingData } from '../../../store/bookingData';
+import { useDispatch } from 'react-redux';
 const DerectionList = ({cityFrom, cityTo, item}) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     // Розділити час у хвилинах на години та залишок у хвилинах
     const hours = Math.floor(item.duration / 60);
     const minutes = item.duration % 60;
+
+    const handleReserveTickets = () => {
+        dispatch(setBookingData({item}));
+        navigate('/booking-info-pas');
+    }
+
+    console.log('item',item);
 
     return (
         <div className='list_item_wrap'>
@@ -45,7 +56,7 @@ const DerectionList = ({cityFrom, cityTo, item}) => {
                     <BsQrCodeScan/>
                 </div>
                 <div className='price_direct'>
-                    <button className='btn_prime'>10 euro</button>
+                    <button className='btn_prime' onClick={handleReserveTickets}>10 euro</button>
                 </div>
             </div>
         </div>

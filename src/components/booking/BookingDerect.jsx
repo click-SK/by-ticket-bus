@@ -70,14 +70,12 @@ const BookingDerect = () => {
                 <div className='list_wrap'>
                 {isOutbound ?
                     (currentDirections.length != 0 && currentDirections.map((item, idx) => (
-                        <Link to={`/booking-info-pas`}>
                         <DerectionList 
                         key={idx}
                         cityFrom = {cityFrom}
                         cityTo = {cityTo}
                         item={item}
                         /> 
-                        </Link>
                     )))
                 :
                     <DerectionList/> 
