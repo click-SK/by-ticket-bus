@@ -109,7 +109,7 @@ const BookingInfoClient = () => {
                 <MdOutlineAirlineSeatReclineNormal className="seat_svg" />
                 <div className="seat-wraper">{seats.length !== 0 ? 
                 seats.map((item,idx) => (
-                  <p>{item.length == 1 ? `${item} seat` : ''}</p>
+                  <p key={idx}>{item.length == 1 ? `${item} seat` : ''}</p>
                 )) : 
                 <p>Select you seat</p>}</div>
             </div>
