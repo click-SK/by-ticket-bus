@@ -5,7 +5,8 @@ const initialState = {
     RDX_cityTo: '',
     RDX_startDate: '',
     RDX_endDate: '',
-    RDX_curentPasanger: 0
+    RDX_curentPasanger: 0,
+    RDX_routeObject: {}
 }
 
 export const bookingSlice = createSlice({
@@ -13,12 +14,13 @@ export const bookingSlice = createSlice({
     initialState,
     reducers: {
         setBookingData(state, action) {
-            const {cityFrom, cityTo, curentPasanger, startDate, endDate} = action.payload;
+            const {cityFrom, cityTo, curentPasanger, startDate, endDate, item} = action.payload;
             state.RDX_cityFrom = cityFrom;
             state.RDX_cityTo = cityTo;
             state.RDX_startDate = startDate;
             state.RDX_endDate = endDate;
             state.RDX_curentPasanger = curentPasanger;
+            state.RDX_routeObject = item;
         }
     }
 })

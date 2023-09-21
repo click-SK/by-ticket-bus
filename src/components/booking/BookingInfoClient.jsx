@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BusSeats35 from "./bus/BusSeats35";
 import axios from 'axios';
+import { API_URL } from "../../http/baseUrl";
 import { PDFViewer } from '@react-pdf/renderer';
 import TicketTamplate from "./pdf/TicketTamplate";
 import TicketView from "./pdf/TicketView";
@@ -12,7 +13,6 @@ import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { BiRightArrow } from "react-icons/bi";
 import { TbLuggage } from "react-icons/tb";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-// import { useSelector } from 'react-redux';
 
 const BookingInfoClient = () => {
   const [seats, setSeats] = useState([]);
@@ -24,6 +24,8 @@ const BookingInfoClient = () => {
   const [pdfBlob, setPdfBlob] = useState(null);
   const [pdfFileData, setPdfFileData] = useState([])
   // const qrCodeImageUrl = QRCode.toDataURL('http://localhost:3000/booking-info-pas');
+  const {RDX_routeObject} = useSelector((state) => state.booking);
+  const {user} = useSelector((state) => state.authUser.user);
 
   useEffect (() => {
     setSeats(curentSeats)
@@ -47,19 +49,32 @@ const BookingInfoClient = () => {
   const handleGeneratePdf = async () => {
     const blob = new Blob([<TicketTamplate />], { type: 'application/pdf' });
     setPdfBlob(blob); // Зберегти PDF в стані
-    // console.log('testtt',<TicketTamplate/>);
-    try {
-      // const response = await axios.post('/api/save-pdf', pdfBlob, {
-      //   headers: {
-      //     'Content-Type': 'application/pdf',
-      //   },
-      // });
 
-      // console.log('PDF збережено на сервері', response.data);
-    } catch (error) {
-      console.error('Помилка при збереженні PDF на сервері', error);
-    }
   };
+  
+  const handleBuyTicket = () => {
+    try{
+      axios.patch(`${API_URL}/buy-ticket`, {
+        routName: RDX_routeObject.routName,
+        userId: user._id,
+        cityFrom: RDX_routeObject.startRout,
+        cityTo: RDX_routeObject.endRout,
+        timeFrom: RDX_routeObject.timeStart,
+        timeTo: RDX_routeObject.timeEnd,
+        seatNumbers: seats
+      }).then(() => {
+        handleGeneratePdf();
+      }).catch((error) => {
+        console.log(error);
+      })
+    }catch(error) {
+      console.log('Request error',error);
+    }
+  }
+
+  console.log('RDX_routeObject',RDX_routeObject);
+  console.log('user',user);
+  console.log('seats',seats);
 
 
   return (
@@ -153,7 +168,7 @@ const BookingInfoClient = () => {
           fileName="bus_ticket.pdf">
             {({ blob, url, loading, error }) =>
               loading ? 'Loading...' : (
-                <button className="btn_prime" onClick={handleGeneratePdf}>Buy</button>
+                <button className="btn_prime" onClick={handleBuyTicket}>Buy</button>
               )
             }
           </PDFDownloadLink>
