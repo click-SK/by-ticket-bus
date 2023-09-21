@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {logout} from '../../store/authAdministration.js'; 
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-import Statistic from './Statistic';
+import Statistic from './statistic/Statistic';
 
 const AdminPanel = () => {
 
@@ -173,10 +173,6 @@ const AdminPanel = () => {
                             <li 
                             onClick={hendlerOpenSetting}
                             className={`nav_list-item ${isSetting ? 'nav_list-item-active' : ''} `}><AiFillSetting/>{t('Setting')}</li>}
-                            <li 
-                            onClick={hendlerOpenAddRoutes}
-                            className={`nav_list-item ${isAddRouts ? 'nav_list-item-active' : ''} `}>
-                                <TbEaseInOutControlPoints/>{t('Add stops and routes')}</li>
                             {!isOperator &&
                             <li 
                             onClick={hendlerOpenStatistic}

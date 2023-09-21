@@ -82,13 +82,13 @@ const ClientProfile = () => {
                 </nav>
             </aside>
             <div className='body_wrapper'>
-                {isTrips && 
-                    <ClientTrips/>
+                {isTrips && currentUser &&
+                    <ClientTrips travelHistory={currentUser?.travelHistory}/>
                 }
-                {isPassengers && 
+                {isPassengers && currentUser &&
                     <ClientPassanger user={currentUser} setReloadUser={setReloadUser}/>
                 }
-                {isSettings && 
+                {isSettings && currentUser &&
                     <ClientSetting user={currentUser} setReloadUser={setReloadUser}/>
                 }
             </div>
