@@ -12,7 +12,9 @@ const SelectCity = ({selectedCity, citys, isOpenSelect, setIsOpenSelect}) => {
     useEffect(() => {
         axios.get(`${API_URL}/get-all-bus`).then((res) => {
             setAllBuses(res.data)
-        })
+        }).catch((error) => {
+            console.error('Request error:', error);
+          });
     },[])
 
     const handleAdd = (el) => {

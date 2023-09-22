@@ -21,6 +21,9 @@ const FaqPage = () => {
     useEffect(() => {
         axios.get(`${API_URL}/get-all-faq-posts`)
         .then((res) => setAllPosts(res.data))
+        .catch((error) => {
+            console.error('Request error:', error);
+          });
     },[])
 
     console.log('lang',lang);

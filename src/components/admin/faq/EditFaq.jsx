@@ -41,7 +41,6 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
     };
 
     const handleUpdatePost = () => {
-      try {
         axios.patch(`${API_URL}/update-faq-post`, {
           titleSp: titleSpain,
           titleEn: titleEng,
@@ -52,10 +51,9 @@ const EditFaq = ({item, setReloadState, isOpenPostItem, setIsOpenPostItem}) => {
           alert('Post updated');
           setIsOpenPostItem(!isOpenPostItem);
           setReloadState((state) => !state);
-        })
-      } catch(e) {
-        console.log(e);
-      }
+        }) .catch((error) => {
+          console.error('Request error:', error);
+        });
     }
 
     const modules = {

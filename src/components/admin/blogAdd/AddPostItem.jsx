@@ -60,7 +60,6 @@ const AddPostItem = ({ setIsAddNews, setReloadState }) => {
   };
 
   const handleAddNewPost = () => {
-    try {
       const formData = new FormData();
       formData.append("blogImage", image);
       formData.append("titleSp", titleSpain);
@@ -78,11 +77,10 @@ const AddPostItem = ({ setIsAddNews, setReloadState }) => {
           setImageSrc(null);
           setIsAddNews(false);
           setReloadState((satate) => !satate)
-  
       })
-    } catch(e) {
-      console.log(e);
-    }
+      .catch((error) => {
+        console.error('Request error:', error);
+      });
 }
 console.log('image',image);
   return (

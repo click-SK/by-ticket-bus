@@ -45,7 +45,9 @@ const Direction = () => {
             routName: selectedRout?.routName
         }).then(() => {
             alert('succsess')
-        })
+        }) .catch((error) => {
+          console.error('Request error:', error);
+        });
     }
 
     console.log('daysArray',daysArray);

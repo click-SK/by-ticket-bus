@@ -18,6 +18,9 @@ const BlogPage = () => {
     useEffect(() => {
         axios.get(`${API_URL}/get-all-blog-posts`)
         .then((res) => setAllPosts(res.data))
+        .catch((error) => {
+          console.error('Request error:', error);
+        });
     },[])
 
     const handleChange = (html) => {

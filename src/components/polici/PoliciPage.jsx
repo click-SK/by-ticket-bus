@@ -17,6 +17,9 @@ const PoliciPage = () => {
     useEffect(() => {
       axios.get(`${API_URL}/get-policy`)
       .then((res) => setPolicyData(res.data[0]))
+      .catch((error) => {
+        console.error('Request error:', error);
+      });
     },[])
     
     const handleChange = (html) => {

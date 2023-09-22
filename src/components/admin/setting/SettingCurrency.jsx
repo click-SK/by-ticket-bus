@@ -12,25 +12,23 @@ const SettingCurrency = () => {
     const { t } = useTranslation();
     
     useEffect(() => {
-        try {
             axios.get(`${API_URL}/get-all-default-currencies`)
             .then((res) => {
                 setAllCurrencies(res.data[0].currencies);
             })
-        } catch(e) {
-            console.log(e);
-        }
+            .catch((error) => {
+                console.error('Request error:', error);
+              });
     },[])
 
     useEffect(() => {
-        try {
             axios.get(`${API_URL}/get-all-current-currencies`)
             .then((res) => {
                 setCurrentCurrencies(res.data)
             })
-        } catch(e) {
-            console.log(e);
-        } 
+            .catch((error) => {
+                console.error('Request error:', error);
+              });
     },[reloadState])
 
     const handleAddCurrencie = (e) => {
@@ -45,6 +43,9 @@ const SettingCurrency = () => {
                         setReloadState((state) => !state);
                     },500)
                   })
+                  .catch((error) => {
+                    console.error('Request error:', error);
+                  });
             } else {
                 alert('This currency has already been added')
             }
@@ -54,7 +55,6 @@ const SettingCurrency = () => {
     }
 
     const handleDeleteCurrentCurencies = (id, name) => {
-        try {
             if(name !== 'EUR') {
                 axios.delete(`${API_URL}/delete-current-currencies`, {
                     data: {
@@ -66,12 +66,12 @@ const SettingCurrency = () => {
                         setReloadState((state) => !state);
                     },500)
                   })
+                  .catch((error) => {
+                    console.error('Request error:', error);
+                  });
             } else {
                 alert('You cannot delete this currency')
             }
-        } catch(e) {
-            console.log(e);
-        }
     }
 
     return (

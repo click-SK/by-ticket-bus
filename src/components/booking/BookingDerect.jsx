@@ -35,8 +35,8 @@ const BookingDerect = () => {
         axios.get(`${API_URL}/get-all-directions`).then((res) => {
             setAllDirections(res.data)
         }).catch((error) => {
-            console.log(error);
-        })
+            console.error('Request error:', error);
+          });
     },[])
 
     useEffect(() => {

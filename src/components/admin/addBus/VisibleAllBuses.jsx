@@ -10,7 +10,9 @@ const VisibleAllBuses = () => {
     useEffect(() => {
         axios.get(`${API_URL}/get-all-bus`).then((res) => {
             setAllBus(res.data)
-        })
+        }).catch((error) => {
+            console.error('Request error:', error);
+          });
     },[])
     
     return (

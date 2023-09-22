@@ -17,6 +17,9 @@ const RulesPage = () => {
     useEffect(() => {
       axios.get(`${API_URL}/get-travel-rules`)
       .then((res) => setRulesData(res.data[0]))
+      .catch((error) => {
+        console.error('Request error:', error);
+      });
     },[])
 
     const handleChange = (html) => {

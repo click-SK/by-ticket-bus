@@ -17,7 +17,10 @@ const ClientPassanger = ({user, setReloadUser}) => {
             setTimeout(() => {
                 setReloadUser((state) => ! state)
             },500)
-        })
+        }) 
+        .catch((error) => {
+            console.error('Request error:', error);
+          });
     }
     return (
         <div className='client_body_item_wrap'>

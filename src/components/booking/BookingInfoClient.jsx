@@ -64,7 +64,6 @@ const BookingInfoClient = () => {
   };
   
   const handleBuyTicket = () => {
-    try{
       axios.patch(`${API_URL}/buy-ticket`, {
         routName: RDX_routeObject.routName,
         cityFrom: RDX_routeObject.startRout,
@@ -80,11 +79,8 @@ const BookingInfoClient = () => {
       }).then(() => {
         handleGeneratePdf();
       }).catch((error) => {
-        console.log(error);
-      })
-    }catch(error) {
-      console.log('Request error',error);
-    }
+        console.error('Request error:', error);
+      });
   }
 
   console.log('RDX_routeObject',RDX_routeObject);

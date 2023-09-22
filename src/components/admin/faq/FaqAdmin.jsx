@@ -14,14 +14,13 @@ const FaqAdmin = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        try {
             axios.get(`${API_URL}/get-all-faq-posts`)
             .then((res) => {
                 setAllFaqPosts(res.data);
             })
-        } catch(e) {
-            console.log(e);
-        }
+            .catch((error) => {
+                console.error('Request error:', error);
+              });
     },[reloadState])
 
     return (

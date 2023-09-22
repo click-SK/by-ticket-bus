@@ -17,7 +17,6 @@ const AddBusForm = ({setBusList, busList, setIsAddBusForm}) => {
     const navigate = useNavigate();
 
     const handleAddBus = () => {
-        try {
           axios.post(`${API_URL}/create-bus`, {
             nameBus,
             numberBus,
@@ -35,11 +34,8 @@ const AddBusForm = ({setBusList, busList, setIsAddBusForm}) => {
             },500)
 
           }).catch((error) => {
-            console.log(error);
-          })
-        } catch (error) {
-          console.log(error);
-        }
+            console.error('Request error:', error);
+          });
       };
 
     

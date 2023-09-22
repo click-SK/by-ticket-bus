@@ -25,6 +25,9 @@ const SettingPolicyAboutRule = ({content, title, input, getUrl, updateUrl}) => {
     useEffect(() => {
       axios.get(`${API_URL}${getUrl}`)
       .then((res) => setCurrentObject(res.data[0]))
+      .catch((error) => {
+        console.error('Request error:', error);
+      });
     },[])
 
     useEffect (() => {
@@ -71,6 +74,9 @@ const SettingPolicyAboutRule = ({content, title, input, getUrl, updateUrl}) => {
         descriptionEn: contentEng
       })
       .then(() => alert('Information updated'))
+      .catch((error) => {
+        console.error('Request error:', error);
+      });
     }
 
     console.log('currentObject',currentObject);

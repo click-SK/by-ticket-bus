@@ -32,7 +32,6 @@ const FaqAddPost = ({setIsAddNews, setReloadState}) => {
     };
 
     const handleAddNewFaq = () => {
-      try {
         axios.post(`${API_URL}/create-faq-post`, {
           titleSp: titleSpain,
           titleEn: titleEng,
@@ -48,9 +47,9 @@ const FaqAddPost = ({setIsAddNews, setReloadState}) => {
           setReloadState((state) => ! state);
           setIsAddNews(false);
       })
-      } catch(e) {
-        console.log(e);
-      }
+      .catch((error) => {
+        console.error('Request error:', error);
+      });
     }
     return (
       <div className="add_post_wrap">

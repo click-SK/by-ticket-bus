@@ -29,7 +29,9 @@ const EditBus = ({ item, isOpen, setisOpen }) => {
     }) .then(() => {
       alert('edited bus')
       window.location.reload();
-    })
+    }).catch((error) => {
+      console.error('Request error:', error);
+    });
   };
 
   return (

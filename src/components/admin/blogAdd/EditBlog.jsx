@@ -69,7 +69,6 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
   };
 
   const handleUpdatePost = () => {
-    try {
       const formData = new FormData();
       formData.append("blogImage", image);
       formData.append("titleSp", titleSpain);
@@ -81,10 +80,9 @@ const EditBlog = ({item, setIsOpenPostItem, isOpenPostItem, setReloadState}) => 
         alert("Post updated");
         setIsOpenPostItem(!isOpenPostItem);
         setReloadState((state) => !state);
+      }) .catch((error) => {
+        console.error('Request error:', error);
       });
-    } catch(e) {
-      console.log(e);
-    }
     
   };
 

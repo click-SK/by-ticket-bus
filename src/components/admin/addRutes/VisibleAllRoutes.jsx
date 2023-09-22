@@ -8,7 +8,9 @@ const VisibleAllRoutes = () => {
     useEffect(() => {
         axios.get(`${API_URL}/get-all-routes`).then((res) => {
             setRoutes(res.data)
-        })
+        }) .catch((error) => {
+          console.error('Request error:', error);
+        });
     },[])
 
   return (

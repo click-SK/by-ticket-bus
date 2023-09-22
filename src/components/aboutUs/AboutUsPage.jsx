@@ -18,6 +18,9 @@ const AboutUsPage = () => {
     useEffect(() => {
       axios.get(`${API_URL}/get-about-us`)
       .then((res) => setAboutUsData(res.data[0]))
+      .catch((error) => {
+        console.error('Request error:', error);
+      });
     },[])
     
     const handleChange = (html) => {
