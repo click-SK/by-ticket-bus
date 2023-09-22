@@ -56,12 +56,16 @@ const BookingInfoClient = () => {
     try{
       axios.patch(`${API_URL}/buy-ticket`, {
         routName: RDX_routeObject.routName,
-        userId: user._id,
         cityFrom: RDX_routeObject.startRout,
         cityTo: RDX_routeObject.endRout,
         timeFrom: RDX_routeObject.timeStart,
         timeTo: RDX_routeObject.timeEnd,
-        seatNumbers: seats
+        seatNumbers: seats,
+        firstName,
+        lastName: lustName,
+        email,
+        phone,
+        userId: user._id
       }).then(() => {
         handleGeneratePdf();
       }).catch((error) => {
@@ -105,7 +109,7 @@ const BookingInfoClient = () => {
                 <MdOutlineAirlineSeatReclineNormal className="seat_svg" />
                 <div className="seat-wraper">{seats.length !== 0 ? 
                 seats.map((item,idx) => (
-                  <p>{item.length == 1 ? `${item} seat` : ''}</p>
+                  <p key={idx}>{item.length == 1 ? `${item} seat` : ''}</p>
                 )) : 
                 <p>Select you seat</p>}</div>
             </div>

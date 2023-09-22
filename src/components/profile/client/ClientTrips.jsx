@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import TripAllList from './tripsComponent/TripAllList';
 import '../../../style/profileTrips.scss'
-const ClientTrips = () => {
+const ClientTrips = ({travelHistory}) => {
     const [tripsArr, setTripsArr] = useState([
         {
             date: '17.09.2023',
@@ -33,13 +33,16 @@ const ClientTrips = () => {
     ])
     const { t } = useTranslation();
 
+    console.log('travelHistory',travelHistory);
+
     return (
         <div className='trips_wrap'>
             {tripsArr ? 
                 <>
+                    {tripsArr.length != 0 && 
                     <TripAllList
-                    tripsArr = {tripsArr}
-                    />
+                    tripsArr={travelHistory}
+                    />}
                 </>
                 :
                 <>

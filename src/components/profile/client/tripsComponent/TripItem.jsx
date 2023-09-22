@@ -16,13 +16,15 @@ const TripItem = ({item}) => {
     return (
         <div className='trip_one-wrap list_item_wrap'>
             <div className='trip-one-header'>
-                <p>{item.date}</p>
+                {/* <p>{item.date}</p> */}
+                <p>31.12.2023</p>
                 <p>{item.from}</p>
                 <p>{item.to}</p>
-                <p>{item.timeStart} - {item.timeEnd}</p>
+                <p>{item.timeFrom} - {item.timeTo}</p>
             </div>
             <div className='trip-one-footer'>
-                <p>{item.price}</p>
+                {/* <p>{item.price}</p> */}
+                <p>30$</p>
             </div>
         </div>
     );

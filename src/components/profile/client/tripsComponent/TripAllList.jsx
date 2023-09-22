@@ -3,6 +3,8 @@ import TripItem from './TripItem';
 
 
 const TripAllList = ({tripsArr}) => {
+
+    console.log('tripsArr',tripsArr);
     return (
         <div className='trip_list_wrap'>
             <div className='trip_wrap-header'>
@@ -12,7 +14,7 @@ const TripAllList = ({tripsArr}) => {
                 <h3>Time</h3>
             </div>
             <div className='trip_list-body'>
-                {tripsArr?.map((item,idx) => (
+                {tripsArr.map((item,idx) => (
                     <TripItem
                     key={idx}
                     item={item}
