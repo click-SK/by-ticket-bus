@@ -1,14 +1,24 @@
-.select_wrap_city{
+.select_city-wraper{
+    display: flex;
     width: 100%;
-    max-width: 200px;
-    background: transparent;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 5px;
-    margin-top: 25px;
-    transition: all 0.5s ease-in-out;
+    gap: 25px;
     z-index: 99;
     position: absolute;
+    bottom: -40px;
+    padding-top: 10px;
+}
+
+.select_wrap_city{
+    width: 50%;
+    min-height: 64px;
+    // max-width: 200px;
+    // background: transparent;
+    // border: 1px solid #ccc;
+    // border-radius: 10px;
+    // padding: 5px;
+    // margin-top: 25px;
+    // transition: all 0.5s ease-in-out;
+
 }
 
 .name_coin_city{
@@ -44,7 +54,11 @@
     padding: 5px 0px;
     justify-content: space-between;
     border-bottom: 1px solid black;
+    cursor: pointer;
     p {
         color: black;
+    }
+    &:hover{
+        background: rgba(138, 138, 138, 0.247);
     }
 }

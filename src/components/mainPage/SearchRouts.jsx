@@ -32,6 +32,8 @@ const SearchRouts = () => {
     const [filteredEndRoutArray, setFilteredEndRoutArray] = useState([]);
     const [selectedCityFrom, setSelectedCityFrom] = useState(null);
     const [selectedCityTo, setSelectedCityTo] = useState(null);
+    const [isOpenSelectTo, setIsOpenSelectTo] = useState(false);
+    const [isOpenSelectFrom, setIsOpenSelectFrom] = useState(false);
     const { t } = useTranslation();
 
     const dispatch = useDispatch();
@@ -117,19 +119,32 @@ const SearchRouts = () => {
         }
     } 
 
+    const handleCloseList = () => {
+        setTimeout(() => {
+            setIsOpenSelectFrom(false)
+            setIsOpenSelectTo(false)
+        }, 300);
+    }
+
 
     return (
         <div className='serch_routs_wraper'>
             <div className='serch_routs_items'>
+                <div className='serch_routs_items-direct'>
+
                 {isFromTo ? 
                 <>
                 <div className='serch_routs-item loation_from'>
                     <p className='serch_routs-item_title'>{t('From')}</p>
                     <div className='serch_routs-item-input'>
                         <FaLocationDot className='icon-search' />
-                        <input type="text" placeholder='City' value={cityFrom} onChange={(e) => hendlerChangeInputFrom(e.target.value)} />
+                        <input type="text" placeholder='City' value={cityFrom} onChange={(e) => hendlerChangeInputFrom(e.target.value)} 
+                        // onFocus={setIsOpenSelectFrom(!isOpenSelectFrom)}
+                        onFocus={() => setIsOpenSelectFrom(true)} 
+                        onBlur={() => handleCloseList() }
+                         />
                     </div>
-                    <SelectCity selectedCity={setCityFrom} citys={filteredStartRoutArray}/>
+
                 </div>
                 <AiOutlineSwap className='icon-search icon-swap'
                 onClick={() => setIsFromTo(!isFromTo)}
@@ -138,11 +153,27 @@ const SearchRouts = () => {
                     <p className='serch_routs-item_title'>{t('To')}</p>
                     <div className='serch_routs-item-input'>
                         <FaLocationDot className='icon-search' />
-                        <input type="text" placeholder='City' value={cityTo} onChange={(e) => hendlerChangeInputTo(e.target.value)} />
+                        <input type="text" placeholder='City' value={cityTo} onChange={(e) => hendlerChangeInputTo(e.target.value)}
+                        onFocus={() => setIsOpenSelectTo(true)} 
+                        onBlur={() => handleCloseList() }
+                            />
                     </div>
-                    <SelectCity selectedCity={setCityTo} citys={filteredEndRoutArray}/>
+
                     
                 </div> 
+                <div className='select_city-wraper'>
+                <SelectCity 
+                    selectedCity={setCityFrom} 
+                    citys={filteredStartRoutArray}
+                    isOpenSelect={isOpenSelectFrom} 
+                    setIsOpenSelect = {setIsOpenSelectFrom}
+                    />
+                <SelectCity 
+                    selectedCity={setCityTo} 
+                    citys={filteredEndRoutArray}
+                    isOpenSelect={isOpenSelectTo}
+                    setIsOpenSelect = {setIsOpenSelectTo}/>
+                </div>
                 </>
                 :
                 <>
@@ -167,6 +198,7 @@ const SearchRouts = () => {
                 </>
 
                 }
+                </div>
                 <div className='serch_routs-item item-date date_start' >
                     <p className='serch_routs-item_title' >{t('Date')}</p>
                     <div className='date_change'>
@@ -191,8 +223,9 @@ const SearchRouts = () => {
                 </div>
             </div>
             <div
+            className='search-btn'
             style={{height:'100%'}}>
-                <button className='search-btn' onClick={handleSendBookingData}> 
+                <button className='search-btn'  onClick={handleSendBookingData}> 
                 <BsSearch className='search-btn-icon'/>
                 {t('Search')}
                 </button>

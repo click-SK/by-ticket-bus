@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useTranslation } from "react-i18next";
+import axios from 'axios';
+import { API_URL } from '../../../http/baseUrl';
 const Derection = () => {
     const { t } = useTranslation();
+    const [allRoutTickets, setAllRoutTickets] = useState([]);
+    const [selectRout, setSelectedRout] = useState(null);
+    useEffect(() => {
+        axios.get(`${API_URL}/get-all-tickets`)
+        .then((res) => {
+            setAllRoutTickets(res.data);
+        }).catch((error) => {
+            console.log('Request error',error);
+        })
+    },[])
     return (
         <div className='admin_panel_items derection_wraper' >
             <h3 className='admin_panel_items-title'>{t('Direction')}</h3>

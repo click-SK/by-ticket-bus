@@ -4,8 +4,8 @@ import { API_URL } from '../../http/baseUrl';
 import { useTranslation } from "react-i18next";
 import { BiDownArrow } from 'react-icons/bi';
 import '../../style/selectCity.scss';
-const SelectCity = ({selectedCity, citys}) => {
-    const [isOpenSelect, setIsOpenSelect] = useState(false);
+const SelectCity = ({selectedCity, citys, isOpenSelect, setIsOpenSelect}) => {
+    // const [isOpenSelect, setIsOpenSelect] = useState(false);
     const [allBuses, setAllBuses] = useState([]);
     const { t } = useTranslation();
 
@@ -17,11 +17,12 @@ const SelectCity = ({selectedCity, citys}) => {
 
     const handleAdd = (el) => {
         selectedCity(el)
+        setIsOpenSelect(!isOpenSelect)
     }
     
     return (
         <div className='select_wrap_city'>
-        <div className='name_coin_city'>
+        {/* <div className='name_coin_city'>
             <p
             onClick={() => setIsOpenSelect(!isOpenSelect)}
             className='select_header_city'
@@ -29,7 +30,7 @@ const SelectCity = ({selectedCity, citys}) => {
             <BiDownArrow
             className={isOpenSelect ? 'open_svg' : ''}
             /></p>
-        </div>
+        </div> */}
             <div className={`option_select_city ${isOpenSelect ? 'open' : 'close'}`}>
                 {citys.length != 0 && citys.map((el, idx) => (
                     <div

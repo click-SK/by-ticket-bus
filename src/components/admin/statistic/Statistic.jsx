@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../http/baseUrl';
 import SelectRoutTicket from './SelectRoutTicket';
+import { useTranslation } from "react-i18next";
 const Statistic = () => {
+    const { t } = useTranslation();
     const [allRoutTickets, setAllRoutTickets] = useState([]);
     const [selectRout, setSelectedRout] = useState(null);
     useEffect(() => {
@@ -14,11 +16,15 @@ const Statistic = () => {
         })
     },[])
 
-    console.log('selectRout',selectRout);
+    // console.log('selectRout',selectRout);
     return (
-        <div>
-            Statistic
-            <SelectRoutTicket setSelectedRout={setSelectedRout} allRouts={allRoutTickets}/>
+        <div className='admin_content_wrap'>
+        <h2>Statictic</h2>
+            <SelectRoutTicket 
+            setSelectedRout={setSelectedRout} 
+            allRouts={allRoutTickets}
+            selectRout={selectRout}
+            />
         </div>
     );
 };

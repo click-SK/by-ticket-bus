@@ -28,7 +28,18 @@ const BookingInfoClient = () => {
   const {user} = useSelector((state) => state.authUser.user);
 
   useEffect (() => {
-    setSeats(curentSeats)
+    setTimeout(() => {
+      const userFirstName = user?.firstName
+      const userLastName = user?.lastName
+      const userMail = user?.email
+      const userPhone = user?.phone
+      setSeats(curentSeats)
+      setFirstName(userFirstName)
+      setLustName(userLastName)
+      setEmail(userMail)
+      setPhone(userPhone)
+      
+    }, 500);
   },[])
 
   useEffect (() => {
