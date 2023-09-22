@@ -23,6 +23,9 @@ const ClientSetting = ({user, setReloadUser}) => {
                 setReloadUser((state) => ! state)
             },500)
         })
+        .catch((error) => {
+            console.error('Request error:', error);
+          });
     }
     const handleUpdateUserPassword = () => {
         axios.patch(`${API_URL}/update-user-password`, {id: user?._id, currentPassword, newPassword})
@@ -31,6 +34,9 @@ const ClientSetting = ({user, setReloadUser}) => {
                 setReloadUser((state) => ! state)
             },500)
         })
+        .catch((error) => {
+            console.error('Request error:', error);
+          });
     }
 
     return (

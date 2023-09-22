@@ -170,7 +170,9 @@ const UrbanStops = () => {
       allStops
     }) .then(() => {
       alert('sucsses')
-    })
+    }) .catch((error) => {
+      console.error('Request error:', error);
+    });
   }
 
     return (

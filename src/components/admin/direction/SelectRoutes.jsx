@@ -10,13 +10,11 @@ const SelectRoutes = ({setSelectedRout}) => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    try {
       axios.get(`${API_URL}/get-all-routes`).then((res) => {
         setAllRouts(res.data);
+      }) .catch((error) => {
+        console.error('Request error:', error);
       });
-    } catch (error) {
-      console.log(error);
-    }
   }, []);
 
   const handleAdd = (el) => {

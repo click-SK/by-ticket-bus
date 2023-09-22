@@ -17,12 +17,11 @@ const NewsSection = () => {
     const lang = useSelector((state) => state.lang.language);
 
     useEffect(() => {
-      try {
         axios.get(`${API_URL}/get-all-blog-posts`)
         .then((res) => setAllPosts(res.data.slice(-6)))
-      } catch(error) {
-        console.log(error);
-      }
+        .catch((error) => {
+          console.error('Request error:', error);
+        });
     },[])
 
     const handleChange = (editorEng) => {

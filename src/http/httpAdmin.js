@@ -22,6 +22,9 @@ $api.interceptors.response.use((config) => {
   if(error.response.status == 403 && error.config && !error.config._isRetry) {
     originalRequest._isRetry = true;
     const response = await axios.get(`${API_URL}/refresh-admin`,{withCredentials: true})
+    .catch((error) => {
+      console.error('Request error:', error);
+    });
     localStorage.setItem('bus-a-t',response.data.accessToken)
     return $api.request(originalRequest);
   }

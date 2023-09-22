@@ -34,7 +34,9 @@ const RoutOne = () => {
             axios.get(`${API_URL}/get-one-rout/${curentId}`).then((res) => {
                 console.log('res.data',res.data.routes);
                 calculateRoutes(res.data.routes)
-            })
+            }).catch((error) => {
+              console.error('Request error:', error);
+            });
         }
     },[curentId])
 

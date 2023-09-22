@@ -63,8 +63,8 @@ const SearchRouts = () => {
             setEndRoutArray(directionsEnd);
             setAllDirections(directions)
         }).catch((error) => {
-            console.log(error);
-        })
+            console.error('Request error:', error);
+          });
     },[])
 
     console.log('allDirections',allDirections);

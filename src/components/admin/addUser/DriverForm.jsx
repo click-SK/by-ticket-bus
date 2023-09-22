@@ -23,7 +23,9 @@ const DriverForm = ({setReloadState}) => {
                 password: driverPassword,
                 license: driverLicense,
                 address: driverAddress,
-            })
+            }).catch((error) => {
+                console.error('Request error:', error);
+              });
 
             console.log('driver data',data);
     

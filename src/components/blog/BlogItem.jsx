@@ -26,6 +26,9 @@ const BlogItem = () => {
         if(userrentId) {
             axios.get(`${API_URL}/get-one-blog-post/${userrentId}`)
             .then((res) => setCurrentPost(res.data))
+            .catch((error) => {
+              console.error('Request error:', error);
+            });
         }
     },[userrentId])
 

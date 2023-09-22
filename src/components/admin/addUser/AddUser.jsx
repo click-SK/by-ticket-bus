@@ -76,7 +76,11 @@ const AddUser = () => {
         data: {
           id
         },
-      }) .then(() => setTimeout(setReloadState((state) => !state)),500)
+      }) 
+      .then(() => setTimeout(setReloadState((state) => !state)),500)
+      .catch((error) => {
+        console.error('Request error:', error);
+      });
     }
 
     const handleDeleteManager = (id) => {
@@ -84,7 +88,11 @@ const AddUser = () => {
             data: {
               id
             },
-          }) .then(() => setTimeout(setReloadState((state) => !state)),500)
+          }) 
+          .then(() => setTimeout(setReloadState((state) => !state)),500)
+          .catch((error) => {
+            console.error('Request error:', error);
+          });
     }
 
 

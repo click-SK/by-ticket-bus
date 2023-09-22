@@ -28,7 +28,6 @@ const BookingInfoClient = () => {
   const {user} = useSelector((state) => state.authUser.user);
 
   useEffect (() => {
-    setTimeout(() => {
       const userFirstName = user?.firstName
       const userLastName = user?.lastName
       const userMail = user?.email
@@ -38,9 +37,9 @@ const BookingInfoClient = () => {
       setLustName(userLastName)
       setEmail(userMail)
       setPhone(userPhone)
-      
-    }, 500);
-  },[])
+  },[user])
+
+  console.log('user',user);
 
   useEffect (() => {
     setPdfFileData(
@@ -64,7 +63,6 @@ const BookingInfoClient = () => {
   };
   
   const handleBuyTicket = () => {
-    try{
       axios.patch(`${API_URL}/buy-ticket`, {
         routName: RDX_routeObject.routName,
         cityFrom: RDX_routeObject.startRout,
@@ -80,11 +78,8 @@ const BookingInfoClient = () => {
       }).then(() => {
         handleGeneratePdf();
       }).catch((error) => {
-        console.log(error);
-      })
-    }catch(error) {
-      console.log('Request error',error);
-    }
+        console.error('Request error:', error);
+      });
   }
 
   console.log('RDX_routeObject',RDX_routeObject);

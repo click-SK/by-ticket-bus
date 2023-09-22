@@ -13,14 +13,12 @@ const AddBlog = () => {
     const [allPosts, setAllPosts] = useState([]);
     const { t } = useTranslation();
     useEffect(() => {
-        try {
             axios.get(`${API_URL}/get-all-blog-posts`)
             .then((res) => {
               setAllPosts(res.data);
-            })
-        } catch(e) {
-            console.log(e);
-        }
+            }) .catch((error) => {
+                console.error('Request error:', error);
+              });
   },[reloadState])
 
     return (

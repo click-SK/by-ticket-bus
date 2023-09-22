@@ -71,7 +71,7 @@ function App() {
       }
       })
       .catch((error) => {
-        console.error('Error fetching currencies:', error);
+        console.error('Request error:', error);
       });
   }, []);
 
