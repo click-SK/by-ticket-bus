@@ -28,7 +28,6 @@ const BookingInfoClient = () => {
   const {user} = useSelector((state) => state.authUser.user);
 
   useEffect (() => {
-    setTimeout(() => {
       const userFirstName = user?.firstName
       const userLastName = user?.lastName
       const userMail = user?.email
@@ -38,9 +37,9 @@ const BookingInfoClient = () => {
       setLustName(userLastName)
       setEmail(userMail)
       setPhone(userPhone)
-      
-    }, 500);
-  },[])
+  },[user])
+
+  console.log('user',user);
 
   useEffect (() => {
     setPdfFileData(

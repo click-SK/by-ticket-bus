@@ -5,17 +5,8 @@ import { useTranslation } from "react-i18next";
 import { BiDownArrow } from 'react-icons/bi';
 import '../../style/selectCity.scss';
 const SelectCity = ({selectedCity, citys, isOpenSelect, setIsOpenSelect}) => {
-    // const [isOpenSelect, setIsOpenSelect] = useState(false);
-    const [allBuses, setAllBuses] = useState([]);
     const { t } = useTranslation();
 
-    useEffect(() => {
-        axios.get(`${API_URL}/get-all-bus`).then((res) => {
-            setAllBuses(res.data)
-        }).catch((error) => {
-            console.error('Request error:', error);
-          });
-    },[])
 
     const handleAdd = (el) => {
         selectedCity(el)
