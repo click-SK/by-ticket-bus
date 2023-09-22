@@ -21,23 +21,31 @@ const BookingInfoClient = () => {
   const [lustName, setLustName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [isNextPass, setIsNextPass] = useState(false)
   const [pdfBlob, setPdfBlob] = useState(null);
   const [pdfFileData, setPdfFileData] = useState([])
   // const qrCodeImageUrl = QRCode.toDataURL('http://localhost:3000/booking-info-pas');
   const {RDX_routeObject} = useSelector((state) => state.booking);
   const {user} = useSelector((state) => state.authUser.user);
+  const [nextPass, setNextPass] = useState([
+
+  ])
 
   useEffect (() => {
       const userFirstName = user?.firstName
       const userLastName = user?.lastName
       const userMail = user?.email
       const userPhone = user?.phone
-      setSeats(curentSeats)
       setFirstName(userFirstName)
       setLustName(userLastName)
       setEmail(userMail)
-      setPhone(userPhone)
+      setPhone(Number(userPhone))
+
   },[user])
+  
+  useEffect (() => {
+      setSeats(curentSeats)
+  },[curentSeats])
 
   console.log('user',user);
 
@@ -82,9 +90,24 @@ const BookingInfoClient = () => {
       });
   }
 
+  const handleAddPassenger = () => {
+    setNextPass(prevState => [
+      ...prevState,
+      {
+        firstNameNext: 'First Name',
+        lastNameNext: 'Last Name'
+      }
+    ]);
+    setIsNextPass(true);
+  };
+
+  const handleDeletePassenger = (indexToDelete) => {
+    setNextPass(prevPassengers => prevPassengers.filter((_, index) => index !== indexToDelete));
+  };
+
   console.log('RDX_routeObject',RDX_routeObject);
   console.log('user',user);
-  console.log('seats',seats);
+  console.log('nextPass',nextPass);
 
 
   return (
@@ -103,6 +126,43 @@ const BookingInfoClient = () => {
             <label htmlFor="last_name_pas">Last name</label>
             <input id="last_name_pas" type="text" value={lustName} onChange={(e) => setLustName(e.target.value)} />
           </div>
+        </div>
+        {isNextPass && 
+            nextPass.map((item, id) => (
+              <div className="input_wraper-book">
+                <div className="input_item">
+                  <label htmlFor={`first_name_pas_${id}`}>First name</label>
+                  <input
+                    id={`first_name_pas_${id}`}
+                    type="text"
+                    value={item.firstNameNext}
+                    onChange={(e) => {
+                      const updatedPassengers = [...nextPass];
+                      updatedPassengers[id].firstNameNext = e.target.value;
+                      setNextPass(updatedPassengers);
+                    }}
+                  />
+                </div>
+                <div className="input_item">
+                  <label htmlFor={`last_name_pas_${id}`}>Last name</label>
+                  <input
+                    id={`last_name_pas_${id}`}
+                    type="text"
+                    value={item.lastNameNext}
+                    onChange={(e) => {
+                      const updatedPassengers = [...nextPass];
+                      updatedPassengers[id].lastNameNext = e.target.value;
+                      setNextPass(updatedPassengers);
+                    }}
+                  />
+                </div>
+                <button className="btn_prime" onClick={() => handleDeletePassenger(id)}>Delete</button>
+              </div>
+
+            ))
+        }
+        <div className="btn-wrap">
+        <button className="btn_prime" onClick={handleAddPassenger}>Add pass</button>
         </div>
       </div>
       <div className="wrap_info_item info_reservation">
@@ -163,15 +223,19 @@ const BookingInfoClient = () => {
       <div className="total_sum-book">
         <div>
         <p>Total (incl. VAT) </p>
-          <p>Date</p>
-          <p>City From - 1</p>
-          <p>City To - 2</p>
-          <p>Time</p>
+        <p>{RDX_routeObject?.createdAt} </p>
+          <p>{RDX_routeObject?.startRout} </p>
+          <p>{RDX_routeObject?.endRout} </p>
+          <p>{RDX_routeObject?.timeStart} - {RDX_routeObject?.timeEnd}</p>
 
         </div>
         <div className="sum_btn">
           <p>€117.98</p>
-          <PDFDownloadLink 
+            <Link to='/ticket-info'>
+                <button className="btn_prime" onClick={handleBuyTicket}>Buy</button>
+            </Link>
+
+          {/* <PDFDownloadLink 
           document={<TicketTamplate 
                     data = {pdfFileData}
                     />} 
@@ -181,7 +245,7 @@ const BookingInfoClient = () => {
                 <button className="btn_prime" onClick={handleBuyTicket}>Buy</button>
               )
             }
-          </PDFDownloadLink>
+          </PDFDownloadLink> */}
         </div>
       </div>
     </div>

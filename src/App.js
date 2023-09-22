@@ -27,6 +27,7 @@ import RulesPage from "./components/rulePage/RulePage";
 import TestPdf from "./components/booking/pdf/TestPdf";
 import RoutOne from "./components/admin/addRutes/RoutOne";
 import AddRouts from "./components/admin/addRutes/AddRouts";
+import PreviewTicket from "./components/booking/preview/PreviewTicket";
 import { useTheme } from "./hooks/use-thems";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuthUser } from "./store/authUser";
@@ -115,6 +116,7 @@ function App() {
         <Route path="/trip-list" element={<BookingDerect/>} />
         <Route path="/booking-direct№" element={<DirectCurent/>} />
         <Route path="/booking-info-pas" element={<BookingInfoClient/>} />
+        <Route path="/ticket-info" element={<PreviewTicket/>} />
         <Route path="/bus-seats" element={<BusSeats35/>} />
         <Route path="/blog" element={<BlogPage/>} />
         <Route path="/blog/:id" element={<BlogItem/>} />
