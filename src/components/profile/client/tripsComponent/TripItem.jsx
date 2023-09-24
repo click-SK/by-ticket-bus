@@ -13,6 +13,8 @@ const TripItem = ({item}) => {
     //             'Name2'
     //         ],   
 
+    console.log('item', item);
+
     return (
         <div className='trip_one-wrap list_item_wrap'>
             <div className='trip-one-header'>
@@ -24,7 +26,14 @@ const TripItem = ({item}) => {
             </div>
             <div className='trip-one-footer'>
                 {/* <p>{item.price}</p> */}
-                <p>30$</p>
+                <div className='trip-one-footer-pdf-price'>
+                <p className='seat-number'>Seat: {item.seatNumber}</p>
+                </div>
+                <div className='trip-one-footer-pdf-price'>
+                <p className='trip-one-footer-print'>Print</p>
+                <p className='trip-one-footer-download'>Download</p>
+                <p className='trip-one-footer-price'>30$</p>
+                </div>
             </div>
         </div>
     );

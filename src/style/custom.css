@@ -535,6 +535,7 @@ section{
 	display: inline-block;
 	padding: 0 12px 0 18px;
 	position: relative;
+	overflow: hidden;
 }
 .booking-info p, .booking-info {
 	position: relative;
@@ -553,7 +554,7 @@ section{
 	content: '';
 	position: absolute;
 	border-left: 2px solid #00baff;
-	height: 39px;
+	height: 100%;
 	top: 12px;
 	left: -13px;
 }

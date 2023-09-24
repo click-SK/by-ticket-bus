@@ -37,7 +37,7 @@ const ClientPassanger = ({user, setReloadUser}) => {
                     onChange={(e) => setLastName(e.target.value)} />
                 </div>
                 <button className='btn_prime' onClick={handleUpdateUserName}>{t('Save')}</button>
-                <button className='btn_prime'>{t('Add Passenger')}</button>
+                {/* <button className='btn_prime'>{t('Add Passenger')}</button> */}
         </div>
     );
 };

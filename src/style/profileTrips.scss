@@ -23,12 +23,27 @@
     width: 100%;
     gap: 20px;
     margin-top: 50px;
+
+
 }
 
 .trip_one-wrap{
     display: flex;
     flex-direction: column;
     height: 120px;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    &::after{
+        content: '';
+        position: absolute;
+        width: 160px;
+        height: 50px;
+        background: var(--color-prime);
+        rotate: -65deg;
+        left: -10px;
+    }
 }
 
 .trip-one-header{
@@ -40,14 +55,37 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-size: 25px;
     }
 }
 
 .trip-one-footer{
     display: flex;
     justify-content: flex-end;
-    p{
+    gap: 50px;
+}
+.trip-one-footer-pdf-price{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+
+    .trip-one-footer-price{
         color: green;
         font-weight: 800;
+        font-size: 25px;
+    }
+    .trip-one-footer-download{
+        font-weight: 500;
+        font-size: 23px;
+        color: var(--color-prime);
+    }
+    .trip-one-footer-print{
+        font-weight: 500;
+        font-size: 23px;
+        color: red;
+    }
+    .seat-number{
+        font-weight: 500;
+        font-size: 23px;
     }
 }

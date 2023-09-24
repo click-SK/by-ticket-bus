@@ -47,6 +47,10 @@ const TicketTamplate = ({data}) => {
     const seats = data?.seats
     const email= data?.email
     const phone = data?.phone
+    const seatsLength = data?.seatsLength
+    const selectRout = data?.selectRout
+    const price = data?.price
+    const tax = data?.tax
     // const qr = data?.qr
     const qrCodeValue = 'http://localhost:3000/booking-info-pas';
 
@@ -65,11 +69,11 @@ const TicketTamplate = ({data}) => {
             </View>
           <View style={styles.section}>
             <Text style={styles.title}>Bus Ticket</Text>
-            <Text>Name: Lex</Text>
-            <Text>Name: Lut</Text>
-            <Text>email: 1@g.com</Text>
-            <Text>phone: +38066371</Text>
-            <Text>Bus Route: Route 123</Text>
+            <Text>Name: {fName}</Text>
+            <Text>Name: {lName}</Text>
+            <Text>email: {email}</Text>
+            <Text>phone: {phone}</Text>
+            <Text>Bus Route: Route 1232222 {seats}</Text>
           </View>
           <View style={styles.section}>
             <Text style={styles.title}>Ride info</Text>
